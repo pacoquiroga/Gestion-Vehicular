@@ -1,0 +1,125 @@
+[
+    {
+        "placa": "PMA-7997",
+        "marca": "Mercedes Benz",
+        "modelo": "O 500 RS",
+        "ano": 2020,
+        "tipo_vehiculo": "Autobús",
+        "capacidad": "50 pasajeros",
+        "informacion_tecnica": {
+            "tipo_combustible": "Diesel",
+            "motor": "Mercedes-Benz OM 460 LA",
+            "kilometraje": "60,000 km",
+            "peso": "19,600 kg"
+        },
+        "imagen": "images/BusMercedes.jpg",
+        "viajes_realizados": [
+            {
+                "vehiculo": "PMA-7997",
+                "conductor": "Pedro Picapiedra",
+                "hora_salida": "20-11-2023 11:50:00",
+                "hora_llegada": "20-11-2023 13:45:00",
+                "recorrido_km": "70km",
+                "tiempo_h": "1:55h"
+            },
+            {
+                "vehiculo": "PMA-7997",
+                "conductor": "Pedro Picapiedra",
+                "hora_salida": "21-11-2023 09:30:00",
+                "hora_llegada": "21-11-2023 11:15:00",
+                "recorrido_km": "50km",
+                "tiempo_h": "1:45h"
+            },
+            {
+                "vehiculo": "PMA-7997",
+                "conductor": "Pedro Picapiedra",
+                "hora_salida": "22-11-2023 15:20:00",
+                "hora_llegada": "22-11-2023 17:30:00",
+                "recorrido_km": "90km",
+                "tiempo_h": "2:10h"
+            },
+            {
+                "vehiculo": "PMA-7997",
+                "conductor": "Pedro Picapiedra",
+                "hora_salida": "23-11-2023 08:00:00",
+                "hora_llegada": "23-11-2023 10:15:00",
+                "recorrido_km": "60km",
+                "tiempo_h": "2:15h"
+            },
+            {
+                "vehiculo": "PMA-7997",
+                "conductor": "Pedro Picapiedra",
+                "hora_salida": "24-11-2023 14:45:00",
+                "hora_llegada": "24-11-2023 16:30:00",
+                "recorrido_km": "80km",
+                "tiempo_h": "1:45h"
+            }
+        ]
+    },
+    {
+        "placa": "PME-4004",
+        "marca": "Suzuki",
+        "modelo": "Vitara",
+        "ano": 2021,
+        "tipo_vehiculo": "SUV",
+        "capacidad": "5 pasajeros",
+        "informacion_tecnica": {
+            "tipo_combustible": "Gasolina",
+            "motor": "Suzuki K15B",
+            "kilometraje": "20,000 km",
+            "peso": "1,500 kg"
+        },
+        "imagen": "images/Vitara.jpg",
+        "viajes_realizados": [
+            {
+                "vehiculo": "PME-4004",
+                "conductor": "Juan Conductor",
+                "hora_salida": "25-11-2023 10:00:00",
+                "hora_llegada": "25-11-2023 12:30:00",
+                "recorrido_km": "100km",
+                "tiempo_h": "2:30h"
+            },
+            {
+                "vehiculo": "PME-4004",
+                "conductor": "Juan Conductor",
+                "hora_salida": "26-11-2023 14:00:00",
+                "hora_llegada": "26-11-2023 16:45:00",
+                "recorrido_km": "80km",
+                "tiempo_h": "2:45h"
+            }
+        ]
+    },
+    {
+        "placa": "PMA-3124",
+        "marca": "Toyota",
+        "modelo": "Hilux",
+        "ano": 2022,
+        "tipo_vehiculo": "Camioneta",
+        "capacidad": "4 pasajeros",
+        "informacion_tecnica": {
+            "tipo_combustible": "Diesel",
+            "motor": "Toyota 1GD-FTV",
+            "kilometraje": "15,000 km",
+            "peso": "2,200 kg"
+        },
+        "imagen": "images/CamionetaToyota.jpg",
+        "viajes_realizados": [
+            {
+                "vehiculo": "PMA-3124",
+                "conductor": "Maria Conductora",
+                "hora_salida": "27-11-2023 09:15:00",
+                "hora_llegada": "27-11-2023 11:30:00",
+                "recorrido_km": "120km",
+                "tiempo_h": "2:15h"
+            },
+            {
+                "vehiculo": "PMA-3124",
+                "conductor": "Maria Conductora",
+                "hora_salida": "28-11-2023 13:30:00",
+                "hora_llegada": "28-11-2023 16:00:00",
+                "recorrido_km": "90km",
+                "tiempo_h": "2:30h"
+            }
+        ]
+    }
+]
