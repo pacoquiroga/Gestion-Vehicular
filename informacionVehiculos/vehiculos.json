@@ -15,7 +15,6 @@
         "imagen": "images/BusMercedes.jpg",
         "viajes_realizados": [
             {
-                "vehiculo": "PMA-7997",
                 "conductor": "Pedro Picapiedra",
                 "hora_salida": "20-11-2023 11:50:00",
                 "hora_llegada": "20-11-2023 13:45:00",
@@ -23,7 +22,6 @@
                 "tiempo_h": "1:55h"
             },
             {
-                "vehiculo": "PMA-7997",
                 "conductor": "Pedro Picapiedra",
                 "hora_salida": "21-11-2023 09:30:00",
                 "hora_llegada": "21-11-2023 11:15:00",
@@ -31,7 +29,6 @@
                 "tiempo_h": "1:45h"
             },
             {
-                "vehiculo": "PMA-7997",
                 "conductor": "Pedro Picapiedra",
                 "hora_salida": "22-11-2023 15:20:00",
                 "hora_llegada": "22-11-2023 17:30:00",
@@ -39,7 +36,6 @@
                 "tiempo_h": "2:10h"
             },
             {
-                "vehiculo": "PMA-7997",
                 "conductor": "Pedro Picapiedra",
                 "hora_salida": "23-11-2023 08:00:00",
                 "hora_llegada": "23-11-2023 10:15:00",
@@ -47,12 +43,23 @@
                 "tiempo_h": "2:15h"
             },
             {
-                "vehiculo": "PMA-7997",
                 "conductor": "Pedro Picapiedra",
                 "hora_salida": "24-11-2023 14:45:00",
                 "hora_llegada": "24-11-2023 16:30:00",
                 "recorrido_km": "80km",
                 "tiempo_h": "1:45h"
+            }
+        ],
+        "mantenimientos_proximos": [
+            {
+                "fecha": "01-11-2023",
+                "descripcion": "Cambio de aceite",
+                "costo": "$100.00"
+            },
+            {
+                "fecha": "01-12-2023",
+                "descripcion": "Cambio de llantas",
+                "costo": "$200.00"
             }
         ]
     },
@@ -69,23 +76,33 @@
             "kilometraje": "20,000 km",
             "peso": "1,500 kg"
         },
-        "imagen": "images/Vitara.jpg",
+        "imagen": "images/Vitara.png",
         "viajes_realizados": [
             {
-                "vehiculo": "PME-4004",
-                "conductor": "Juan Conductor",
+                "conductor": "Patrico Perdomo",
                 "hora_salida": "25-11-2023 10:00:00",
                 "hora_llegada": "25-11-2023 12:30:00",
                 "recorrido_km": "100km",
                 "tiempo_h": "2:30h"
             },
             {
-                "vehiculo": "PME-4004",
-                "conductor": "Juan Conductor",
+                "conductor": "Patrico Perdomo",
                 "hora_salida": "26-11-2023 14:00:00",
                 "hora_llegada": "26-11-2023 16:45:00",
                 "recorrido_km": "80km",
                 "tiempo_h": "2:45h"
+            }
+        ],
+        "mantenimientos_proximos": [
+            {
+                "fecha": "05-02-2024",
+                "descripcion": "Cambio de filtro de aire",
+                "costo": "$20.00"
+            },
+            {
+                "fecha": "01-12-2023",
+                "descripcion": "Cambio de llantas",
+                "costo": "$200.00"
             }
         ]
     },
@@ -102,23 +119,33 @@
             "kilometraje": "15,000 km",
             "peso": "2,200 kg"
         },
-        "imagen": "images/CamionetaToyota.jpg",
+        "imagen": "images/CamionetaToyota.png",
         "viajes_realizados": [
             {
-                "vehiculo": "PMA-3124",
-                "conductor": "Maria Conductora",
+                "conductor": "Maria Becerra",
                 "hora_salida": "27-11-2023 09:15:00",
                 "hora_llegada": "27-11-2023 11:30:00",
                 "recorrido_km": "120km",
                 "tiempo_h": "2:15h"
             },
             {
-                "vehiculo": "PMA-3124",
-                "conductor": "Maria Conductora",
+                "conductor": "Maria Becerra",
                 "hora_salida": "28-11-2023 13:30:00",
                 "hora_llegada": "28-11-2023 16:00:00",
                 "recorrido_km": "90km",
                 "tiempo_h": "2:30h"
+            }
+        ],
+        "mantenimientos_proximos": [
+            {
+                "fecha": "15-12-2023",
+                "descripcion": "Cambio de bujías",
+                "costo": "$50.00"
+            },
+            {
+                "fecha": "01-12-2023",
+                "descripcion": "Cambio de llantas",
+                "costo": "$200.00"
             }
         ]
     }

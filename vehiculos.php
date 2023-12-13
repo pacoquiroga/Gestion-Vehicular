@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             background-color: rgb(218, 217, 217);
             margin: 0px;
             padding: 0px;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         header {
@@ -52,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             align-items: center;
             background-color: #1B3665;
             color: white;
-            font-family: Arial, Helvetica, sans-serif;
 
         }
 
@@ -86,61 +86,82 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: #ffffff;
             font-weight: bold;
             font-size: 15px;
-            font-family: Arial, Helvetica, sans-serif;
         }
 
         nav li:hover {
             padding: 15px;
-            background-color: #2980b9;
+            background-color: grey;
+        }
+
+        .cuerpo{
+            display: flex;
         }
 
         .menu {
-            float: left;
-            width: 15%;
-            height: 5000px;
+            flex: 0.2;
+            margin: 0;
+            height: auto;
             background-color: #da6517ce;
+        }
+
+        .menu h1 {
+            color: white;
+            font-weight: bold;
+            margin: 30% 15%;
+            font-size: x-large;
+            text-align: center;
         }
 
         .menu ul {
             padding: 0;
+            margin: 0;
+            box-sizing: border-box;
             list-style-type: none;
         }
 
-        .menu ul li {
-            margin-bottom: 79px;
+        .menu li {
+            margin-bottom: 1px 0px;
             text-align: center;
-
+            box-sizing: border-box;
+            padding: 20px;
         }
 
-        .menu a {
+        .menu li :hover,
+        .menu li :target { 
+            background-color: #ffa060ce;
+            width: 100%;
+            margin-bottom: 1px;
+            padding: 20px 30px;
+            box-sizing: border-box;
+        }
+
+        li.selected {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+
+        .menu li a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
-            font-size: 15px;
-
+            font-size: 20px;
+            box-sizing: border-box;
         }
 
-        .menu h1 {
-            color: #074b79;
-            font-weight: bold;
-            font-size: 15px;
-
-        }
-
-
+        
         .contenido h1,strong{
             color: #bd6009;
             font-size: large;
-            font-family: Arial, Helvetica, sans-serif;
             font-style: bold;
         }
 
         
 
         .contenido {
-            float: left;
+            flex: 1;
             width: 85%;
-            height: 1000px;
+           
             
         }
 
@@ -149,7 +170,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             margin-top: 5%;
             margin-left: 10%;
             border-radius: 10px;
-            font-family: Arial, Helvetica, sans-serif;
             font-weight: bold;
         }
 
@@ -157,13 +177,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             width: 80%;
             height: 350px;
             background-color: white;
-            margin: 5%;
+            margin-bottom: 5%;
+            margin-top: 2%;
             margin-left: 10%;
-            display: flex;
             align-items: center;
             border: 1px solid;
             border-radius: 10px;
+            text-align: center;
+            justify-content: center;
+            display: none;
+        }
 
+        .informacion:target{
+            display: flex;
+        }
+
+
+        .tablaViajes:target {
+            display: block;
+        }
+
+        .mantenimiento:target {
+            display: block;
+        }
+
+        .seleccionar{
+            margin-bottom: 5%; 
         }
 
         .info_box {
@@ -197,7 +236,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         .info_box p{
             color: #1B3665;
-            font-family: Arial, Helvetica, sans-serif;
             font-size: medium;
         }
 
@@ -205,10 +243,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             width: 90%;
             height: auto;
             margin: 5%;
+            display: none;
         }
 
+
         .tablaViajes h1{
-            font-family: Arial, Helvetica, sans-serif;
             font-size:x-large;
             margin: 0 10%;
         }
@@ -217,7 +256,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             margin: 2% 10%;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
             table-layout: fixed;
             border-collapse: collapse;
         }
@@ -247,54 +285,108 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             cursor: pointer;
         }
 
+        .vehiculoSeleccionado{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            height: auto;
+            color: #bd6009;
+        }
+
+        .mantenimiento{
+            display: none;
+            width: 90%;
+            height: auto;
+            margin: 5%;
+        }
+
+        .mantenimiento h1{
+            font-size:x-large;
+            margin: 1% 10%;
+        }
+
+        .mantenimiento table{
+            margin: 2% 10%;
+            padding: 0;
+            border: none;
+            box-sizing: border-box;
+            table-layout: fixed;
+            width: 80%;
+        }
+
+        .mantenimiento thead{
+            background-color: #1B3665;
+            color: white;
+        }
+
+        .mantenimiento th{
+            padding: 20px 30px;
+            border: none;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .mantenimiento td{
+            padding: 30px;
+            border: none;
+            border-bottom: solid 1px ;
+            text-align: center;
+        }
+
+        .mantenimiento tbody tr:hover{
+            background-color:#b6bfcf;
+        }
+
+        .mantenimiento tbody tr{
+            cursor: pointer;
+        }
 
         footer {
+            bottom: 0; 
+            width: 100%;
             background-color: #000000;
             color: rgb(255, 255, 255);
             padding: 10px;
-            margin-top: 5px;
-            font-family: Arial, Helvetica, sans-serif;
             text-align: center;
-            align-items: center;
-            float: left;
-            width: 100%;
+            box-sizing: border-box;
         }
+
     </style>
 </head>
 
 <body>
     <header>
         <img width="10%" src="images/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
-        <h1 align="center">Gestión Vehicular</h1>
-
-
+        <h1 align="center" style="margin-right: 20px;">Gestión Vehicular</h1>
+        <a href="index.php" style="margin-left: 1200px;"><img width="20%" src="images/LogoCerrarSesion.png" alt="Logo Cerrar Sesión" ></a>
     </header>
 
     <nav>
         <ul>
-            <li><a href="index.html">INICIO</a></li>
-            <li><a href="vehiculos.html">VEHICULOS</a></li>
-            <li><a href="chofer.html">CHOFERES</a></li>
+            <li><a href="inicio.html">INICIO</a></li>
+            <li><a href="vehiculos.php">VEHICULOS</a></li>
+            <li><a href="#">CHOFERES</a></li>
         </ul>
     </nav>
 
-    
-        <section class="menu">
-            <ul>
-                <h1 align="center">MENU</h1>
-                <li><a href="#info">Vehículo 1</a></li>
-                <li><a href="#">Vehículo 2</a></li>
-                <li><a href="#">Vehículo 3</a></li>
-                <hr>
-                <li><a href="formularios/form_ingreso_vehiculo.php">AGREGAR </a></li>
-            </ul>
-        </section>
-
-
+    <section class="cuerpo">
+    <section class="menu">
+        <h1>MENU PRINCIPAL</h1>
+        <hr color="white" width="75%" height="100px">
+        <br><br>
+        <ul>
+            <li ><a href="#informacion">INFORMACION</a></li>
+            <li><a href="#mantenimiento">MANTENIMIENTOS</a></li>
+            <li><a href="#viajes">VIAJES</a></li>
+        </ul>
+        <br><br><br><br>
+    </section>
         <section class="contenido">
-            <form action="vehiculos.php" method="post">    
+            <form class="seleccionar" action="vehiculos.php" method="post">    
                 <select name="vehiculos" id="vehiculos">
-                    <option selected="true" disabled="disabled" value="0" >Seleccione la Placa del Vehiculo</option>
+                    <option selected="true" disabled="disabled" value="0" >Seleccione la Placa del Vehículo</option>
                     <option value="PMA-7997">PMA-7997</option>
                     <option value="PME-4004">PME-4004</option>
                     <option value="PMA-3124">PMA-3124</option>
@@ -303,7 +395,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
 
             <?php if (isset($vehiculoEncontrado)) : ?>
-                <section class="informacion">
+                <section style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: auto; color: #1B3665; text-align: center; margin: 0 auto;"> 
+                    <h2>Vehículo seleccionado: <?php echo $vehiculoEncontrado["placa"]; ?></h2>
+                    <hr width="40%">
+                    <br>
+                </section>
+
+                <section id="informacion" class="informacion">
                     <article class="info_box">
                         <h1>Información General</h1>
                         <p><strong>Placa: </strong><?php echo $vehiculo["placa"]; ?> </p>
@@ -325,7 +423,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </article>
                 </section>
 
-                <section class="tablaViajes">
+                <section id="mantenimiento" class="mantenimiento">
+                    <h1>Mantenimiento</h1>
+                    <table border="1">
+                        <thead>
+                            <th>Vehículo</th>
+                            <th>Fecha</th>
+                            <th>Descripción</th>
+                            <th>Costo</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($vehiculo["mantenimientos_proximos"] as $mantenimiento) : ?>
+                                <tr>
+                                    <td><?php echo $vehiculo["placa"]; ?></td>
+                                    <td><?php echo $mantenimiento["fecha"]; ?></td>
+                                    <td><?php echo $mantenimiento["descripcion"]; ?></td>
+                                    <td><?php echo $mantenimiento["costo"]; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="viajes" class="tablaViajes">
                     <h1>Viajes Realizados</h1>
                     <table>
                         <thead>
@@ -342,7 +462,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <tbody>
                             <?php foreach ($vehiculo["viajes_realizados"] as $viaje) : ?>
                                 <tr>
-                                    <td><?php echo $viaje["vehiculo"]; ?></td>
+                                    <td><?php echo $vehiculo["placa"]; ?></td>
                                     <td><?php echo $viaje["conductor"]; ?></td>
                                     <td><?php echo $viaje["hora_salida"]; ?></td>
                                     <td><?php echo $viaje["hora_llegada"]; ?></td>
@@ -355,21 +475,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </section>
             <?php else: ?>
                 <section class="informacion">
-                            <article>
-                                <p>Seleccione la placa de un vehiculo para mostrar la informacion.</p>
-                            </article>
+                    <p>Seleccione la placa de un vehículo para mostrar la información.</p>
                 </section>
             
             <?php endif; ?>
 
         </section>
-    
+    </section>
 
     <footer>
         <p>&copy Sistema de Gestión Vehicular</p>
-        <a href="#"><img width="5%" src="images/LogoFacebook.png" alt="LogoInsta"></a>
-        <a href="#"><img width="5%" src="images/LogoInsta.png" alt="LogoInsta"></a>
-        <a href="#"><img width="5%" src="images/LogoTwitter.png" alt="LogoInsta"> </a>
+        <a href="https://www.facebook.com/zuck?locale=es_LA"><img width="2%" src="images/LogoFacebook.png" alt="LogoInsta"></a>
+        <a href="https://www.instagram.com/zuck/"><img width="2%" src="images/LogoInsta.png" alt="LogoInsta"></a>
+        <a href="https://twitter.com/MarkCrtlC"><img width="2%" src="images/LogoTwitter.png" alt="LogoInsta"> </a>
     </footer>
 </body>
 
