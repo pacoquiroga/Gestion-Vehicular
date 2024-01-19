@@ -1,0 +1,36 @@
+[
+    {
+      "nombre": "Juan",
+      "apellido": "Perez",
+      "edad": 35,
+      "cedula": "1709876531",
+      "sexo": "Masculino",
+      "licencia": "C",
+      "sangre": "O+",
+      "fecha_entrada": "1/12/2023",
+      "foto": "id-photo2.jpg"
+    },
+    {
+      "nombre": "Maria",
+      "apellido": "Gomez",
+      "edad": 28,
+      "cedula": "1808765432",
+      "sexo": "Femenino",
+      "licencia": "B",
+      "sangre": "A-",
+      "fecha_entrada": "3/15/2022",
+      "foto": "images.jfif"
+    },
+    {
+      "nombre": "Carlos",
+      "apellido": "Rodriguez",
+      "edad": 40,
+      "cedula": "1907654321",
+      "sexo": "Masculino",
+      "licencia": "D",
+      "sangre": "AB+",
+      "fecha_entrada": "5/20/2021",
+      "foto": "Carlos-Rodriguez.png"
+    }
+  ]
+  

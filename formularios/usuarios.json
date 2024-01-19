@@ -1,0 +1,12 @@
+[
+  {
+    "nombre" : "Ariel Rivadeneira",
+    "correo": "usuario1@example.com",
+    "contrasena": "clave123"
+  },
+  {
+    "nombre" : "Erick Lasluisa",
+    "correo": "usuario2@example.com",
+    "contrasena": "otraclave456"
+  }
+]

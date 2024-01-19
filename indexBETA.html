@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Sistema de Gestion Vehicular</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+    }
+
+    header {
+      background-color: #34495e;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .imgLogo {
+      width: 10%;
+    }
+
+    .titulo {
+      margin-left: 10px;
+      font-size: 30px;
+      color: #fff;
+    }
+
+    .menu {
+      background-color: #1b3665;
+      padding: 20px;
+      text-align: left;
+    }
+
+    .botonInicioSesion {
+      color: #2c3e50;
+      text-decoration: none;
+      padding: 20px;
+      font-size: 20px;
+      border-radius: 10px;
+      background-color: #fff;
+    }
+
+    .botonInicioSesion:hover {
+      background-color: #0d6aa8;
+      color: #fff;
+    }
+
+    .menu ul {
+      list-style-type: none;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-left: 70%;
+      padding: 5px;
+      display: inline-flex;
+      justify-content: flex-end;
+    }
+
+    .menu li {
+      border-right: 2px solid #fff;
+      padding: 15px;
+    }
+
+    .menu li:last-child {
+      border-right: none;
+    }
+
+    .menu img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .bgSection {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.5)),
+        url("img/geo.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+    }
+
+    .slogan {
+      background-color: #fff;
+      padding: 20px;
+      width: 50%;
+      text-align: left;
+      margin-left: 20px;
+      border-radius: 10px;
+    }
+
+    .slogan h2 {
+      font-size: 30px;
+      color: #34495e;
+    }
+
+    .slogan a {
+      background-color: #0d6aa8;
+      color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      text-decoration: none;
+      display: block;
+      width: fit-content;
+    }
+
+    .somos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .texto {
+      width: 50%;
+      text-align: left;
+      margin-right: 40px;
+      margin-left: 20px;
+    }
+
+    .tituloSeccion {
+      font-size: 40px;
+      color: #34495e;
+    }
+
+    .textoSeccion {
+      font-size: 20px;
+    }
+
+    .imgSomos {
+      height: 400px;
+      width: 400px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    }
+
+    #servicios {
+      padding: 20px;
+      text-align: center;
+      background-color: #2c3e50;
+      color: #fff;
+    }
+
+    #servicios h2 {
+      font-size: 40px;
+      color: #fff;
+    }
+
+    .items {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .imgServicio {
+      width: 400px;
+      height: 300px;
+      border-radius: 10px;
+    }
+
+    .tarjeta {
+      margin: 40px;
+      padding: 20px;
+      background-color: #0d6aa8;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.75);
+      width: 400px;
+      height: 600px;
+    }
+
+    .tituloServicio {
+      color: #000;
+      font-size: 35px;
+    }
+
+    .tarjeta ul {
+      text-align: left;
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .adicional {
+
+      padding: 0px;
+      margin-bottom: 5px;
+    }
+
+    .adicional ul {
+      list-style-type: none;
+      margin: 10px;
+      padding: 5px;
+      display: flex;
+      justify-content: flex-end;
+      margin-left: 500px;
+
+    }
+
+    .adicional li {
+      padding: 15px;
+      transition: background-color 0.3s;
+    }
+
+    .adicional a {
+      color: #ECF0F1;
+      text-decoration: none;
+    }
+
+    .tarjeta ul {
+      list-style-type: square;
+    }
+
+    footer {
+      background-color: #34495e;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      margin-top: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="img/LogoGestionVehicular.png" alt="Logo" class="imgLogo" />
+    <h1 class="titulo">Gestion Vehicular</h1>
+    <nav class="adicional">
+      <ul>
+        <li><a href="#index.html">Ayuda</a></li>
+        <li><a href="vehiculos.html">¿Quienes somos?</a></li>
+        <li><a href="chofer.php">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+  <nav class="menu">
+    <a href="formularios/login.php" class="botonInicioSesion">Iniciar Sesión</a>
+    <ul>
+      <li>
+        <a href="https://x.com"><img src="img/LogoTwitter.png" alt="Twitter" /></a>
+      </li>
+      <li>
+        <a href="https://facebook.com"><img src="img/LogoFacebook.png" alt="Facebook" /></a>
+      </li>
+      <li>
+        <a href="https://instagram.com"><img src="img/LogoInsta.png" alt="Instagram" /></a>
+      </li>
+    </ul>
+  </nav>
+  <section class="bgSection">
+    <article class="slogan">
+      <h2>
+        Transformando la gestión del transporte a través de la tecnología
+      </h2>
+      <p>
+        Nuestra plataforma de gestión de transporte le permite a las empresas
+        de transporte y logística, controlar y optimizar sus operaciones de
+        transporte, reduciendo costos y aumentando la productividad.
+      </p>
+      <a href="#servicios">Nuestros Servicios</a>
+    </article>
+  </section>
+
+  <section class="somos">
+    <article class="texto">
+      <h2 class="tituloSeccion">¿Quienes Somos?</h2>
+      <p class="textoSeccion">
+        En la vanguardia del sector de gestión vehicular de transporte
+        público, nos presentamos como una empresa comprometida con la
+        eficiencia, la seguridad y la calidad en cada trayecto. Nos
+        especializamos en la administración integral de flotas de transporte
+        público, con el objetivo primordial de brindar un servicio excepcional
+        a la comunidad que servimos.
+      </p>
+      <p class="textoSeccion">
+        Reconocemos la importancia crítica de la seguridad y la productividad
+        en la gestión de vehículos y choferes. Por ello, nuestra plataforma
+        integra funciones avanzadas de seguimiento, mantenimiento preventivo y
+        gestión de conductores, asegurando no solo la eficiencia operativa,
+        sino también el cumplimiento de estándares de seguridad y regulaciones
+        del sector.
+      </p>
+    </article>
+    <img src="img/flota.jpg" alt="gestion de flota" class="imgSomos" />
+  </section>
+
+  <section id="servicios">
+    <h2>Nuestros Servicios</h2>
+    <p class="textoSeccion">
+      Nuestra plataforma de gestión de transporte le permite a las empresas de
+      transporte y logística, controlar y optimizar sus operaciones de
+      transporte, reduciendo costos y aumentando la productividad.
+    </p>
+    <section class="items">
+      <article class="tarjeta">
+        <img src="img/vehiculos.jpg" alt="Gestion Vehiculos" class="imgServicio" />
+        <h2 class="tituloServicio">Gestión de Vehículos</h2>
+        <ul>
+          <li>Registro eficiente de Vehículos.</li>
+          <li>Visualización de todos los vehículos.</li>
+          <li>Notificaciónes de futuros mantenimientos.</li>
+        </ul>
+      </article>
+      <article class="tarjeta">
+        <img src="img/chofer.jpg" alt="Gestion Chofer" class="imgServicio" />
+        <h2 class="tituloServicio">Gestión de Choferes</h2>
+        <ul>
+          <li>Registro eficiente de Choferes.</li>
+          <li>Busqueda y Visualización de Choferes</li>
+          <li>Notificaciones de licencias próximas a caducar.</li>
+        </ul>
+      </article>
+    </section>
+  </section>
+  <footer>
+    <p>&copy Sistema de Gestión Vehicular</p>
+  </footer>
+</body>
+
+</html>
