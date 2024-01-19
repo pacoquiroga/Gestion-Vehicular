@@ -46,10 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-<header>
-        <img id="logoEmpresa" src="images/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
+    <header>
+        <img id="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
         <h1>Gestión Vehicular</h1>
-        <a href="index.php" style="margin-left: 1200px;"><img class="logoSalir" src="images/LogoCerrarSesion.png"
+        <a href="index.php" style="margin-left: 1200px;"><img class="logoSalir" src="img/LogoCerrarSesion.png"
                 alt="Logo Cerrar Sesión"></a>
     </header>
 
@@ -181,9 +181,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <footer>
         <p>&copy Sistema de Gestión Vehicular</p>
-        <a  href="https://www.facebook.com/zuck?locale=es_LA"><img id="logoRedes" src="images/LogoFacebook.png" alt="LogoInsta"></a>
-        <a  href="https://www.instagram.com/zuck/"><img id="logoRedes" src="images/LogoInsta.png" alt="LogoInsta"></a>
-        <a href="https://twitter.com/MarkCrtlC"><img id="logoRedes" src="images/LogoTwitter.png" alt="LogoInsta"> </a>
+        <a  href="https://www.facebook.com/zuck?locale=es_LA"><img id="logoRedes" src="img/LogoFacebook.png" alt="LogoInsta"></a>
+        <a  href="https://www.instagram.com/zuck/"><img id="logoRedes" src="img/LogoInsta.png" alt="LogoInsta"></a>
+        <a href="https://twitter.com/MarkCrtlC"><img id="logoRedes" src="img/LogoTwitter.png" alt="LogoInsta"> </a>
     </footer>
 </body>
 

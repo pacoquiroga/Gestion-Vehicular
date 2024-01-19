@@ -362,9 +362,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <header>
-        <img width="10%" src="images/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
+        <img width="10%" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
         <h1 align="center" style="margin-right: 20px;">Gestión Vehicular</h1>
-        <a href="index.php" style="margin-left: 1200px;"><img width="20%" src="images/LogoCerrarSesion.png" alt="Logo Cerrar Sesión" ></a>
+        <a href="index.php" style="margin-left: 1200px;"><img width="20%" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión" ></a>
     </header>
 
     <nav>
@@ -416,9 +416,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <footer>
         <p>&copy Sistema de Gestión Vehicular</p>
-        <a href="https://www.facebook.com/zuck?locale=es_LA"><img width="2%" src="images/LogoFacebook.png" alt="LogoInsta"></a>
-        <a href="https://www.instagram.com/zuck/"><img width="2%" src="images/LogoInsta.png" alt="LogoInsta"></a>
-        <a href="https://twitter.com/MarkCrtlC"><img width="2%" src="images/LogoTwitter.png" alt="LogoInsta"> </a>
+        <a href="https://www.facebook.com/zuck?locale=es_LA"><img width="2%" src="img/LogoFacebook.png" alt="LogoInsta"></a>
+        <a href="https://www.instagram.com/zuck/"><img width="2%" src="img/LogoInsta.png" alt="LogoInsta"></a>
+        <a href="https://twitter.com/MarkCrtlC"><img width="2%" src="img/LogoTwitter.png" alt="LogoInsta"> </a>
     </footer>
 </body>
 

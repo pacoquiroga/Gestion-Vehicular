@@ -4,24 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <title>Sistema de Gestion Vehicular</title>
+  <link rel="stylesheet" href="css/main.css" /> 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-    }
-
-    header {
-      background-color: #34495e;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-    }
-
-    .imgLogo {
-      width: 10%;
-    }
-
+    
     .titulo {
       margin-left: 10px;
       font-size: 30px;
@@ -184,72 +169,21 @@
       font-size: 20px;
     }
 
-    .adicional {
-
-      padding: 0px;
-      margin-bottom: 5px;
-    }
-
-    .adicional ul {
-      list-style-type: none;
-      margin: 10px;
-      padding: 5px;
-      display: flex;
-      justify-content: flex-end;
-      margin-left: 500px;
-
-    }
-
-    .adicional li {
-      padding: 15px;
-      transition: background-color 0.3s;
-    }
-
-    .adicional a {
-      color: #ECF0F1;
-      text-decoration: none;
-    }
-
     .tarjeta ul {
       list-style-type: square;
     }
 
-    footer {
-      background-color: #34495e;
-      color: white;
-      padding: 10px;
-      text-align: center;
-      margin-top: auto;
-    }
+    
   </style>
 </head>
 
 <body>
   <header>
-    <img src="img/LogoGestionVehicular.png" alt="Logo" class="imgLogo" />
-    <h1 class="titulo">Gestion Vehicular</h1>
-    <nav class="adicional">
-      <ul>
-        <li><a href="#index.html">Ayuda</a></li>
-        <li><a href="vehiculos.html">¿Quienes somos?</a></li>
-        <li><a href="chofer.php">Contacto</a></li>
-      </ul>
-    </nav>
+    <img id="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
+    <h1>Gestión Vehicular</h1>
+    <a href="login.php" class="botonInicioSesion">Iniciar Sesión</a>
   </header>
-  <nav class="menu">
-    <a href="formularios/login.php" class="botonInicioSesion">Iniciar Sesión</a>
-    <ul>
-      <li>
-        <a href="https://x.com"><img src="img/LogoTwitter.png" alt="Twitter" /></a>
-      </li>
-      <li>
-        <a href="https://facebook.com"><img src="img/LogoFacebook.png" alt="Facebook" /></a>
-      </li>
-      <li>
-        <a href="https://instagram.com"><img src="img/LogoInsta.png" alt="Instagram" /></a>
-      </li>
-    </ul>
-  </nav>
+  
   <section class="bgSection">
     <article class="slogan">
       <h2>
@@ -317,6 +251,9 @@
   </section>
   <footer>
     <p>&copy Sistema de Gestión Vehicular</p>
+    <a  href="https://www.facebook.com/zuck?locale=es_LA"><img id="logoRedes" src="img/LogoFacebook.png" alt="LogoInsta"></a>
+    <a  href="https://www.instagram.com/zuck/"><img id="logoRedes" src="img/LogoInsta.png" alt="LogoInsta"></a>
+    <a href="https://twitter.com/MarkCrtlC"><img id="logoRedes" src="img/LogoTwitter.png" alt="LogoInsta"> </a>
   </footer>
 </body>
 
