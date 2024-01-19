@@ -94,7 +94,7 @@
         </ul>
     </nav>
     <section>
-            <form action="procesar_formulario.php" method="post">
+            <form action="../vehiculoNuevo.php" method="post">
             <h2>Información del vehículo</h2>
                 <label for="placa">Placa:</label>
                 <input type="text" id="placa" name="placa" required><br>

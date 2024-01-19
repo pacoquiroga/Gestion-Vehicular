@@ -1,0 +1,98 @@
+body {
+    background-color: rgb(218, 217, 217);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    background-color: #1B3665;
+    color: white;
+    padding: 10px;
+}
+
+#logoEmpresa {
+    width: 130px;
+    margin-left: 20px;
+}
+
+.logoSalir {
+    width: 40px;
+    height: 40px;
+    margin-left: 200px;
+}
+
+header h1 {
+    margin-right: 20px;
+    color: white;
+    font-size: x-large;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1200px;
+}
+
+nav {
+    background-color: #000000;
+    padding: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+nav li {
+    border-right: 2px solid #ffffff;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+nav li:hover {
+    padding: 10px;
+    background-color: grey;
+}
+
+nav li:last-child {
+    border-right: none;
+   
+}
+
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+
+footer {
+    bottom: 0;
+    width: 100%;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    padding: 18px;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 5px;
+    
+}
+
+#logoRedes {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+
+
+

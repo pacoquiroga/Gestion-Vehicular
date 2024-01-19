@@ -5,103 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión Vehicular</title>
-    <style>
-        body {
-            background-color: rgb(218, 217, 217);
-            margin: 0px;
-            padding: 0px;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        header {
-            display: flex;
-            align-items: center;
-            background-color: #1B3665;
-            color: white;
-            padding: 10px;
-        }
-
-        nav {
-            background-color: #000000;
-            padding: 1px;
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            margin: 10px;
-            padding: 5px;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        nav li {
-            border-right: 2px solid #ffffff;
-            padding: 15px;
-            transition: background-color 0.3s;
-        }
-
-        nav li:last-child {
-            border-right: none;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 15px;
-        }
-
-        nav li:hover {
-            padding: 15px;
-            background-color: grey;
-        }
-
-
-        section {
-            display: flex;
-            margin: 10px;
-            padding: 10px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        article {
-            width: 70%;
-            padding: 3% 5%;
-        }
-
-        aside {
-            height: 280px;
-            width: 30%;
-            background-color: #da6517ce;
-            color: white;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin-top:140px;
-        }
-
-        footer {
-            bottom: 0;
-            width: 100%;
-            background-color: #000000;
-            color: rgb(255, 255, 255);
-            padding: 10px;
-            text-align: center;
-            box-sizing: border-box;
-        }
-    </style>
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/inicio.css">
 </head>
 
 <body>
     <header>
-        <img width="8%" src="images/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
-        <h1 align="center" style="margin-right: 20px;">Gestión Vehicular</h1>
-        <a href="index.php" style="margin-left: 1200px;"><img width="20%" src="images/LogoCerrarSesion.png" alt="Logo Cerrar Sesión" ></a>
+        <img id="logoEmpresa" src="images/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
+        <h1>Gestión Vehicular</h1>
+        <a href="index.php" style="margin-left: 1200px;"><img class="logoSalir" src="images/LogoCerrarSesion.png"
+                alt="Logo Cerrar Sesión"></a>
     </header>
 
     <nav>
@@ -122,32 +36,38 @@
             <ol>
                 <li>
                     <h2>Consulta de Información Vehicular:</h2>
-                    <p>Ingresa la placa de cualquier vehículo y accede a detalles clave como el modelo, año, tipo, tipo de combustible, capacidad del motor, kilometraje, y más. Mantén un control total sobre tu flota con información detallada al alcance de tu mano.</p>
+                    <p>Ingresa la placa de cualquier vehículo y accede a detalles clave como el modelo, año, tipo, tipo
+                        de combustible, capacidad del motor, kilometraje, y más. Mantén un control total sobre tu flota
+                        con información detallada al alcance de tu mano.</p>
                 </li>
-            
+
                 <li>
                     <h2>Gestión de Mantenimientos:</h2>
-                    <p>¿Necesitas estar al tanto de los mantenimientos próximos? En nuestro apartado dedicado, encontrarás una lista completa con fechas, costos, descripciones y más. Mantén tus vehículos en óptimas condiciones y evita sorpresas costosas.</p>
+                    <p>¿Necesitas estar al tanto de los mantenimientos próximos? En nuestro apartado dedicado,
+                        encontrarás una lista completa con fechas, costos, descripciones y más. Mantén tus vehículos en
+                        óptimas condiciones y evita sorpresas costosas.</p>
                 </li>
-            
+
                 <li>
                     <h2>Registro de Viajes:</h2>
-                    <p>Accede a un historial detallado de todos los viajes realizados. Con tablas organizadas por conductor, hora de salida, llegada, recorrido y tiempo de viaje, podrás evaluar la eficiencia de tus rutas y programar mejoras según sea necesario.</p>
+                    <p>Accede a un historial detallado de todos los viajes realizados. Con tablas organizadas por
+                        conductor, hora de salida, llegada, recorrido y tiempo de viaje, podrás evaluar la eficiencia de
+                        tus rutas y programar mejoras según sea necesario.</p>
                 </li>
             </ol>
         </article>
         <aside>
             <h2>Estamos felices de verte!</h2>
             <p><strong>"Conduciendo tu éxito, gestionando tu camino."</strong></p>
-            <img width="30%" src="images/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" align="center">
+            <img src="images/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
         </aside>
     </section>
 
     <footer>
         <p>&copy Sistema de Gestión Vehicular</p>
-        <a href="https://www.facebook.com/zuck?locale=es_LA"><img width="2%" src="images/LogoFacebook.png" alt="LogoInsta"></a>
-        <a href="https://www.instagram.com/zuck/"><img width="2%" src="images/LogoInsta.png" alt="LogoInsta"></a>
-        <a href="https://twitter.com/MarkCrtlC"><img width="2%" src="images/LogoTwitter.png" alt="LogoInsta"> </a>
+        <a  href="https://www.facebook.com/zuck?locale=es_LA"><img id="logoRedes" src="images/LogoFacebook.png" alt="LogoInsta"></a>
+        <a  href="https://www.instagram.com/zuck/"><img id="logoRedes" src="images/LogoInsta.png" alt="LogoInsta"></a>
+        <a href="https://twitter.com/MarkCrtlC"><img id="logoRedes" src="images/LogoTwitter.png" alt="LogoInsta"> </a>
     </footer>
 </body>
 

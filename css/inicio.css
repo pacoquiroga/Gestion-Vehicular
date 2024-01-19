@@ -1,0 +1,29 @@
+section {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+article {
+    width: 70%;
+    padding: 3% 5%;
+}
+
+aside {
+    height: 280px;
+    width: 30%;
+    background-color: #da6517ce;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-top: 140px;
+}
+
+aside img{
+    width: 30%;
+}
