@@ -69,14 +69,13 @@ $nombreUsuario = $_SESSION['nombreUsuario'];
             <img id="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
             <h1>Gestión Vehicular</h1>
         </section>
-        <a href="index.php"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a>
+        <a href="index.html"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a>
     </header>
 
     <nav>
         <ul>
-            <li><a href="inicio.html">INICIO</a></li>
             <li><a href="vehiculos.php">VEHICULOS</a></li>
-            <li><a href="#">CHOFERES</a></li>
+            <li><a href="chofer.php">CHOFERES</a></li>
         </ul>
     </nav>
     <section>
