@@ -44,8 +44,8 @@ header a {
 nav {
   background-color: #000000;
   padding: 1px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  /* margin-top: 5px; */
+  /* margin-bottom: 5px; */
 }
 
 nav ul {
@@ -86,7 +86,7 @@ footer {
   padding: 18px;
   text-align: center;
   box-sizing: border-box;
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 
 #logoRedes {
