@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: rgb(218, 217, 217);
   margin: 0;
@@ -17,6 +21,8 @@ header {
 .logoEmpresa {
   display: flex;
   align-items: center;
+  height: auto;
+  padding: 0%;
 }
 
 #logoEmpresa {

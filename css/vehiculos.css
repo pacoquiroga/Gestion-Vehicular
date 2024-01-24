@@ -49,7 +49,7 @@
 .menu {
   display: flex;
   width: 100%;
-  height: 430px;
+  height: 536px;
 }
 
 .menu a {
@@ -98,19 +98,53 @@
   text-align: center;
 }
 
+.contenedor-imagen {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contenedor-imagen img {
+  width: 100%;
+  height: 90%;
+  object-fit: cover;
+  padding-bottom: 30px;
+
+}
+.contenedor-imagen a{
+  color: #1b3665;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 0%;
+  margin: 0%;
+}
+
+.contenedor-imagen p{
+  color: #da6517ce;
+  font-style: bold;
+  font-size: 20px;
+  padding: 0%;
+  margin: 0%;
+}
+
 .informacion {
   width: 100%;
-  height: 350px;
+  height: 20%;
   background-color: white;
   color: #1b3665;
   align-items: center;
-  text-align: center;
+  text-align: left;
   justify-content: center;
   display: flex;
+
 }
 
 .informacion article {
   flex: 1;
+  padding: 0px 140px;
 }
 
 .informacion h1 {

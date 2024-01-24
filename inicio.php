@@ -12,55 +12,7 @@ $nombreUsuario = $_SESSION['nombreUsuario'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión Vehicular</title>
     <link rel="stylesheet" href="css/main.css">
-    <style>
-        section {
-            align-items: center;
-            width: 100%;
-            margin: auto;
-            padding: 30px 0px;
-        }
-
-        .informacion {
-
-            margin: auto;
-            width: 800px;
-            height: 435px;
-        }
-
-        .informacion article {
-            margin: 5px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            background-color: #ECF0F1;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .informacion article h1 {
-            color: #3498DB;
-            text-align: center;
-        }
-
-        .informacion article p {
-            color: #34495E;
-            padding: 20px;
-            margin: 0;
-            text-align: center;
-        }
-
-        .titulo {
-            padding: 20px;
-            color: #3498DB;
-        }
-
-        .informacion article h3 {
-            color: #34495E;
-            padding: 20px;
-            margin: 0;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="css/inicio.css">
 </head>
 
 <body>

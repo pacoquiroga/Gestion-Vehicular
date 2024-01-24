@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (json_last_error() === JSON_ERROR_NONE) {
             // Buscar el vehículo seleccionado
             $vehiculoEncontrado = null;
-
+        
             foreach ($vehiculos as $vehiculo) {
                 if ($opcionSeleccionada == $vehiculo['placa']) {
                     $vehiculoEncontrado = $vehiculo;
@@ -96,6 +96,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </section>
 
         <section id="informacion" class="informacion">
+            
+            <section class="contenedor-imagen">
+                
+                <img src="<?php echo $vehiculo["imagen"]; ?>" alt="<?php echo $vehiculo["modelo"]; ?>">
+                <?php if($vehiculo["choferAsignado"] != ""): ?>
+                    <p>Chofer Asignado:</p>
+                    <a href="chofer.php"><?php echo $vehiculo["choferAsignado"]; ?></a>
+                    <hr style="border: none; height: 1px; background-color: black; 
+        width: 50%;
+        margin: 5px 0;">
+                <?php else: ?>
+                    <p>No hay chofer asignado</p>
+                <?php endif; ?>
+            </section>
             <article>
                 <h1>Información General</h1>
                 <p><strong>Placa: </strong>
@@ -119,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </article>
             <article>
                 <h1>Información Técnica</h1>
-                <p><strong>Tipo de combustible: </strong>
+                <p><strong>Combustible: </strong>
                     <?php echo $vehiculo["informacion_tecnica"]["tipo_combustible"]; ?>
                 </p>
                 <p><strong>Motor: </strong>
@@ -132,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?php echo $vehiculo["informacion_tecnica"]["peso"]; ?>
                 </p>
             </article>
-            <img src="<?php echo $vehiculo["imagen"]; ?>" alt="<?php echo $vehiculo["modelo"]; ?>">
+            
         </section>
 
         <section id="mantenimiento" class="mantenimiento">

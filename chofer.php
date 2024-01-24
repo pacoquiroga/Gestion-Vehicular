@@ -258,7 +258,7 @@ if (isset($_GET['busqueda'])) {
                             <input type="submit" value="Buscar">
                         </form>
                         <nav class="adicional">
-                            <a href="form_ingreso_chofer.php">Agregar Chofer</a>
+                            <a href="formularios/form_ingreso_chofer.php">Agregar Chofer</a>
                         </nav>
                 </td>
             </tr>
