@@ -50,22 +50,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
     <?php
     echo $alerta;
     ?>
+    <section class="contenido">
+        <section class="login-container">
+            <article>
+                <h2>Iniciar Sesión</h2>
+                <img src="img/Usuario.png" class="icono" alt="Logo Gestion Vehicular" width=10% height=5%>
+            </article>
+            <form action="login.php" method="post">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" required
+                    value="<?php echo htmlspecialchars($emailAnterior); ?>">
 
-    <section class="login-container">
-        <article>
-            <h2>Iniciar Sesión</h2>
-            <img src="img/Usuario.png" class="icono" alt="Logo Gestion Vehicular" width=10% height=5%>
-        </article>
-        <form action="login.php" method="post">
-            <label for="username">Usuario:</label>
-            <input type="text" id="username" name="username" required
-                value="<?php echo htmlspecialchars($emailAnterior); ?>">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
 
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
-
-            <input type="submit" value="Iniciar Sesión">
-        </form>
+                <input type="submit" value="Iniciar Sesión">
+            </form>
+        </section>
     </section>
 
     <footer>
