@@ -1,4 +1,4 @@
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -7,6 +7,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 header {
@@ -50,8 +53,6 @@ header a {
 nav {
   background-color: #000000;
   padding: 1px;
-  /* margin-top: 5px; */
-  /* margin-bottom: 5px; */
 }
 
 nav ul {
@@ -93,7 +94,6 @@ footer {
   text-align: center;
   box-sizing: border-box;
   margin-top: auto;
-  
 }
 
 #logoRedes {
