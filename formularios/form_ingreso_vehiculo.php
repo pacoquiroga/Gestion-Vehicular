@@ -70,6 +70,13 @@
             width: 10%;
         }
 
+        form {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
         footer{
             background-color: #1B3665;
             color: white;
@@ -82,52 +89,64 @@
 
 <body>
     <header>
-        <img class="imgLogo" src="../images/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
+        <img class="imgLogo" src="../img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
         <h1 align="center">Agregar Vehiculo</h1>
     </header>
     
     <nav>
         <ul>
-            <li><a href="#">INICIO</a></li>
-            <li><a href="#">VEHICULOS</a></li>
-            <li><a href="#">CHOFERES</a></li>
+            <li><a href="../inicio.php">INICIO</a></li>
+            <li><a href="../vehiculos.php">VEHICULOS</a></li>
+            <li><a href="../chofer.php">CHOFERES</a></li>
         </ul>
     </nav>
+    <script>
+        function validarLetras(input) {
+        input.value = input.value.replace(/[^a-zA-Z]/g, '');
+        }
+    </script>
+    <script>
+        function validarNumero(input) {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        }
+    </script>
     <section>
+        <img src="../img/vehiculo_logo.png" alt="camioneta">
             <form action="../vehiculoNuevo.php" method="post">
             <h2>Información del vehículo</h2>
                 <label for="placa">Placa:</label>
-                <input type="text" id="placa" name="placa" required><br>
+                <input type="text" id="placa" name="placa" pattern="[A-Z]{3}\d{3}" title="Ingresa una placa válida (3 letras y 3 números, todo en mayúsculas)" required><br>
                 <br>
                 
                 <label for="marca">Marca:</label>
-                <input type="text" id="marca" name="marca" required><br>
+                <input type="text" id="marca" oninput="validarLetra(this)" name="marca" pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+" title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
                 <br>
                 
                 <label for="modelo">Modelo:</label>
-                <input type="text" id="modelo" name="modelo" required><br>
+                <input type="text" id="modelo" name="modelo" pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+" title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
                 <br>
 
                 <label for="anio">Año:</label>
-                <input type="number" id="anio" name="anio" min="1900" max="2023" required><br>
-                <br>
+                <input type="number" id="anio" oninput="validarNumero(this)" name="anio" min="1900" max="2023" pattern="\d+" title="Ingresa un número positivo" required><br>
+                
+                <br>
 
                 <label for="tipo_vehiculo">Tipo de Vehículo:</label>
-                <input type="text" id="tipo_vehiculo" name="tipo_vehiculo" required><br>
+                <input type="text" id="tipo_vehiculo" oninput="validarLetra(this)" name="tipo_vehiculo" pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+" title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
                 <br>
 
                 <label for="capacidad">Capacidad:</label>
-                <input type="text" id="capacidad" name="capacidad" required><br>
+                <input type="text" id="capacidad" oninput="validarNumero(this)" name="capacidad" pattern="[1-9]|[1-4][0-9]|50" title="Ingresa un número del 1 al 50" required><br>
                 <br>
 
                 <h3>Datos Técnicos</h3>
 
                 <label for="kilometraje">Kilometraje:</label>
-                <input type="number" id="kilometraje" name="kilometraje" min="0" required><br>
+                <input type="number" id="kilometraje" oninput="validarNumero(this)" name="kilometraje" min="0" required><br>
                 <br>
 
                 <label for="tipo_combustible">Tipo de Combustible:</label>
-                <input type="text" id="tipo_combustible" name="tipo_combustible" required><br>
+                <input type="text" id="tipo_combustible" oninput="validarLetra(this)" name="tipo_combustible" pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+" title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
                 <br>
 
                 <label for="motor">Motor:</label>
@@ -135,7 +154,7 @@
                 <br>
 
                 <label for="peso">Peso:</label>
-                <input type="number" id="peso" name="peso" min="0" required><br>
+                <input type="number" id="peso" oninput="validarNumero(this)" name="peso" min="0" required><br>
                 <br>
 
                 <input type="submit" value="Enviar">
