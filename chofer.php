@@ -56,10 +56,9 @@ if (isset($_GET['busqueda'])) {
                         <nav class="adicional">
                             <a href="formularios/form_ingreso_chofer.php">Agregar Chofer</a>
                         </nav>
+                    </section>
                 </td>
             </tr>
-            <tr>
-                <td>
         </table>
     </section>
     <section class="contenedor-informacion">

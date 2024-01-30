@@ -149,35 +149,69 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
         </section>
 
+
+        
         <section id="mantenimiento" class="mantenimiento">
-            <h1>Mantenimiento</h1>
-            <table border="1">
-                <thead>
-                    <th>Vehículo</th>
-                    <th>Fecha</th>
-                    <th>Descripción</th>
-                    <th>Costo</th>
-                </thead>
-                <tbody>
-                    <?php foreach ($vehiculo["mantenimientos_proximos"] as $mantenimiento): ?>
-                        <tr>
-                            <td>
-                                <?php echo $vehiculo["placa"]; ?>
-                            </td>
-                            <td>
-                                <?php echo $mantenimiento["fecha"]; ?>
-                            </td>
-                            <td>
-                                <?php echo $mantenimiento["descripcion"]; ?>
-                            </td>
-                            <td>
-                                <?php echo $mantenimiento["costo"]; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <h1>MANTENIMIENTOS</h1>
+            <section class="mant-container">
+                <section>
+                    <ul  class="options">
+                        <li id="enProceso" class="option option-active" >En Proceso</li>
+                        <li id="historial" class="option">Historial</li>
+                        <nav>
+                            <a href="formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
+                        </nav>
+                    </ul>
+                    <section class="contents">
+                        <section id="enProceso-content" class="content content-active">
+                            <h3>En Proceso</h3>
+                            <p>No existe ningun mantenimiento en proceso para este vehiculo.</p>
+
+                        </section>    
+                        <section id="historial-content" class="content">
+                            <h3>Historial</h3>
+                            <section class="table-container">
+                                <table>
+                                    <thead>
+                                        <th>Vehículo</th>
+                                        <th>Fecha</th>
+                                        <th>Descripción</th>
+                                        <th>Costo</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($vehiculo["mantenimientos_proximos"] as $mantenimiento): ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $vehiculo["placa"]; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mantenimiento["fecha"]; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mantenimiento["descripcion"]; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mantenimiento["costo"]; ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                                
+                            </section>
+                        </section>
+                    </section>
+
+                </section>
+                    
+                        
+            </section>
         </section>
+        
+
+
+        
+
 
         <section id="viajes" class="viajes">
             <h1>Viajes Realizados</h1>
@@ -216,6 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php endforeach; ?>
                 </tbody>
             </table>
+            
         </section>
     <?php endif; ?>
 
@@ -226,6 +261,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="https://www.instagram.com/zuck/"><img width="2%" src="img/LogoInsta.png" alt="LogoInsta"></a>
         <a href="https://twitter.com/MarkCrtlC"><img width="2%" src="img/LogoTwitter.png" alt="LogoInsta"> </a>
     </footer>
+
+    <script src="js/mantenimiento.js"></script>
 </body>
 
 </html>

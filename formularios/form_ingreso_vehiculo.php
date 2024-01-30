@@ -60,6 +60,8 @@
         }
         
         section {
+            box-sizing: border-box;
+            
             display: flex;
             justify-content: center;
             width: 100%;
