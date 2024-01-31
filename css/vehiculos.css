@@ -1,4 +1,3 @@
-
 :root {
   --bg-cont: #1b3665;
   --bg-active: #1b3665;
@@ -118,7 +117,6 @@
   height: 90%;
   object-fit: cover;
   padding-bottom: 30px;
-
 }
 
 .contenedor-imagen a {
@@ -127,6 +125,10 @@
   font-size: 20px;
   padding: 0%;
   margin: 0%;
+}
+
+.contenedor-imagen a:hover {
+  color: #1b3665aa;
 }
 
 .contenedor-imagen p {
@@ -146,7 +148,6 @@
   text-align: left;
   justify-content: center;
   display: flex;
-
 }
 
 .informacion article {
@@ -169,6 +170,138 @@
   object-fit: cover;
 }
 
+#btnAsignarChofer {
+  background-color: #fd8637ce;
+  color: #1b3665;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: bolder;
+  border: 0;
+}
+
+#btnAsignarChofer:hover {
+  background-color: #fd8637a7;
+}
+
+#popupAsignarChofer {
+  width: 60%;
+}
+#popupAsignarChofer::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#popupAsignarChofer p {
+  color: #1b3665;
+  margin: 0;
+  padding: 0;
+}
+
+.buscarCedula {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cedulaBuscada {
+  height: 25px;
+  width: 40%;
+  padding: 5px;
+  border: 1px solid #1b3665;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+#btnBuscarChofer {
+  width: 35px;
+  height: 35px;
+  padding: 10px;
+  background-color: black;
+  background-image: url(../img/buscar.png);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px;
+  border: none;
+}
+
+#btnBuscarChofer:hover {
+  background-color: #1b3665;
+}
+
+.btnCerrar {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: bolder;
+  position: absolute;
+  top: 5px; /* Ajusta el valor según sea necesario para la posición vertical */
+  right: 5px; /* Ajusta el valor según sea necesario para la posición horizontal */
+}
+
+.infoChoferPopup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.infoChoferPopup article {
+  padding: 10px;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.infoChoferPopup article h1 {
+  color: #da6517ce;
+  text-transform: uppercase;
+  font-size: larger;
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.botones button {
+  margin: 0 10px;
+}
+
+#btnAsignar {
+  background-color: rgb(0, 255, 0);
+  color: #1b3665;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: bolder;
+  border: 0;
+}
+
+#btnAsignar:hover {
+  background-color: rgba(0, 255, 0, 0.6);
+}
+
+#btnCancelar {
+  background-color: rgb(255, 89, 0);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: bolder;
+  border: 0;
+}
+
+#btnCancelar:hover {
+  background-color: rgba(255, 89, 0, 0.6);
+}
+
 .viajes {
   width: 100%;
   height: auto;
@@ -177,13 +310,11 @@
   padding-bottom: 10px;
 }
 
-
 .viajes h1 {
   font-size: x-large;
   color: #da6517ce;
   margin: 1% 10%;
 }
-
 
 .viajes table {
   margin: 2% 10%;
@@ -252,7 +383,6 @@
   margin-left: auto;
   align-content: center;
   padding: 20px 0px;
-
 }
 
 .options nav a {
@@ -260,8 +390,7 @@
   text-decoration: none;
   padding: 25px 15px;
   color: black;
-  background-color: rgb(218, 217, 217);;
-  
+  background-color: rgb(218, 217, 217);
 }
 
 .options nav a:hover {
@@ -284,12 +413,11 @@
   transition: box-shadow 0.3s ease;
 }
 
-
 .option-active {
   font-weight: bold;
   border: solid 1px black;
   background: var(--bg-active);
-  border-bottom: 1px solid rgba(7, 63 95, .4);
+  border-bottom: 1px solid rgba(7, 63 95, 0.4);
   text-align: center;
   line-height: 60px;
   border: solid 1px black;
@@ -298,13 +426,11 @@
   box-shadow: inset;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   /* Agrega una sombra al elemento seleccionado */
-
 }
 
 .contents {
   width: 100%;
   height: 85%;
-  
 }
 
 .content {
@@ -329,7 +455,7 @@
   color: white;
 }
 
-.contents p{
+.contents p {
   text-align: center;
   font-size: large;
   padding-top: 5%;
@@ -337,41 +463,40 @@
   margin: auto;
   width: 30%;
   color: white;
-
 }
 
-.table-container{
+.table-container {
   margin: 2% auto;
   padding-bottom: 5%;
 }
 
-.table-container table{
-margin: 2% 10%;
-border: none;
-table-layout: fixed;
-width: 80%;
-border-collapse: collapse;
+.table-container table {
+  margin: 2% 10%;
+  border: none;
+  table-layout: fixed;
+  width: 80%;
+  border-collapse: collapse;
 }
 
 .table-container thead {
-background-color: black;
-color: white;
+  background-color: black;
+  color: white;
 }
 
 .table-container th {
-padding: 20px 30px;
-border: none;
-text-transform: uppercase;
+  padding: 20px 30px;
+  border: none;
+  text-transform: uppercase;
 }
 
-.table-container td{
-padding: 30px;
-border: none;
-border-bottom: solid 1px;
-text-align: center;
-color: white;
+.table-container td {
+  padding: 30px;
+  border: none;
+  border-bottom: solid 1px;
+  text-align: center;
+  color: white;
 }
 
 .table-container tbody tr:hover {
-background-color: #b6bfcf;
+  background-color: #b6bfcf;
 }

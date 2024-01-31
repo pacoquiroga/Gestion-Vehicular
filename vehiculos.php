@@ -1,5 +1,36 @@
 <?php
+$servidor = "localhost";
+$usuario = "root";
+$clave = "";
+$baseDeDatos = "gestion_vehicular";
+
+$enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
+
+if (!$enlace) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    /* =================== OBTENER INFO DE BD =================== */
+
+    // Obtener el valor seleccionado del formulario
+    $opcionSeleccionadaBD = mysqli_real_escape_string($enlace, $_POST['vehiculos']);
+
+    // Consultar la base de datos para obtener información del vehículo seleccionado
+    $query = "SELECT * FROM vehiculo WHERE placa = '$opcionSeleccionadaBD'";
+    $result = mysqli_query($enlace, $query);
+
+    if ($result) {
+        $vehiculoEncontradoBD = mysqli_fetch_assoc($result);
+    } else {
+        echo "Error en la consulta: " . mysqli_error($enlace);
+    }
+
+    /* =================== FIN OBTENER INFO DE BD =================== */
+
+    /* =================== OBTENER INFO DE JSON =================== */
+
     // Obtener el valor seleccionado del formulario
     $opcionSeleccionada = $_POST['vehiculos'];
 
@@ -13,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (json_last_error() === JSON_ERROR_NONE) {
             // Buscar el vehículo seleccionado
             $vehiculoEncontrado = null;
-        
+
             foreach ($vehiculos as $vehiculo) {
                 if ($opcionSeleccionada == $vehiculo['placa']) {
                     $vehiculoEncontrado = $vehiculo;
@@ -29,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "Error al leer el archivo JSON.";
     }
+    /* =================== FIN OBTENER INFO DE JSON =================== */
 }
 ?>
 
@@ -64,9 +96,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="vehiculos.php" method="post">
             <select name="vehiculos" id="vehiculos">
                 <option selected="true" disabled="disabled" value="0">Seleccione la Placa del Vehículo</option>
-                <option value="PMA-7997">PMA-7997</option>
-                <option value="PME-4004">PME-4004</option>
-                <option value="PMA-3124">PMA-3124</option>
+                <?php
+                $queryPlacas = "SELECT placa FROM vehiculo";
+                $resultPlacas = mysqli_query($enlace, $queryPlacas);
+
+                if ($resultPlacas) {
+                    while ($placa = mysqli_fetch_assoc($resultPlacas)) {
+                        echo "<option value='" . $placa['placa'] . "'>" . $placa['placa'] . "</option>";
+                    }
+                } else {
+                    echo "Error en la consulta: " . mysqli_error($enlace);
+                }
+                ?>
             </select>
             <input type="submit" value="">
         </form>
@@ -91,72 +132,85 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php if (isset($vehiculoEncontrado)): ?>
         <section class="seleccionado">
             <h2>Vehículo seleccionado:
-                <?php echo $vehiculoEncontrado["placa"]; ?>
+                <?php echo $vehiculoEncontradoBD["placa"]; ?>
             </h2>
         </section>
 
         <section id="informacion" class="informacion">
-            
+
             <section class="contenedor-imagen">
-                
-                <img src="<?php echo $vehiculo["imagen"]; ?>" alt="<?php echo $vehiculo["modelo"]; ?>">
-                <?php if($vehiculo["choferAsignado"] != ""): ?>
-                    <p>Chofer Asignado:</p>
-                    <a href="chofer.php"><?php echo $vehiculo["choferAsignado"]; ?></a>
-                    <hr style="border: none; height: 1px; background-color: black; 
-        width: 50%;
-        margin: 5px 0;">
+
+                <img src="<?php echo $vehiculoEncontradoBD["fotoVehiculo"]; ?>"
+                    alt="<?php echo $vehiculoEncontradoBD["marca_modelo"]; ?>">
+
+                <?php if ($vehiculoEncontradoBD["cedulaChofer"] != ""): ?>
+                    <section id="contenedorChofer">
+                        <p>Chofer Asignado:</p>
+                        <a
+                            href="http://localhost/Gestion-Local/chofer.php?busqueda=<?php echo $vehiculoEncontradoBD['cedulaChofer']; ?>">
+                            <?php echo $vehiculoEncontradoBD["nombreChofer"]; ?>
+                        </a>
+                    </section>
+
                 <?php else: ?>
-                    <p>No hay chofer asignado</p>
+                    <section id="contenedorChofer">
+
+                        <button id="btnAsignarChofer" onclick="abrirPopup()">Asignar Chofer</button>
+                        <dialog id="popupAsignarChofer">
+                            <button class="btnCerrar" onclick="cerrarPopup()">Cerrar</button>
+                            <section id="infoPopup">
+                                <h1>Asignar Chofer</h1>
+                                <section class="buscarCedula">
+                                    <input type="number" class="cedulaBuscada" placeholder="Ingresa Cedula" name="busqueda">
+                                    <button id="btnBuscarChofer" onclick="AsignarChofer()"></button>
+                                </section>
+                            </section>
+                        </dialog>
+                    </section>
                 <?php endif; ?>
             </section>
             <article>
                 <h1>Información General</h1>
                 <p><strong>Placa: </strong>
-                    <?php echo $vehiculo["placa"]; ?>
-                </p>
-                <p><strong>Marca: </strong>
-                    <?php echo $vehiculo["marca"]; ?>
+                    <?php echo $vehiculoEncontradoBD["placa"]; ?>
                 </p>
                 <p><strong>Modelo: </strong>
-                    <?php echo $vehiculo["modelo"]; ?>
+                    <?php echo $vehiculoEncontradoBD["marca_modelo"]; ?>
                 </p>
                 <p><strong>Año: </strong>
-                    <?php echo $vehiculo["ano"]; ?>
+                    <?php echo $vehiculoEncontradoBD["anio"]; ?>
                 </p>
                 <p><strong>Tipo de Vehículo: </strong>
-                    <?php echo $vehiculo["tipo_vehiculo"]; ?>
+                    <?php echo $vehiculoEncontrado["tipo_vehiculo"]; ?>
                 </p>
                 <p><strong>Capacidad: </strong>
-                    <?php echo $vehiculo["capacidad"]; ?>
+                    <?php echo $vehiculoEncontrado["capacidad"]; ?>
                 </p>
             </article>
             <article>
                 <h1>Información Técnica</h1>
                 <p><strong>Combustible: </strong>
-                    <?php echo $vehiculo["informacion_tecnica"]["tipo_combustible"]; ?>
+                    <?php echo $vehiculoEncontradoBD["tipoCombustible"]; ?>
                 </p>
                 <p><strong>Motor: </strong>
-                    <?php echo $vehiculo["informacion_tecnica"]["motor"]; ?>
+                    <?php echo $vehiculoEncontrado["informacion_tecnica"]["motor"]; ?>
                 </p>
                 <p><strong>Kilometraje: </strong>
-                    <?php echo $vehiculo["informacion_tecnica"]["kilometraje"]; ?>
+                    <?php echo $vehiculoEncontradoBD["kilometraje"]; ?>
                 </p>
                 <p><strong>Peso: </strong>
-                    <?php echo $vehiculo["informacion_tecnica"]["peso"]; ?>
+                    <?php echo $vehiculoEncontradoBD["peso"]; ?>
                 </p>
             </article>
-            
+
         </section>
 
-
-        
         <section id="mantenimiento" class="mantenimiento">
             <h1>MANTENIMIENTOS</h1>
             <section class="mant-container">
                 <section>
-                    <ul  class="options">
-                        <li id="enProceso" class="option option-active" >En Proceso</li>
+                    <ul class="options">
+                        <li id="enProceso" class="option option-active">En Proceso</li>
                         <li id="historial" class="option">Historial</li>
                         <nav>
                             <a href="formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
@@ -167,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <h3>En Proceso</h3>
                             <p>No existe ningun mantenimiento en proceso para este vehiculo.</p>
 
-                        </section>    
+                        </section>
                         <section id="historial-content" class="content">
                             <h3>Historial</h3>
                             <section class="table-container">
@@ -197,20 +251,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
-                                
+
                             </section>
                         </section>
                     </section>
 
                 </section>
-                    
-                        
+
+
             </section>
         </section>
-        
 
 
-        
+
+
 
 
         <section id="viajes" class="viajes">
@@ -250,7 +304,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php endforeach; ?>
                 </tbody>
             </table>
-            
+
         </section>
     <?php endif; ?>
 
@@ -263,6 +317,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </footer>
 
     <script src="js/mantenimiento.js"></script>
+    <script src="js/asignarChofer.js"></script>
 </body>
 
 </html>
