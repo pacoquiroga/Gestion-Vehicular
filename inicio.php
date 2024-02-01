@@ -13,23 +13,28 @@ $nombreUsuario = $_SESSION['nombreUsuario'];
     <title>Gestión Vehicular</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/inicio.css">
+
+
 </head>
 
 <body>
     <header>
-        <section class="logoEmpresa">
-            <img id="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
-            <h1>Gestión Vehicular</h1>
+
+        <section class="logoNav">
+            <a href="#" class="logo" id="header">Gestión</a>
+            <img class="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />
+            <a href="#" class="logo" id="header"> Vehicular</a>
         </section>
-        <a href="index.html"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a>
+        <nav>
+            <ul>
+                <li><a href="vehiculos.php">Vehiculos</a></li>
+                <li><a href="chofer.php">Choferes</a></li>
+                <li><a href="index.php"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a></li>
+            </ul>
+        </nav>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="vehiculos.php">VEHICULOS</a></li>
-            <li><a href="chofer.php">CHOFERES</a></li>
-        </ul>
-    </nav>
+    
     <section>
         <section class="informacion">
             <article>

@@ -3,8 +3,11 @@
   --bg-cont: #1b3665;
   --bg-active: #1b3665;
 }
-
+header{
+  background-color: #1b3665;
+}
 .busqueda {
+  margin-top: 9%;
   width: 100%;
   display: flex;
   font-weight: bold;

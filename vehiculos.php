@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (json_last_error() === JSON_ERROR_NONE) {
             // Buscar el vehículo seleccionado
             $vehiculoEncontrado = null;
-        
+
             foreach ($vehiculos as $vehiculo) {
                 if ($opcionSeleccionada == $vehiculo['placa']) {
                     $vehiculoEncontrado = $vehiculo;
@@ -45,20 +45,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <header>
-        <section class="logoEmpresa">
-            <img id="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
-            <h1>Gestión Vehicular</h1>
-        </section>
-        <a href="index.html"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="inicio.php">INICIO</a></li>
-            <li><a href="vehiculos.php">VEHICULOS</a></li>
-            <li><a href="chofer.php">CHOFERES</a></li>
-        </ul>
-    </nav>
+        <section class="logoNav">
+            <a href="#" class="logo" id="header">Gestión</a>
+            <img class="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />
+            <a href="#" class="logo" id="header"> Vehicular</a>
+        </section>
+        <nav>
+            <ul>
+                <li><a href="vehiculos.php">Vehiculos</a></li>
+                <li><a href="chofer.php">Choferes</a></li>
+                <li><a href="index.php"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a></li>
+            </ul>
+        </nav>
+    </header>
 
     <section class="busqueda">
         <form action="vehiculos.php" method="post">
@@ -96,13 +96,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </section>
 
         <section id="informacion" class="informacion">
-            
+
             <section class="contenedor-imagen">
-                
+
                 <img src="<?php echo $vehiculo["imagen"]; ?>" alt="<?php echo $vehiculo["modelo"]; ?>">
-                <?php if($vehiculo["choferAsignado"] != ""): ?>
+                <?php if ($vehiculo["choferAsignado"] != ""): ?>
                     <p>Chofer Asignado:</p>
-                    <a href="chofer.php"><?php echo $vehiculo["choferAsignado"]; ?></a>
+                    <a href="chofer.php">
+                        <?php echo $vehiculo["choferAsignado"]; ?>
+                    </a>
                     <hr style="border: none; height: 1px; background-color: black; 
         width: 50%;
         margin: 5px 0;">
@@ -146,17 +148,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <?php echo $vehiculo["informacion_tecnica"]["peso"]; ?>
                 </p>
             </article>
-            
+
         </section>
 
 
-        
+
         <section id="mantenimiento" class="mantenimiento">
             <h1>MANTENIMIENTOS</h1>
             <section class="mant-container">
                 <section>
-                    <ul  class="options">
-                        <li id="enProceso" class="option option-active" >En Proceso</li>
+                    <ul class="options">
+                        <li id="enProceso" class="option option-active">En Proceso</li>
                         <li id="historial" class="option">Historial</li>
                         <nav>
                             <a href="formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
@@ -167,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <h3>En Proceso</h3>
                             <p>No existe ningun mantenimiento en proceso para este vehiculo.</p>
 
-                        </section>    
+                        </section>
                         <section id="historial-content" class="content">
                             <h3>Historial</h3>
                             <section class="table-container">
@@ -197,20 +199,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
-                                
+
                             </section>
                         </section>
                     </section>
 
                 </section>
-                    
-                        
+
+
             </section>
         </section>
-        
 
 
-        
+
+
 
 
         <section id="viajes" class="viajes">
@@ -250,7 +252,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php endforeach; ?>
                 </tbody>
             </table>
-            
+
         </section>
     <?php endif; ?>
 
@@ -263,6 +265,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </footer>
 
     <script src="js/mantenimiento.js"></script>
+    <script src="js/header.js"></script>
 </body>
 
 </html>

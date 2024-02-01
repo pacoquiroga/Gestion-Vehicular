@@ -1,89 +1,119 @@
 html {
   scroll-behavior: smooth;
 }
-
 body {
   background-color: rgb(218, 217, 217);
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  transition: 0.7s;
+  padding: 30px 20px;
+  z-index: 10;
+  flex-wrap: wrap;
+}
+
+
+header.abajo {
+  background: #fff;
+  padding: 15px 20px;
+}
+
+header .principal {
+  align-items: center;
+}
+
+header .logo {
+  position: relative;
+  color: #fff;
+  padding: 10px;
+  font-size: 3em;
+  letter-spacing: 2px;
+  transition: 1.5s;
+  text-decoration: none;
+  vertical-align: middle;
+
+}
+
+nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: #1b3665;
-  color: white;
-  padding: 10px;
+}
+
+header ul {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header ul li {
+  list-style: none;
+}
+
+header a {
+  transition: color 0.3s ease;
+  
+}
+
+header ul li a {
+  position: relative;
+  font-family: helvetica;
+  margin: 0 15px;
+  text-decoration: none;
+  color: #fff;
+  letter-spacing: 3px;
+  font-size: 15px;
+  transition: 0.7s;
+}
+
+header.abajo .logo,
+header.abajo ul li a{
+  color: #000;
+}
+
+header.abajo .logoSalir {
+  filter: invert(1);
+  width: auto;
+}
+
+window-container {
+  filter: blur(0px);
+}
+
+.logoNav {
+  display: flex;
+  align-items: center
 }
 
 .logoEmpresa {
-  display: flex;
-  align-items: center;
-  height: auto;
-  padding: 0%;
+  filter: opacity(0.7);
+  width: 50px;
+  transition: 0.7s;
 }
 
-#logoEmpresa {
-  width: 130px;
-  margin-left: 20px;
+
+
+header.abajo img{
+  transition: 0.7s;
+  width: 70px;
+  filter: opacity(1);
 }
+
 
 .logoSalir {
   width: 40px;
   height: 40px;
-  margin-right: 20px;
 }
 
-header h1 {
-  margin-right: 20px;
-  color: white;
-  font-size: x-large;
-}
-
-header a {
-  color: white;
-  text-decoration: none;
-}
-
-nav {
-  background-color: #000000;
-  padding: 1px;
-}
-
-nav ul {
-  list-style-type: none;
-  margin: 5px;
-  padding: 5px;
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 20px;
-}
-
-nav li {
-  border-right: 2px solid #ffffff;
-  padding: 10px;
-  transition: background-color 0.3s;
-}
-
-nav li:hover {
-  padding: 10px;
-  background-color: grey;
-}
-
-nav li:last-child {
-  border-right: none;
-}
-
-nav a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 15px;
-}
 
 footer {
   bottom: 0;
@@ -91,6 +121,8 @@ footer {
   background-color: #000000;
   color: rgb(255, 255, 255);
   padding: 18px;
+  margin: 0;
+
   text-align: center;
   box-sizing: border-box;
   margin-top: auto;

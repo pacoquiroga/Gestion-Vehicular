@@ -1,13 +1,11 @@
-section {
-    align-items: center;
-    width: 100%;
-    margin: auto;
-    padding: 30px 0px;
+header {
+    background-color: #000752;
 }
 
 .informacion {
+    padding-top: 9.3%;
 
-    margin: 0.68% auto;
+    margin: auto;
     width: 800px;
     height: 435px;
 }
@@ -44,4 +42,10 @@ section {
     padding: 20px;
     margin: 0;
     text-align: center;
+}
+
+
+footer{
+
+    position: absolute;
 }
