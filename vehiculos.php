@@ -140,17 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <section class="contenedor-imagen">
 
-<<<<<<< HEAD
-                <img src="<?php echo $vehiculo["imagen"]; ?>" alt="<?php echo $vehiculo["modelo"]; ?>">
-                <?php if ($vehiculo["choferAsignado"] != ""): ?>
-                    <p>Chofer Asignado:</p>
-                    <a href="chofer.php">
-                        <?php echo $vehiculo["choferAsignado"]; ?>
-                    </a>
-                    <hr style="border: none; height: 1px; background-color: black; 
-        width: 50%;
-        margin: 5px 0;">
-=======
                 <img src="<?php echo $vehiculoEncontradoBD["fotoVehiculo"]; ?>"
                     alt="<?php echo $vehiculoEncontradoBD["marca_modelo"]; ?>">
 
@@ -163,7 +152,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </a>
                     </section>
 
->>>>>>> df733e37268d808f250bdeb7214c1608070e2a14
                 <?php else: ?>
                     <section id="contenedorChofer">
 
@@ -217,11 +205,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         </section>
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> df733e37268d808f250bdeb7214c1608070e2a14
         <section id="mantenimiento" class="mantenimiento">
             <h1>MANTENIMIENTOS</h1>
             <section class="mant-container">
@@ -296,7 +281,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <th>Recorrido (km)</th>
                         <th>Tiempo (h)</th>
                     </tr>
-                </thead <tbody>
+                </thead> <tbody>
                 <?php foreach ($vehiculo["viajes_realizados"] as $viaje): ?>
                     <tr>
                         <td>
@@ -334,11 +319,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </footer>
 
     <script src="js/mantenimiento.js"></script>
-<<<<<<< HEAD
     <script src="js/header.js"></script>
-=======
     <script src="js/asignarChofer.js"></script>
->>>>>>> df733e37268d808f250bdeb7214c1608070e2a14
 </body>
 
 </html>

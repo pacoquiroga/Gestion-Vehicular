@@ -28,20 +28,22 @@ if (isset($_GET['busqueda'])) {
 
 <body>
     <header>
-        <section class="logoEmpresa">
-            <img id="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
-            <h1>Gestión Vehicular</h1>
+
+        <section class="logoNav">
+            <a href="#" class="logo" id="header">Gestión</a>
+            <img class="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />
+            <a href="#" class="logo" id="header"> Vehicular</a>
         </section>
-        <a href="index.html"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a>
+        <nav>
+            <ul>
+                <li><a href="vehiculos.php">Vehiculos</a></li>
+                <li><a href="chofer.php">Choferes</a></li>
+                <li><a href="index.php"><img class="logoSalir" src="img/LogoCerrarSesion.png"
+                            alt="Logo Cerrar Sesión"></a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="inicio.php">INICIO</a></li>
-            <li><a href="vehiculos.php">VEHICULOS</a></li>
-            <li><a href="chofer.php">CHOFERES</a></li>
-        </ul>
-    </nav>
-    <section>
+    <section class="barra-busqueda">
         <table>
             <tr>
                 <td>
@@ -116,14 +118,14 @@ if (isset($_GET['busqueda'])) {
                 </article>
             </section>
         <?php elseif (isset($_GET['busqueda'])): ?>
-            <section>
+            <section class="info-center">
                 <article>
                     <p>No se encontró ningún chofer con la cédula
                     </p>
                 </article>
             </section>
         <?php else: ?>
-            <section>
+            <section class="info-center">
                 <article>
                     <p> </p>
                     <p>Ingrese la cédula del chofer que desea buscar</p>
