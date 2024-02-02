@@ -55,9 +55,70 @@ if (isset($_GET['busqueda'])) {
                             <input type="number" id="busqueda" placeholder="Ingresa Cedula" name="busqueda">
                             <input type="submit" value="Buscar">
                         </form>
-                        <nav class="adicional">
-                            <a href="formularios/form_ingreso_chofer.php">Agregar Chofer</a>
-                        </nav>
+                        <section class="buton">
+                            <button id="openDialog">Agregar Chofer</button>
+                        </section>
+    
+
+                        <dialog id="dialog" class="dialog">
+                            <section class="ingreso">
+                                <article class="info-chof">
+                                    <form action="formularios/procesar-chofer.php" method="post"
+                                        enctype="multipart/form-data">
+                                        <h1>Información del Chofer</h1>
+                                        <label for="nombre">Nombre:</label>
+                                        <input type="text" id="nombre" name="nombre" required><br>
+                                        <br>
+
+                                        <label for="apellido">Apellido:</label>
+                                        <input type="text" id="apellido" name="apellido" required><br>
+                                        <br>
+
+                                        <label for="edad">Edad:</label>
+                                        <input type="number" id="edad" name="edad" required min="18"><br>
+                                        <br>
+
+                                        <label for="numCedula">Número de Cédula:</label>
+                                        <input type="number" id="numCedula" name="numCedula" min="1000000000"
+                                            max="9999999999" required><br>
+                                        <br>
+
+                                        <label for="sexo">Sexo:</label>
+                                        <select name="sexo" id="sexo">
+                                            <option value="masculino">Masculino</option>
+                                            <option value="femenino">Femenino</option>
+                                            <option value="otro">Otro</option>
+                                        </select><br>
+                                        <br>
+                                </article>
+                                <article class="info-chof-prof">
+                                    <h1>Información Profesional</h1>
+
+                                    <label for="licencia">Tipo de licencia:</label>
+                                    <input type="text" id="licencia" name="licencia" required maxlength="2"><br>
+                                    <br>
+
+                                    <label for="sangre">Tipo de sangre:</label>
+                                    <input type="text" id="sangre" name="sangre" required maxlength="3"><br>
+                                    <br>
+
+                                    <label for="fentrada">Fecha de entrada:</label>
+                                    <input type="date" id="fecha_entrada" name="fecha_entrada" required
+                                        min="2000-01-01"><br>
+                                    <br>
+
+                                    <label for="foto">Archivo de Foto:</label>
+                                    <input type="file" id="foto" name="foto">
+                                    <br>
+                                    <input type="submit" value="Enviar">
+                                </article>
+                                <section class="cerrar">
+                                    <button id="cancelBtn" value="cancel">Cerrar</button>
+                                    <button id="confirmBtn" value="default">Confirmar</button>
+                                </section>
+                                </form>
+                            </section>
+                        </dialog>
                     </section>
                 </td>
             </tr>
@@ -141,7 +202,7 @@ if (isset($_GET['busqueda'])) {
         <a href="https://www.instagram.com/zuck/"><img width="2%" src="img/LogoInsta.png" alt="LogoInsta"></a>
         <a href="https://twitter.com/MarkCrtlC"><img width="2%" src="img/LogoTwitter.png" alt="LogoInsta"> </a>
     </footer>
-
+    <script src="js/añadirChofer.js"></script>
 </body>
 
 </html>
