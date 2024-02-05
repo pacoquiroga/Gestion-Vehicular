@@ -27,7 +27,7 @@ $nombreUsuario = $_SESSION['nombreUsuario'];
         </section>
         <nav>
             <ul>
-                <li><a href="vehiculos.php">Vehiculos</a></li>
+                <li><a href="filtroVehiculos.php">Vehiculos</a></li>
                 <li><a href="chofer.php">Choferes</a></li>
                 <li><a href="index.php"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a></li>
             </ul>
