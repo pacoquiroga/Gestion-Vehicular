@@ -18,7 +18,7 @@ header{
   display: flex;
 }
 
-.busqueda form select {
+.busqueda select {
   flex: 1;
   padding: 10px;
   border: none;
@@ -27,7 +27,7 @@ header{
   font-weight: bold;
 }
 
-.busqueda form input[type="submit"] {
+.busqueda input[type="submit"] {
   width: 40px;
   padding: 10px;
   border: none;
@@ -48,9 +48,20 @@ header{
 }
 
 .busqueda a:hover,
-.busqueda form input[type="submit"]:hover,
-.busqueda form select:hover {
+.busqueda input[type="submit"]:hover,
+.busqueda select:hover {
   cursor: pointer;
+  background-color: #fd8637ce;
+}
+
+#abrirForm{
+  cursor: pointer;
+  background-color: #da6517ce;
+  color: white;
+  border: none;
+}
+
+#abrirForm:hover{
   background-color: #fd8637ce;
 }
 
