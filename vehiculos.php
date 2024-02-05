@@ -288,6 +288,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         </section>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3d382518d37a8c7d27b6b899ddbea3d1387268d9
         <section id="mantenimiento" class="mantenimiento">
             <h1>MANTENIMIENTOS</h1>
             <section class="mant-container">
@@ -362,8 +367,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <th>Recorrido (km)</th>
                         <th>Tiempo (h)</th>
                     </tr>
+<<<<<<< HEAD
                 </thead>
                 <tbody>
+=======
+                </thead> <tbody>
+>>>>>>> 3d382518d37a8c7d27b6b899ddbea3d1387268d9
                 <?php foreach ($vehiculo["viajes_realizados"] as $viaje): ?>
                     <tr>
                         <td>
@@ -403,8 +412,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <script src="js/mantenimiento.js"></script>
     <script src="js/header.js"></script>
     <script src="js/asignarChofer.js"></script>
+<<<<<<< HEAD
     <script src="js/form.js"></script>
     
+=======
+>>>>>>> 3d382518d37a8c7d27b6b899ddbea3d1387268d9
 </body>
 
 </html>
