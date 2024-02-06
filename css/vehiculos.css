@@ -4,13 +4,16 @@
 }
 header{
   background-color: #1b3665;
+  position: fixed;
 }
 .busqueda {
-  margin-top: 9%;
+  margin-top: 4%;
   width: 100%;
   display: flex;
   font-weight: bold;
   background-color: #da6517ce;
+  padding: 0%;
+  margin-bottom: 0%;
 }
 
 .busqueda form {
@@ -59,6 +62,8 @@ header{
   background-color: #da6517ce;
   color: white;
   border: none;
+  padding: 0%;
+  margin: 0%;
 }
 
 #abrirForm:hover{

@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/vehiculos.css">
-    <link rel="stylesheet" href="css/form.css">
+    
 
     <title>Gestión Vehicular</title>
 </head>
@@ -93,109 +93,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </nav>
     </header>
 
-    <dialog  id="popupform-container" class="form-container">
-            <section class="formHeader">
-                <h2>Ingreso Nuevo Vehiculo</h2>
-                <button id="cerrarForm">&times;</button>
-            </section >
+    
 
-
-            <form method="dialog" action="../vehiculoNuevo.php" method="get">
-                <section class="form-body">
-                    <section class="info-container">
-                        <h2>Información del Vehículo</h2>
-
-                        <section class="grupo">
-                            <input type="text" id="placa" name="placa" pattern="[A-Z]{3}\d{3-4}"
-                                title="Ingresa una placa válida (3 letras y 4 números, todo en mayúsculas)" required><br>
-                            <label for="placa">Placa</label>
-                        </section>
-                        <br>
-
-                        <section class="grupo">
-                            <input type="text" id="marca" oninput="validarLetra(this)" name="marca"
-                                pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+"
-                                title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
-                            <label for="marca">Marca/Modelo</label>
-                        </section>
-                        <br>
-
-
-                        <section class="grupo">
-                            <input type="number" id="anio" oninput="validarNumero(this)" name="anio" min="1900" max="2023"
-                                pattern="\d+" title="Ingresa un número positivo" required><br>
-                            <label for="anio">Año</label>
-                        </section>
-                        <br>
-
-                        <section class="labelFoto">
-                            
-                            <input type="file" id="foto" name="foto" accept="image/*">
-                        </section>
-                        <br>
-
-
-                        <br>
-                    </section>
-                    <section class="info-container">
-                        <h2>Datos Técnicos</h2>
-
-                        <section class="grupo">
-                            <input type="number" id="kilometraje" oninput="validarNumero(this)" name="kilometraje" min="0"
-                                required><br>
-                            <label for="kilometraje">Kilometraje</label>
-                        </section>
-                        <br>
-
-                        <section class="grupo">
-                            <input type="text" id="tipo_combustible" oninput="validarLetra(this)" name="tipo_combustible"
-                                pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+"
-                                title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
-                            <label for="tipo_combustible">Tipo de Combustible</label>
-                        </section>
-                        <br>
-
-
-                        <section class="grupo">
-                            <input type="number" id="peso" oninput="validarNumero(this)" name="peso" min="0" required><br>
-                            <label for="peso">Peso</label>
-                        </section>
-                        <br>
-                    </section>
-                </section>
-                <section class="formFooter">
-                    <input type="submit" value="Enviar">
-                </section>
-
-            </form>
-
-        </dialog>
-
-
-    <section class="busqueda">
-        <form action="vehiculos.php" method="get">
-            <select name="vehiculos" id="vehiculos">
-                <option selected="true" disabled="disabled" value="0">Seleccione la Placa del Vehículo</option>
-                <?php
-                $queryPlacas = "SELECT placa FROM vehiculo";
-                $resultPlacas = mysqli_query($enlace, $queryPlacas);
-
-                if ($resultPlacas) {
-                    while ($placa = mysqli_fetch_assoc($resultPlacas)) {
-                        echo "<option value='" . $placa['placa'] . "'>" . $placa['placa'] . "</option>";
-                    }
-                } else {
-                    echo "Error en la consulta: " . mysqli_error($enlace);
-                }
-                ?>
-            </select>
-            <input type="submit" value="">
-        </form>
-        <button id="abrirForm">Ingresar Vehiculo</button>
-        
-        
-
-    </section>
+    
 
     <section class="menu">
         <a href="#informacion">
@@ -288,11 +188,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         </section>
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 3d382518d37a8c7d27b6b899ddbea3d1387268d9
         <section id="mantenimiento" class="mantenimiento">
             <h1>MANTENIMIENTOS</h1>
             <section class="mant-container">
@@ -367,12 +264,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <th>Recorrido (km)</th>
                         <th>Tiempo (h)</th>
                     </tr>
-<<<<<<< HEAD
                 </thead>
                 <tbody>
-=======
-                </thead> <tbody>
->>>>>>> 3d382518d37a8c7d27b6b899ddbea3d1387268d9
                 <?php foreach ($vehiculo["viajes_realizados"] as $viaje): ?>
                     <tr>
                         <td>
@@ -412,11 +305,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <script src="js/mantenimiento.js"></script>
     <script src="js/header.js"></script>
     <script src="js/asignarChofer.js"></script>
-<<<<<<< HEAD
-    <script src="js/form.js"></script>
-    
-=======
->>>>>>> 3d382518d37a8c7d27b6b899ddbea3d1387268d9
 </body>
 
 </html>

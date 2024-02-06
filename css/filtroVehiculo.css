@@ -1,11 +1,24 @@
-header{
+header {
     position: relative;
     background-color: #1b3665;
     box-sizing: border-box;
 }
 
-footer{
+footer {
     position: absolute;
+}
+
+#abrirForm {
+    cursor: pointer;
+    background-color: #da6517ce;
+    color: white;
+    border: none;
+    padding: 0%;
+    margin: 0%;
+}
+
+#abrirForm:hover {
+    background-color: #fd8637ce;
 }
 
 .busqueda {
@@ -100,7 +113,7 @@ input::placeholder {
 
 .estadoActivo {
     background-color: rgb(3, 173, 3);
-    background-image: url("../img/activo.png");
+    background-image: url("img/activo.png");
 }
 
 .estadoMantenimiento {
@@ -118,10 +131,10 @@ input::placeholder {
     background-image: url("../img/baja.png");
 }
 
-.vehiculo:hover .estado{
+.vehiculo:hover .estado {
     padding: 55%;
 }
 
-.vehiculo:hover img{
+.vehiculo:hover img {
     width: 45%;
 }
