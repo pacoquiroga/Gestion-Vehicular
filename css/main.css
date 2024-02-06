@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 body {
   background-color: rgb(218, 217, 217);
   margin: 0;
@@ -73,17 +76,32 @@ header ul li a {
 }
 
 header.abajo .logo,
+<<<<<<< HEAD
 header.abajo ul li a,
 header.abajo button {
   color: #000;
 }
 
+=======
+header.abajo ul li a{
+  color: #000;
+}
+
+header.abajo .logoSalir {
+  filter: invert(1);
+  width: auto;
+}
+
+>>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
 window-container {
   filter: blur(0px);
 }
 
 .logoNav {
+<<<<<<< HEAD
   
+=======
+>>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
   display: flex;
   align-items: center
 }
@@ -94,6 +112,11 @@ window-container {
   transition: 0.7s;
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
 header.abajo img{
   transition: 0.7s;
   width: 70px;
@@ -104,9 +127,9 @@ header.abajo img{
 .logoSalir {
   width: 40px;
   height: 40px;
-  margin-right: 20px;
 }
 
+<<<<<<< HEAD
 
 nav {
   background-color: #000000;
@@ -116,18 +139,26 @@ nav {
 }
 
 
+=======
+>>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
 
 footer {
   width: 100%;
   background-color: #000000;
   color: rgb(255, 255, 255);
   padding: 18px;
+  margin: 0;
+
   text-align: center;
   box-sizing: border-box;
+<<<<<<< HEAD
   margin-top: 10%;
   position: absolute;
   bottom: 0;
   left: 0;
+=======
+  margin-top: auto;
+>>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
 }
 
 #logoRedes {

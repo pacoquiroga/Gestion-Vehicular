@@ -1,0 +1,140 @@
+header {
+    position: relative;
+    background-color: #1b3665;
+    box-sizing: border-box;
+}
+
+footer {
+    position: absolute;
+}
+
+#abrirForm {
+    cursor: pointer;
+    background-color: #da6517ce;
+    color: white;
+    border: none;
+    padding: 0%;
+    margin: 0%;
+}
+
+#abrirForm:hover {
+    background-color: #fd8637ce;
+}
+
+.busqueda {
+    width: 100%;
+    display: flex;
+    font-weight: bold;
+    background-color: #da6517ce;
+}
+
+.busqueda input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: #da6517ce;
+    color: white;
+    font-weight: bold;
+}
+
+input::placeholder {
+    color: white;
+}
+
+.busqueda select {
+    flex: 0;
+    padding: 10px;
+    border: none;
+    background-color: #da6517ce;
+    color: white;
+    font-weight: bold;
+    border-left: solid 1px;
+}
+
+.busqueda a {
+    padding: 10px;
+    border-left: solid 1px;
+    text-decoration: none;
+    background-color: #da6517ce;
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.busqueda a:hover,
+.busqueda select:hover {
+    cursor: pointer;
+    background-color: #fd8637ce;
+}
+
+.busqueda input[type="text"]:hover {
+    background-color: #fd8637ce;
+}
+
+.contenedorVehiculos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.vehiculo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1b3665;
+    color: white;
+    margin: 1%;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    width: 25%;
+}
+
+.contenedorInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.vehiculo img {
+    width: 40%;
+    margin: 0% 0% 0% 10%;
+    transition: 0.5s ease;
+}
+
+.estado {
+    padding: 50%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    font-size: x-large;
+    margin-top: 0;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    transition: 0.5s ease;
+}
+
+.estadoActivo {
+    background-color: rgb(3, 173, 3);
+    background-image: url("img/activo.png");
+}
+
+.estadoMantenimiento {
+    background-color: gray;
+    background-image: url("../img/mantenimiento.png");
+}
+
+.estadoRuta {
+    background-color: #da6517ce;
+    background-image: url("../img/ruta.png");
+}
+
+.estadoBaja {
+    background-color: red;
+    background-image: url("../img/baja.png");
+}
+
+.vehiculo:hover .estado {
+    padding: 55%;
+}
+
+.vehiculo:hover img {
+    width: 45%;
+}

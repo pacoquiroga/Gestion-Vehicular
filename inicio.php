@@ -12,6 +12,7 @@ $nombreUsuario = $_SESSION['nombreUsuario'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión Vehicular</title>
     <link rel="stylesheet" href="css/main.css">
+<<<<<<< HEAD
 
     <style>
         
@@ -60,6 +61,11 @@ $nombreUsuario = $_SESSION['nombreUsuario'];
 
 
     </style>
+=======
+    <link rel="stylesheet" href="css/inicio.css">
+
+
+>>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
 </head>
 
 <body>
@@ -67,14 +73,24 @@ $nombreUsuario = $_SESSION['nombreUsuario'];
 
         <section class="logoNav">
             <a href="#" class="logo" id="header">Gestión</a>
+<<<<<<< HEAD
             <img class="logoEmpresa" src="../img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />
+=======
+            <img class="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />
+>>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
             <a href="#" class="logo" id="header"> Vehicular</a>
         </section>
         <nav>
             <ul>
+<<<<<<< HEAD
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#about">Nosotros</a></li>
                 <li><button id="show-login" class="log-btn">Log In</button></li>
+=======
+                <li><a href="filtroVehiculos.php">Vehiculos</a></li>
+                <li><a href="chofer.php">Choferes</a></li>
+                <li><a href="index.php"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a></li>
+>>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
             </ul>
         </nav>
     </header>

@@ -1,8 +1,19 @@
+:root {
+  --bg-cont: #1b3665;
+  --bg-active: #1b3665;
+}
+header{
+  background-color: #1b3665;
+  position: fixed;
+}
 .busqueda {
+  margin-top: 4%;
   width: 100%;
   display: flex;
   font-weight: bold;
   background-color: #da6517ce;
+  padding: 0%;
+  margin-bottom: 0%;
 }
 
 .busqueda form {
@@ -10,7 +21,7 @@
   display: flex;
 }
 
-.busqueda form select {
+.busqueda select {
   flex: 1;
   padding: 10px;
   border: none;
@@ -19,7 +30,7 @@
   font-weight: bold;
 }
 
-.busqueda form input[type="submit"] {
+.busqueda input[type="submit"] {
   width: 40px;
   padding: 10px;
   border: none;
@@ -40,16 +51,29 @@
 }
 
 .busqueda a:hover,
-.busqueda form input[type="submit"]:hover,
-.busqueda form select:hover {
+.busqueda input[type="submit"]:hover,
+.busqueda select:hover {
   cursor: pointer;
+  background-color: #fd8637ce;
+}
+
+#abrirForm{
+  cursor: pointer;
+  background-color: #da6517ce;
+  color: white;
+  border: none;
+  padding: 0%;
+  margin: 0%;
+}
+
+#abrirForm:hover{
   background-color: #fd8637ce;
 }
 
 .menu {
   display: flex;
   width: 100%;
-  height: 430px;
+  height: 536px;
 }
 
 .menu a {
@@ -98,19 +122,56 @@
   text-align: center;
 }
 
+.contenedor-imagen {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contenedor-imagen img {
+  width: 100%;
+  height: 90%;
+  object-fit: cover;
+  padding-bottom: 30px;
+}
+
+.contenedor-imagen a {
+  color: #1b3665;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 0%;
+  margin: 0%;
+}
+
+.contenedor-imagen a:hover {
+  color: #1b3665aa;
+}
+
+.contenedor-imagen p {
+  color: #da6517ce;
+  font-style: bold;
+  font-size: 20px;
+  padding: 0%;
+  margin: 0%;
+}
+
 .informacion {
   width: 100%;
-  height: 350px;
+  height: 20%;
   background-color: white;
   color: #1b3665;
   align-items: center;
-  text-align: center;
+  text-align: left;
   justify-content: center;
   display: flex;
 }
 
 .informacion article {
   flex: 1;
+  padding: 0px 140px;
 }
 
 .informacion h1 {
@@ -128,11 +189,136 @@
   object-fit: cover;
 }
 
-.mantenimiento {
-  width: 100%;
-  height: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
+#btnAsignarChofer {
+  background-color: #fd8637ce;
+  color: #1b3665;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: bolder;
+  border: 0;
+}
+
+#btnAsignarChofer:hover {
+  background-color: #fd8637a7;
+}
+
+#popupAsignarChofer {
+  width: 60%;
+}
+#popupAsignarChofer::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#popupAsignarChofer p {
+  color: #1b3665;
+  margin: 0;
+  padding: 0;
+}
+
+.buscarCedula {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cedulaBuscada {
+  height: 25px;
+  width: 40%;
+  padding: 5px;
+  border: 1px solid #1b3665;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+#btnBuscarChofer {
+  width: 35px;
+  height: 35px;
+  padding: 10px;
+  background-color: black;
+  background-image: url(../img/buscar.png);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px;
+  border: none;
+}
+
+#btnBuscarChofer:hover {
+  background-color: #1b3665;
+}
+
+.btnCerrar {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: bolder;
+  position: absolute;
+  top: 5px; /* Ajusta el valor según sea necesario para la posición vertical */
+  right: 5px; /* Ajusta el valor según sea necesario para la posición horizontal */
+}
+
+.infoChoferPopup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.infoChoferPopup article {
+  padding: 10px;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.infoChoferPopup article h1 {
+  color: #da6517ce;
+  text-transform: uppercase;
+  font-size: larger;
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.botones button {
+  margin: 0 10px;
+}
+
+#btnAsignar {
+  background-color: rgb(0, 255, 0);
+  color: #1b3665;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: bolder;
+  border: 0;
+}
+
+#btnAsignar:hover {
+  background-color: rgba(0, 255, 0, 0.6);
+}
+
+#btnCancelar {
+  background-color: rgb(255, 89, 0);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 16px;
+  font-weight: bolder;
+  border: 0;
+}
+
+#btnCancelar:hover {
+  background-color: rgba(255, 89, 0, 0.6);
 }
 
 .viajes {
@@ -143,14 +329,12 @@
   padding-bottom: 10px;
 }
 
-.mantenimiento h1,
 .viajes h1 {
   font-size: x-large;
   color: #da6517ce;
   margin: 1% 10%;
 }
 
-.mantenimiento table,
 .viajes table {
   margin: 2% 10%;
   border: none;
@@ -159,20 +343,17 @@
   border-collapse: collapse;
 }
 
-.mantenimiento thead,
 .viajes thead {
   background-color: #1b3665;
   color: white;
 }
 
-.mantenimiento th,
 .viajes th {
   padding: 20px 30px;
   border: none;
   text-transform: uppercase;
 }
 
-.mantenimiento td,
 .viajes td {
   padding: 30px;
   border: none;
@@ -180,7 +361,161 @@
   text-align: center;
 }
 
-.mantenimiento tbody tr:hover,
 .viajes tbody tr:hover {
+  background-color: #b6bfcf;
+}
+
+.mantenimiento {
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  padding: 5%;
+}
+
+.mantenimiento h1 {
+  font-size: x-large;
+  color: #da6517ce;
+  margin: 1% 13%;
+}
+
+.mant-container {
+  width: 75%;
+  height: 60%;
+  box-shadow: 3px 5px 10px black;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: auto;
+}
+
+.options {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  list-style: none;
+  background-color: rgb(218, 217, 217);
+}
+
+.options nav {
+  align-items: end;
+  margin-left: auto;
+  align-content: center;
+  padding: 20px 0px;
+}
+
+.options nav a {
+  font-weight: bold;
+  text-decoration: none;
+  padding: 25px 15px;
+  color: black;
+  background-color: rgb(218, 217, 217);
+}
+
+.options nav a:hover {
+  background-color: rgb(155, 155, 155);
+  transition: background-color 0.3s;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  color: white;
+}
+
+.option {
+  font-weight: bold;
+  flex-grow: 0.1;
+  text-align: center;
+  line-height: 60px;
+  cursor: pointer;
+  background-color: rgb(218, 217, 217);
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  transition: box-shadow 0.3s ease;
+}
+
+.option-active {
+  font-weight: bold;
+  border: solid 1px black;
+  background: var(--bg-active);
+  border-bottom: 1px solid rgba(7, 63 95, 0.4);
+  text-align: center;
+  line-height: 60px;
+  border: solid 1px black;
+  cursor: pointer;
+  color: white;
+  box-shadow: inset;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* Agrega una sombra al elemento seleccionado */
+}
+
+.contents {
+  width: 100%;
+  height: 85%;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.content-active {
+  background: var(--bg-active);
+  display: block;
+}
+
+.contents h3 {
+  text-align: center;
+  font-size: large;
+  padding-top: 1.5%;
+  padding-bottom: 1%;
+  border-bottom: solid 1px;
+  margin: auto;
+  width: 30%;
+  color: white;
+}
+
+.contents p {
+  text-align: center;
+  font-size: large;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin: auto;
+  width: 30%;
+  color: white;
+}
+
+.table-container {
+  margin: 2% auto;
+  padding-bottom: 5%;
+}
+
+.table-container table {
+  margin: 2% 10%;
+  border: none;
+  table-layout: fixed;
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.table-container thead {
+  background-color: black;
+  color: white;
+}
+
+.table-container th {
+  padding: 20px 30px;
+  border: none;
+  text-transform: uppercase;
+}
+
+.table-container td {
+  padding: 30px;
+  border: none;
+  border-bottom: solid 1px;
+  text-align: center;
+  color: white;
+}
+
+.table-container tbody tr:hover {
   background-color: #b6bfcf;
 }

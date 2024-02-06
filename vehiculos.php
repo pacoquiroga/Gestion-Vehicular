@@ -1,7 +1,38 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+$servidor = "localhost";
+$usuario = "root";
+$clave = "";
+$baseDeDatos = "gestion_vehicular";
+
+$enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
+
+if (!$enlace) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    /* =================== OBTENER INFO DE BD =================== */
+
     // Obtener el valor seleccionado del formulario
-    $opcionSeleccionada = $_POST['vehiculos'];
+    $opcionSeleccionadaBD = mysqli_real_escape_string($enlace, $_GET['vehiculos']);
+
+    // Consultar la base de datos para obtener información del vehículo seleccionado
+    $query = "SELECT * FROM vehiculo WHERE placa = '$opcionSeleccionadaBD'";
+    $result = mysqli_query($enlace, $query);
+
+    if ($result) {
+        $vehiculoEncontradoBD = mysqli_fetch_assoc($result);
+    } else {
+        echo "Error en la consulta: " . mysqli_error($enlace);
+    }
+
+    /* =================== FIN OBTENER INFO DE BD =================== */
+
+    /* =================== OBTENER INFO DE JSON =================== */
+
+    // Obtener el valor seleccionado del formulario
+    $opcionSeleccionada = $_GET['vehiculos'];
 
     // Cargar el contenido del archivo JSON
     $contenidoJson = file_get_contents("datos/vehiculos.json");
@@ -29,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         echo "Error al leer el archivo JSON.";
     }
+    /* =================== FIN OBTENER INFO DE JSON =================== */
 }
 ?>
 
@@ -39,39 +71,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/vehiculos.css">
+    
 
     <title>Gestión Vehicular</title>
 </head>
 
 <body>
     <header>
-        <section class="logoEmpresa">
-            <img id="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
-            <h1>Gestión Vehicular</h1>
+
+        <section class="logoNav">
+            <a href="#" class="logo" id="header">Gestión</a>
+            <img class="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />
+            <a href="#" class="logo" id="header"> Vehicular</a>
         </section>
-        <a href="index.html"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a>
+        <nav>
+            <ul>
+                <li><a href="vehiculos.php">Vehiculos</a></li>
+                <li><a href="chofer.php">Choferes</a></li>
+                <li><a href="index.php"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a></li>
+            </ul>
+        </nav>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="inicio.php">INICIO</a></li>
-            <li><a href="vehiculos.php">VEHICULOS</a></li>
-            <li><a href="chofer.php">CHOFERES</a></li>
-        </ul>
-    </nav>
+    
 
-    <section class="busqueda">
-        <form action="vehiculos.php" method="post">
-            <select name="vehiculos" id="vehiculos">
-                <option selected="true" disabled="disabled" value="0">Seleccione la Placa del Vehículo</option>
-                <option value="PMA-7997">PMA-7997</option>
-                <option value="PME-4004">PME-4004</option>
-                <option value="PMA-3124">PMA-3124</option>
-            </select>
-            <input type="submit" value="">
-        </form>
-        <a href="formularios/form_ingreso_vehiculo.php">Ingresar Vehiculo</a>
-    </section>
+    
 
     <section class="menu">
         <a href="#informacion">
@@ -91,79 +115,142 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php if (isset($vehiculoEncontrado)): ?>
         <section class="seleccionado">
             <h2>Vehículo seleccionado:
-                <?php echo $vehiculoEncontrado["placa"]; ?>
+                <?php echo $vehiculoEncontradoBD["placa"]; ?>
             </h2>
         </section>
 
         <section id="informacion" class="informacion">
+
+            <section class="contenedor-imagen">
+
+                <img src="<?php echo $vehiculoEncontradoBD["fotoVehiculo"]; ?>"
+                    alt="<?php echo $vehiculoEncontradoBD["marca_modelo"]; ?>">
+
+                <?php if ($vehiculoEncontradoBD["cedulaChofer"] != ""): ?>
+                    <section id="contenedorChofer">
+                        <p>Chofer Asignado:</p>
+                        <a
+                            href="http://localhost/Gestion-Local/chofer.php?busqueda=<?php echo $vehiculoEncontradoBD['cedulaChofer']; ?>">
+                            <?php echo $vehiculoEncontradoBD["nombreChofer"]; ?>
+                        </a>
+                    </section>
+
+                <?php else: ?>
+                    <section id="contenedorChofer">
+
+                        <button id="btnAsignarChofer" onclick="abrirPopup()">Asignar Chofer</button>
+                        <dialog id="popupAsignarChofer">
+                            <button class="btnCerrar" onclick="cerrarPopup()">Cerrar</button>
+                            <section id="infoPopup">
+                                <h1>Asignar Chofer</h1>
+                                <section class="buscarCedula">
+                                    <input type="number" class="cedulaBuscada" placeholder="Ingresa Cedula" name="busqueda">
+                                    <button id="btnBuscarChofer" onclick="AsignarChofer()"></button>
+                                </section>
+                            </section>
+                        </dialog>
+                    </section>
+                <?php endif; ?>
+            </section>
             <article>
                 <h1>Información General</h1>
                 <p><strong>Placa: </strong>
-                    <?php echo $vehiculo["placa"]; ?>
-                </p>
-                <p><strong>Marca: </strong>
-                    <?php echo $vehiculo["marca"]; ?>
+                    <?php echo $vehiculoEncontradoBD["placa"]; ?>
                 </p>
                 <p><strong>Modelo: </strong>
-                    <?php echo $vehiculo["modelo"]; ?>
+                    <?php echo $vehiculoEncontradoBD["marca_modelo"]; ?>
                 </p>
                 <p><strong>Año: </strong>
-                    <?php echo $vehiculo["ano"]; ?>
+                    <?php echo $vehiculoEncontradoBD["anio"]; ?>
                 </p>
                 <p><strong>Tipo de Vehículo: </strong>
-                    <?php echo $vehiculo["tipo_vehiculo"]; ?>
+                    <?php echo $vehiculoEncontrado["tipo_vehiculo"]; ?>
                 </p>
                 <p><strong>Capacidad: </strong>
-                    <?php echo $vehiculo["capacidad"]; ?>
+                    <?php echo $vehiculoEncontrado["capacidad"]; ?>
                 </p>
             </article>
             <article>
                 <h1>Información Técnica</h1>
-                <p><strong>Tipo de combustible: </strong>
-                    <?php echo $vehiculo["informacion_tecnica"]["tipo_combustible"]; ?>
+                <p><strong>Combustible: </strong>
+                    <?php echo $vehiculoEncontradoBD["tipoCombustible"]; ?>
                 </p>
                 <p><strong>Motor: </strong>
-                    <?php echo $vehiculo["informacion_tecnica"]["motor"]; ?>
+                    <?php echo $vehiculoEncontrado["informacion_tecnica"]["motor"]; ?>
                 </p>
                 <p><strong>Kilometraje: </strong>
-                    <?php echo $vehiculo["informacion_tecnica"]["kilometraje"]; ?>
+                    <?php echo $vehiculoEncontradoBD["kilometraje"]; ?>
                 </p>
                 <p><strong>Peso: </strong>
-                    <?php echo $vehiculo["informacion_tecnica"]["peso"]; ?>
+                    <?php echo $vehiculoEncontradoBD["peso"]; ?>
                 </p>
             </article>
-            <img src="<?php echo $vehiculo["imagen"]; ?>" alt="<?php echo $vehiculo["modelo"]; ?>">
+
         </section>
 
+
+
         <section id="mantenimiento" class="mantenimiento">
-            <h1>Mantenimiento</h1>
-            <table border="1">
-                <thead>
-                    <th>Vehículo</th>
-                    <th>Fecha</th>
-                    <th>Descripción</th>
-                    <th>Costo</th>
-                </thead>
-                <tbody>
-                    <?php foreach ($vehiculo["mantenimientos_proximos"] as $mantenimiento): ?>
-                        <tr>
-                            <td>
-                                <?php echo $vehiculo["placa"]; ?>
-                            </td>
-                            <td>
-                                <?php echo $mantenimiento["fecha"]; ?>
-                            </td>
-                            <td>
-                                <?php echo $mantenimiento["descripcion"]; ?>
-                            </td>
-                            <td>
-                                <?php echo $mantenimiento["costo"]; ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            <h1>MANTENIMIENTOS</h1>
+            <section class="mant-container">
+                <section>
+                    <ul class="options">
+                        <li id="enProceso" class="option option-active">En Proceso</li>
+                        <li id="historial" class="option">Historial</li>
+                        <nav>
+                            <a href="formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
+                        </nav>
+                    </ul>
+                    <section class="contents">
+                        <section id="enProceso-content" class="content content-active">
+                            <h3>En Proceso</h3>
+                            <p>No existe ningun mantenimiento en proceso para este vehiculo.</p>
+
+                        </section>
+                        <section id="historial-content" class="content">
+                            <h3>Historial</h3>
+                            <section class="table-container">
+                                <table>
+                                    <thead>
+                                        <th>Vehículo</th>
+                                        <th>Fecha</th>
+                                        <th>Descripción</th>
+                                        <th>Costo</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($vehiculo["mantenimientos_proximos"] as $mantenimiento): ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $vehiculo["placa"]; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mantenimiento["fecha"]; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mantenimiento["descripcion"]; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mantenimiento["costo"]; ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+
+                            </section>
+                        </section>
+                    </section>
+
+                </section>
+
+
+            </section>
         </section>
+
+
+
+
+
 
         <section id="viajes" class="viajes">
             <h1>Viajes Realizados</h1>
@@ -177,7 +264,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <th>Recorrido (km)</th>
                         <th>Tiempo (h)</th>
                     </tr>
-                </thead <tbody>
+                </thead>
+                <tbody>
                 <?php foreach ($vehiculo["viajes_realizados"] as $viaje): ?>
                     <tr>
                         <td>
@@ -202,6 +290,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php endforeach; ?>
                 </tbody>
             </table>
+
         </section>
     <?php endif; ?>
 
@@ -212,6 +301,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="https://www.instagram.com/zuck/"><img width="2%" src="img/LogoInsta.png" alt="LogoInsta"></a>
         <a href="https://twitter.com/MarkCrtlC"><img width="2%" src="img/LogoTwitter.png" alt="LogoInsta"> </a>
     </footer>
+
+    <script src="js/mantenimiento.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/asignarChofer.js"></script>
 </body>
 
 </html>

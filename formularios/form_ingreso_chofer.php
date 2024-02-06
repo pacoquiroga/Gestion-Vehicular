@@ -177,13 +177,23 @@
             <li><a href="https://instagram.com"><img width="50px" src="../img/LogoInsta.png" alt="Instagram"></a></li>
         </ul>
     </nav>
+    <script>
+                    function validarLetras(input) {
+                    input.value = input.value.replace(/[^a-zA-Z]/g, '');
+                    }
+                </script>
+    <script>
+                    function validarNumero(input) {
+                    input.value = input.value.replace(/[^0-9]/g, '');
+                    }
+                </script>
     <section>
         <section class="menu">
             <nav>
                 <ul>
-                    <li><a href="inicio.php">INICIO</a></li>
-                    <li><a href="#">VEHICULOS</a></li>
-                    <li><a href="chofer.php">CHOFERES</a></li>
+                    <li><a href="../inicio.php">INICIO</a></li>
+                    <li><a href="../vehiculos.php">VEHICULOS</a></li>
+                    <li><a href="../chofer.php">CHOFERES</a></li>
                     <li><a href="../index.html">SALIR</a></li>
                 </ul>
             </nav>
@@ -194,15 +204,20 @@
                 <h1>Información del Chofer</h1>
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" oninput="validarLetras(this)" required><br>
+<<<<<<< HEAD
                 <script>
                     function validarLetras(input) {
                         input.value = input.value.replace(/[^a-zA-Z]/g, '');
                     }
                 </script>
+=======
+                
+>>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
                 <br>
 
                 <label for="apellido">Apellido:</label>
                 <input type="text" id="apellido" name="apellido" oninput="validarLetras(this)" required><br>
+<<<<<<< HEAD
 
                 <script>
                     function validarLetras(input) {
@@ -241,6 +256,39 @@
                         }
                     }
                 </script>
+=======
+                <br>
+
+                <label for="edad">Edad:</label>
+                <input type="number" id="edad" name="edad" oninput="validarEdad(this)" required min="18"><br>
+                <script>
+                    function validarEdad(input) {
+                    // Elimina cualquier carácter no numérico
+                    input.value = input.value.replace(/[^0-9]/g, '');
+
+                    // Limita la longitud a 2 dígitos
+                    if (input.value.length > 2) {
+                        input.value = input.value.slice(0, 2);
+                    }
+                    }
+                </script>
+                
+                <br>
+
+                <label for="numCedula">Número de Cédula:</label>
+                <input type="number" id="numCedula" oninput="validarCedula(this)" name="numCedula" min="1000000000" max="9999999999" required><br>
+                <script>
+                    function validarCedula(input) {
+                    // Elimina cualquier carácter no numérico
+                    input.value = input.value.replace(/[^0-9]/g, '');
+
+                    // Limita la longitud a 10 dígitos
+                    if (input.value.length > 10) {
+                        input.value = input.value.slice(0, 10);
+                    }
+                    }
+                </script>
+>>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
                 <br>
 
                 <label for="sexo">Sexo:</label>
