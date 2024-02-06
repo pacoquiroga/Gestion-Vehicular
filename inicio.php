@@ -12,60 +12,9 @@ $nombreUsuario = $_SESSION['nombreUsuario'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión Vehicular</title>
     <link rel="stylesheet" href="css/main.css">
-<<<<<<< HEAD
-
-    <style>
-        
-
-        .informacion {
-            padding-top: 9%;
-            padding-bottom: 2%;
-            margin: auto;
-            width: 800px;
-            height: 435px;
-        }
-
-        .informacion article {
-            margin: 5px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            background-color: #ECF0F1;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .informacion article h1 {
-            color: #3498DB;
-            text-align: center;
-        }
-
-        .informacion article p {
-            color: #34495E;
-            padding: 20px;
-            margin: 0;
-            text-align: center;
-        }
-
-        .titulo {
-            padding: 20px;
-            color: #3498DB;
-        }
-
-        .informacion article h3 {
-            color: #34495E;
-            padding: 20px;
-            margin: 0;
-            text-align: center;
-        }
-
-
-    </style>
-=======
     <link rel="stylesheet" href="css/inicio.css">
 
 
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
 </head>
 
 <body>
@@ -73,24 +22,14 @@ $nombreUsuario = $_SESSION['nombreUsuario'];
 
         <section class="logoNav">
             <a href="#" class="logo" id="header">Gestión</a>
-<<<<<<< HEAD
-            <img class="logoEmpresa" src="../img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />
-=======
             <img class="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
             <a href="#" class="logo" id="header"> Vehicular</a>
         </section>
         <nav>
             <ul>
-<<<<<<< HEAD
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#about">Nosotros</a></li>
-                <li><button id="show-login" class="log-btn">Log In</button></li>
-=======
                 <li><a href="filtroVehiculos.php">Vehiculos</a></li>
                 <li><a href="chofer.php">Choferes</a></li>
                 <li><a href="index.php"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a></li>
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
             </ul>
         </nav>
     </header>
