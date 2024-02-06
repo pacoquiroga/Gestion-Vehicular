@@ -193,19 +193,54 @@
             <form action="procesar-chofer.php" method="post" enctype="multipart/form-data">
                 <h1>Información del Chofer</h1>
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required><br>
+                <input type="text" id="nombre" name="nombre" oninput="validarLetras(this)" required><br>
+                <script>
+                    function validarLetras(input) {
+                        input.value = input.value.replace(/[^a-zA-Z]/g, '');
+                    }
+                </script>
                 <br>
 
                 <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="apellido" required><br>
+                <input type="text" id="apellido" name="apellido" oninput="validarLetras(this)" required><br>
+
+                <script>
+                    function validarLetras(input) {
+                        input.value = input.value.replace(/[^a-zA-Z]/g, '');
+                    }
+                </script>
+
                 <br>
 
                 <label for="edad">Edad:</label>
-                <input type="number" id="edad" name="edad" required min="18"><br>
+                <input type="number" id="edad" name="edad" oninput="validarEdad(input)" min="18" max="80" required><br>
+                <script>
+                    function validarEdad(input) {
+                        // Elimina cualquier carácter no numérico
+                        input.value = input.value.replace(/[^0-9]/g, '');
+
+                        // Limita la longitud a 2 dígitos
+                        if (input.value.length > 2) {
+                            input.value = input.value.slice(0, 2);
+                        }
+                    }
+                </script>
                 <br>
 
                 <label for="numCedula">Número de Cédula:</label>
-                <input type="number" id="numCedula" name="numCedula" min="1000000000" max="9999999999" required><br>
+                <input type="number" id="numCedula" oninput="validarNumero(this)" name="numCedula" min="1000000000"
+                    max="9999999999" required><br>
+                <script>
+                    function validarNumero(input) {
+                        // Elimina cualquier carácter no numérico
+                        input.value = input.value.replace(/[^0-9]/g, '');
+
+                        // Limita la longitud a 10 dígitos
+                        if (input.value.length > 10) {
+                            input.value = input.value.slice(0, 10);
+                        }
+                    }
+                </script>
                 <br>
 
                 <label for="sexo">Sexo:</label>

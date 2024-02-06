@@ -22,197 +22,10 @@ if (isset($_GET['busqueda'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión Vehicular</title>
-    <style>
-        body {
-            background-color: #F2F2F2;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            max-width: 100vw;
-            min-height: 100vh;
-            font-family: 'Arial', sans-serif;
-        }
+    <link rel="stylesheet" href="css/chofer.css">
 
-        header {
-            display: flex;
-            align-items: center;
-            background-color: #34495E;
-            backdrop-filter: blur(5px);
-            color: white;
-            padding: 10px;
-        }
-
-        section {
-            display: flex;
-            justify-content: center;
-            margin-top: 4px;
-        }
-
-        .menu {
-            border-radius: 20px;
-            border: 3px solid #fff;
-            background-color: #2C3E50;
-            padding: 1px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            width: 200px;
-            margin-top: 10px;
-        }
-
-        .menu ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 30px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .menu li {
-            padding: 20px;
-            transition: background-color 0.3s;
-            border: none;
-        }
-
-        .menu a {
-            text-decoration: none;
-            color: #ECF0F1;
-            font-weight: bold;
-            font-size: 15px;
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        .menu li:hover {
-            background-color: #3498DB;
-        }
-
-
-        .adicional {
-
-            padding: 0px;
-            margin-bottom: 5px;
-        }
-
-        .adicional ul {
-            list-style-type: none;
-            margin: 10px;
-            padding: 5px;
-            display: flex;
-            justify-content: flex-end;
-            margin-left: 500px;
-
-        }
-
-        .adicional li {
-            padding: 15px;
-            transition: background-color 0.3s;
-        }
-
-        .adicional a {
-            color: #ECF0F1;
-            text-decoration: none;
-        }
-
-        .redes {
-            background-color: #1B3665;
-            padding: 1px;
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-
-        .redes ul {
-            list-style-type: none;
-            margin: 10px;
-            padding: 5px;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .redes li {
-            border-right: 2px solid #fff;
-            padding: 15px;
-            transition: background-color 0.3s;
-        }
-
-        .redes li:last-child {
-            border-right: none;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-            border-radius: 10px;
-        }
-
-        .barra-navegacion {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #2C3E50;
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .barra-navegacion form {
-            margin-right: 20px;
-        }
-
-        .barra-navegacion form input {
-            padding: 5px;
-        }
-
-
-
-        .barra-navegacion nav a {
-            margin-right: 10px;
-        }
-
-        .informacion {
-            display: flex;
-            gap: 20px;
-            justify-content: space-between;
-            align-items: flex-start;
-            width: 100%;
-        }
-
-        .informacion article {
-            flex: 1;
-            max-width: 40%;
-            background-color: #ECF0F1;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            padding: 20px;
-        }
-
-        .informacion h1 {
-            color: #3498DB;
-            text-align: center;
-        }
-
-        .informacion p {
-            color: #34495E;
-            margin: 10;
-        }
-
-        .informacion .titulo {
-            color: #3498DB;
-        }
-
-        footer {
-            background-color: #34495E;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            margin-top: auto;
-        }
-    </style>
+    <script src="js/script.js"></script>
+    <script src="js/validaciones.js"></script>
 </head>
 
 <body>
@@ -257,78 +70,151 @@ if (isset($_GET['busqueda'])) {
                             <input type="number" id="busqueda" placeholder="Ingresa Cedula" name="busqueda">
                             <input type="submit" value="Buscar">
                         </form>
-                        <nav class="adicional">
-                            <a href="form_ingreso_chofer.php">Agregar Chofer</a>
-                        </nav>
+
+
+                        <section class="buton">
+                            <button id="openDialog">Agregar Chofer</button>
+                        </section>
+
+
+                        <dialog id="dialog" class="dialog">
+                            <button id="cancelBtn" value="cancel">X</button>
+                            <section class="ingreso">
+                                <article class="info-chof">
+                                    <form action="formularios/procesar-chofer.php" method="post"
+                                        enctype="multipart/form-data" onsubmit="return validarFormulario()">
+                                        <h1>Información del Chofer</h1>
+
+                                        <label for="nombre">Nombre:</label>
+                                        <input type="text" id="nombre" name="nombre" oninput="validarCampo('nombre')"
+                                            required><br><br>
+
+                                        <label for="apellido">Apellido:</label>
+                                        <input type="text" id="apellido" name="apellido"
+                                            oninput="validarCampo('apellido')" required><br><br>
+
+                                        <label for="edad">Edad:</label>
+                                        <input type="number" id="edad" name="edad" oninput="validarCampo('edad')"
+                                            required min="18"><br><br>
+
+                                        <label for="numCedula">Número de Cédula:</label>
+                                        <input type="number" id="numCedula" name="numCedula"
+                                            oninput="validarCampo('numCedula')" min="1000000000" max="9999999999"
+                                            required><br><br>
+
+                                        <label for="sexo">Sexo:</label>
+                                        <select name="sexo" id="sexo" required>
+                                            <option value="masculino">Masculino</option>
+                                            <option value="femenino">Femenino</option>
+                                            <option value="otro">Otro</option>
+                                        </select><br><br>
+
+
+                                </article>
+                                <article class="info-chof-prof">
+                                    <h1>Información Profesional</h1>
+
+                                    <label for="licencia">Tipo de licencia:</label>
+                                    <input type="text" id="licencia" name="licencia" oninput="validarCampo('licencia')"
+                                        required maxlength="2"><br><br>
+
+                                    <label for="sangre">Tipo de sangre:</label>
+                                    <select type="text" id="sangre">
+                                        <option value="a+">A+</option>
+                                        <option value="a-">A-</option>
+                                        <option value="b+">B+</option>
+                                        <option value="b-">B-</option>
+                                        <option value="o+">O+</option>
+                                        <option value="o-">O-</option>
+                                        <option value="ab+">AB+</option>
+                                        <option value="ab-">AB-</option>
+                                    </select><br><br>
+
+                                    <label for="fentrada">Fecha de entrada:</label>
+                                    <input type="date" id="fecha_entrada" name="fecha_entrada"
+                                        oninput="validarCampo('fecha_entrada')" required min="2000-01-01"><br><br>
+
+                                    <label for="foto">Archivo de Foto:</label>
+                                    <input type="file" id="foto" name="foto">
+                                    <br>
+                                    <br>
+                                    <input type="submit" value="Enviar">
+                                </article>
+                                </form>
+
+                            </section>
+                        </dialog>
+                    </section>
                 </td>
             </tr>
             <tr>
                 <td>
-                    </section>
-                    <section class="contenedor-informacion">
-                        <?php if (isset($choferEncontrado)): ?>
-                            <section class="informacion">
-                                <article>
-                                    <h1>Información del Chofer</h1>
-                                    <p><strong class="titulo">Nombre: </strong>
-                                        <?php echo $choferEncontrado['nombre']; ?>
-                                    </p>
-                                    <p><strong class="titulo">Apellido: </strong>
-                                        <?php echo $choferEncontrado['apellido']; ?>
-                                    </p>
-                                    <p><strong class="titulo">Edad: </strong>
-                                        <?php echo $choferEncontrado['edad']; ?>
-                                    </p>
-                                    <p><strong class="titulo">Numero de Cedula: </strong>
-                                        <?php echo $choferEncontrado['cedula']; ?>
-                                    </p>
-                                    <p><strong class="titulo">Sexo: </strong>
-                                        <?php echo $choferEncontrado['sexo']; ?>
-                                    </p>
-                                </article>
-                                <article>
-                                    <h1>Información Técnica</h1>
-                                    <p><strong class="titulo">Tipo de licencia: </strong>
-                                        <?php echo $choferEncontrado['licencia']; ?>
-                                    </p>
-                                    <p><strong class="titulo">Tipo de sangre: </strong>
-                                        <?php echo $choferEncontrado['sangre']; ?>
-                                    </p>
-                                    <p><strong class="titulo">Fecha de entrada: </strong>
-                                        <?php echo $choferEncontrado['fecha_entrada']; ?>
-                                    </p>
-                                </article>
-                                <article style=" text-align:center; ">
-                                    <h1>Foto del Chofer</h1>
-                                    <img src="../img/<?php echo $choferEncontrado['foto']; ?>" width="50%"
-                                        alt="foto-chofer">
-
-                                </article>
-                            </section>
-                        <?php elseif (isset($_GET['busqueda'])): ?>
-                            <section>
-                                <article>
-                                    <p>No se encontró ningún chofer con la cédula
-                                    </p>
-                                </article>
-                            </section>
-                        <?php else: ?>
-                            <section>
-                                <article>
-                                    <p> </p>
-                                    <p>Ingrese la cédula del chofer que desea buscar</p>
-                                    <p> </p>
-                                </article>
-                            </section>
-                        <?php endif; ?>
-                    </section>
-                </td>
-            </tr>
-        </table>
     </section>
+    <section class="contenedor-informacion">
+        <?php if (isset($choferEncontrado)): ?>
+            <section class="informacion">
+                <article>
+                    <h1>Información del Chofer</h1>
+                    <p><strong class="titulo">Nombre: </strong>
+                        <?php echo $choferEncontrado['nombre']; ?>
+                    </p>
+                    <p><strong class="titulo">Apellido: </strong>
+                        <?php echo $choferEncontrado['apellido']; ?>
+                    </p>
+                    <p><strong class="titulo">Edad: </strong>
+                        <?php echo $choferEncontrado['edad']; ?>
+                    </p>
+                    <p><strong class="titulo">Numero de Cedula: </strong>
+                        <?php echo $choferEncontrado['cedula']; ?>
+                    </p>
+                    <p><strong class="titulo">Sexo: </strong>
+                        <?php echo $choferEncontrado['sexo']; ?>
+                    </p>
+                </article>
+                <article>
+                    <h1>Información Técnica</h1>
+                    <p><strong class="titulo">Tipo de licencia: </strong>
+                        <?php echo $choferEncontrado['licencia']; ?>
+                    </p>
+                    <p><strong class="titulo">Tipo de sangre: </strong>
+                        <?php echo $choferEncontrado['sangre']; ?>
+                    </p>
+                    <p><strong class="titulo">Fecha de entrada: </strong>
+                        <?php echo $choferEncontrado['fecha_entrada']; ?>
+                    </p>
+                </article>
+                <article style=" text-align:center; ">
+                    <h1>Foto del Chofer</h1>
+                    <img src="../img/<?php echo $choferEncontrado['foto']; ?>" width="50%" alt="foto-chofer">
+
+                </article>
+            </section>
+        <?php elseif (isset($_GET['busqueda'])): ?>
+            <section>
+                <article>
+                    <p>No se encontró ningún chofer con la cédula
+                    </p>
+                </article>
+            </section>
+        <?php else: ?>
+            <section>
+                <article>
+                    <p> </p>
+                    <p>Ingrese la cédula del chofer que desea buscar</p>
+                    <p> </p>
+                </article>
+            </section>
+        <?php endif; ?>
+    </section>
+    </td>
+    </tr>
+    </table>
+    </section>
+
     <footer>
         <p>&copy Sistema de Gestión Vehicular</p>
     </footer>
+
 </body>
 
 </html>

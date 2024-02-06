@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión Vehicular</title>
     <style>
-
-        body{
+        body {
             background-color: rgb(218, 217, 217);
             margin: 0px;
             padding: 0px;
@@ -18,7 +17,7 @@
             align-items: center;
             background-color: #1B3665;
             color: white;
-            
+
         }
 
         nav {
@@ -33,7 +32,7 @@
             margin: 10px;
             padding: 5px;
             display: flex;
-            justify-content:flex-end;
+            justify-content: flex-end;
         }
 
         nav li {
@@ -58,19 +57,19 @@
             padding: 15px;
             background-color: #2980b9;
         }
-        
+
         section {
             display: flex;
             justify-content: center;
             width: 100%;
-            
+
         }
 
         .imgLogo {
             width: 10%;
         }
 
-        footer{
+        footer {
             background-color: #1B3665;
             color: white;
             padding: 10px;
@@ -85,7 +84,7 @@
         <img class="imgLogo" src="../images/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
         <h1 align="center">Agregar Vehiculo</h1>
     </header>
-    
+
     <nav>
         <ul>
             <li><a href="#">INICIO</a></li>
@@ -94,53 +93,63 @@
         </ul>
     </nav>
     <section>
-            <form action="../vehiculoNuevo.php" method="post">
+        <form action="../vehiculoNuevo.php" method="post">
             <h2>Información del vehículo</h2>
-                <label for="placa">Placa:</label>
-                <input type="text" id="placa" name="placa" required><br>
-                <br>
-                
-                <label for="marca">Marca:</label>
-                <input type="text" id="marca" name="marca" required><br>
-                <br>
-                
-                <label for="modelo">Modelo:</label>
-                <input type="text" id="modelo" name="modelo" required><br>
-                <br>
+            <label for="placa">Placa:</label>
+            <input type="text" id="placa" name="placa" oninput="validarPlaca(this)" required><br>
 
-                <label for="anio">Año:</label>
-                <input type="number" id="anio" name="anio" min="1900" max="2023" required><br>
-                <br>
 
-                <label for="tipo_vehiculo">Tipo de Vehículo:</label>
-                <input type="text" id="tipo_vehiculo" name="tipo_vehiculo" required><br>
-                <br>
 
-                <label for="capacidad">Capacidad:</label>
-                <input type="text" id="capacidad" name="capacidad" required><br>
-                <br>
+            <br>
 
-                <h3>Datos Técnicos</h3>
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca" required><br>
+            
+            <br>
 
-                <label for="kilometraje">Kilometraje:</label>
-                <input type="number" id="kilometraje" name="kilometraje" min="0" required><br>
-                <br>
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo" required><br>
+            <br>
 
-                <label for="tipo_combustible">Tipo de Combustible:</label>
-                <input type="text" id="tipo_combustible" name="tipo_combustible" required><br>
-                <br>
+            <label for="anio">Año:</label>
+            <input type="number" id="anio" oninput="validarNumero(this)" name="anio" min="1900" max="2023" pattern="\d+"
+                title="Ingresa un número positivo" required><br>
+            <script>
+                function validarNumero(input) {
+                    input.value = input.value.replace(/[^0-9]/g, '');
+                }
+            </script>
+            <br>
 
-                <label for="motor">Motor:</label>
-                <input type="text" id="motor" name="motor" required><br>
-                <br>
+            <label for="tipo_vehiculo">Tipo de Vehículo:</label>
+            <input type="text" id="tipo_vehiculo" name="tipo_vehiculo" required><br>
+            <br>
 
-                <label for="peso">Peso:</label>
-                <input type="number" id="peso" name="peso" min="0" required><br>
-                <br>
+            <label for="capacidad">Capacidad:</label>
+            <input type="text" id="capacidad" name="capacidad" required><br>
+            <br>
 
-                <input type="submit" value="Enviar">
-            </form>
-            </section>
+            <h3>Datos Técnicos</h3>
+
+            <label for="kilometraje">Kilometraje:</label>
+            <input type="number" id="kilometraje" name="kilometraje" min="0" required><br>
+            <br>
+
+            <label for="tipo_combustible">Tipo de Combustible:</label>
+            <input type="text" id="tipo_combustible" name="tipo_combustible" required><br>
+            <br>
+
+            <label for="motor">Motor:</label>
+            <input type="text" id="motor" name="motor" required><br>
+            <br>
+
+            <label for="peso">Peso:</label>
+            <input type="number" id="peso" name="peso" min="0" required><br>
+            <br>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </section>
     <footer>
         <p>&copy Sistema de Gestión Vehicular</p>
     </footer>

@@ -1,8 +1,8 @@
 .login-container {
-  width: 30%;
-  margin: 4.1% auto ;
+  width: 50%;
+  margin:auto, auto ; 
   padding: 20px;
-  background-color: white;
+  background-color: rgba(189, 74, 74, 0.374);
   border-radius: 10px;
   display: flex;
   flex-direction: column;

@@ -12,16 +12,13 @@ $nombreUsuario = $_SESSION['nombreUsuario'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión Vehicular</title>
     <link rel="stylesheet" href="css/main.css">
+
     <style>
-        section {
-            align-items: center;
-            width: 100%;
-            margin: auto;
-            padding: 30px 0px;
-        }
+        
 
         .informacion {
-
+            padding-top: 9%;
+            padding-bottom: 2%;
             margin: auto;
             width: 800px;
             height: 435px;
@@ -60,24 +57,29 @@ $nombreUsuario = $_SESSION['nombreUsuario'];
             margin: 0;
             text-align: center;
         }
+
+
     </style>
 </head>
 
 <body>
     <header>
-        <section class="logoEmpresa">
-            <img id="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular">
-            <h1>Gestión Vehicular</h1>
+
+        <section class="logoNav">
+            <a href="#" class="logo" id="header">Gestión</a>
+            <img class="logoEmpresa" src="../img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />
+            <a href="#" class="logo" id="header"> Vehicular</a>
         </section>
-        <a href="index.html"><img class="logoSalir" src="img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#about">Nosotros</a></li>
+                <li><button id="show-login" class="log-btn">Log In</button></li>
+            </ul>
+        </nav>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="vehiculos.php">VEHICULOS</a></li>
-            <li><a href="chofer.php">CHOFERES</a></li>
-        </ul>
-    </nav>
+    
     <section>
         <section class="informacion">
             <article>
