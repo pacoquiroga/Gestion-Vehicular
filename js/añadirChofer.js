@@ -21,8 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
    document.addEventListener('keydown', (event) => {
       var keyValue = event.key;
-      console.log("keyValue: " + keyValue);
-
       if (keyValue === "Escape") {
          dialog.close();
          opacidad.style.filter = "none";

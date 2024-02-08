@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
         header("Location:inicio.php");
         exit();
     } else {
-        $alerta = "<p style='width:100%; margin:0px; background-color:black; color:red; text-align:center; padding:10px;'>Usuario o contraseña incorrectos. Inténtalo de nuevo.</p>";
+        $alerta = "<p style='width:100%; margin:0px; background-color:black; color:red; box-sizing: border-box; text-align:center; padding:10px;'>Usuario o contraseña incorrectos. Inténtalo de nuevo.</p>";
         $emailAnterior = $correo;
     }
 }
