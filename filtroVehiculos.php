@@ -71,7 +71,7 @@ if (!$resultado) {
 
                         <section class="labelFoto">
                             
-                            <input type="file" id="foto" name="foto" accept="image/*">
+                            <input type="file" id="foto" name="foto" accept="image/*" required>
                         </section>
                         <br>
 

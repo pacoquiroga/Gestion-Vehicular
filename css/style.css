@@ -451,7 +451,7 @@ footer {
     color: #fff;
     font-family: monospace;
     font-weight: bold;
-    transition: .5s;
+    transition: 2s;
 }
 
 .arrows button:hover {
