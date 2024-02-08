@@ -145,7 +145,7 @@ if(isset($_GET['busqueda'])){
                                     <input type="file" id="foto" name="foto" accept="image/png,image/jpeg">
                                     <br>
                                     <br>
-                                    <input type="submit" value="Enviar">
+                                    <button id="botonEnviar" value="Enviar">Confirmar</button>
                                 </article>
                                 </form>
                             </section>
