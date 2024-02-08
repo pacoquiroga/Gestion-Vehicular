@@ -16,24 +16,22 @@ if(isset($_GET['busqueda'])){
 
     $chofer = mysqli_fetch_assoc($resultado);
     if ($chofer == NULL) {
-        echo "No se encontró el chofer";
-        return;
+        $choferEncontrado = false; // Indicador de que el chofer no se encontró
+    } else {
+        $choferEncontrado = array(
+            'IDChofer' => $chofer['IDChofer'],
+            'nombreChofer' => $chofer['nombreChofer'],
+            'apellidoChofer' => $chofer['apellidoChofer'],
+            'edad' => $chofer['edad'],
+            'numTelefono' => $chofer['numTelefono'],
+            'CI' => $chofer['CI'],
+            'sexo' => $chofer['sexo'],
+            'tipoSangre' => $chofer['tipoSangre'],
+            'licencia' => $chofer['licencia'],
+            'correo' => $chofer['correo'],
+            'foto' => $chofer['foto']
+        );
     }
-
-
-$choferEncontrado = array(
-    'IDChofer' => $chofer['IDChofer'],
-    'nombreChofer' => $chofer['nombreChofer'],
-    'apellidoChofer' => $chofer['apellidoChofer'],
-    'edad' => $chofer['edad'],
-    'numTelefono' => $chofer['numTelefono'],
-    'CI' => $chofer['CI'],
-    'sexo' => $chofer['sexo'],
-    'tipoSangre' => $chofer['tipoSangre'],
-    'licencia' => $chofer['licencia'],
-    'correo' => $chofer['correo'],
-    'foto' => $chofer['foto']
-);
 }
 
 ?>
@@ -48,7 +46,7 @@ $choferEncontrado = array(
     <link rel="stylesheet" href="css/chofer.css">
  
     <script src="js/añadirChofer.js"></script>
-
+    <script src="js/validaciones.js"></script>
 </head>
 
 <body>
@@ -61,7 +59,7 @@ $choferEncontrado = array(
         </section>
         <nav>
             <ul>
-                <li><a href="vehiculos.php">Vehiculos</a></li>
+                <li><a href="filtroVehiculos.php">Vehiculos</a></li>
                 <li><a href="chofer.php">Choferes</a></li>
                 <li><a href="index.php"><img class="logoSalir" src="img/LogoCerrarSesion.png"
                             alt="Logo Cerrar Sesión"></a></li>
@@ -157,80 +155,37 @@ $choferEncontrado = array(
             </tr>
         </table>
     </section>
-    <section class="contenedor-informacion">
-        <?php if (isset($choferEncontrado)): ?>
+    <?php if (isset($choferEncontrado) && $choferEncontrado): ?>
+        <section class="contenedor-informacion">
             <section class="informacion">
                 <article>
                     <h1>Información del Chofer</h1>
-                    <p><strong class="titulo">Nombre: </strong>
-                        <?php echo $choferEncontrado['nombreChofer']; ?>
-                    </p>
-                    <p><strong class="titulo">Apellido: </strong>
-                        <?php echo $choferEncontrado['nombreChofer']; ?>
-                    </p>
-                    <p><strong class="titulo">Edad: </strong>
-                        <?php echo $choferEncontrado['edad']; ?>
-                    </p>
-                    <p><strong class="titulo">Numero de cedula: </strong>
-                        <?php echo $choferEncontrado['CI']; ?>
-                    </p>
-                    <p><strong class="titulo">Sexo: </strong>
-                        <?php echo $choferEncontrado['sexo']; ?>
-                    </p>
+                    <p><strong class="titulo">Nombre: </strong><?php echo $choferEncontrado['nombreChofer']; ?></p>
+                    <p><strong class="titulo">Apellido: </strong><?php echo $choferEncontrado['apellidoChofer']; ?></p>
+                    <p><strong class="titulo">Edad: </strong><?php echo $choferEncontrado['edad']; ?></p>
+                    <p><strong class="titulo">Numero de cedula: </strong><?php echo $choferEncontrado['CI']; ?></p>
+                    <p><strong class="titulo">Sexo: </strong><?php echo $choferEncontrado['sexo']; ?></p>
                 </article>
                 <article>
                     <h1>Información Técnica</h1>
-                    <p><strong class="titulo">Tipo de licencia: </strong>
-                        <?php echo $choferEncontrado['licencia']; ?>
-                    </p>
-                    <p><strong class="titulo">Tipo de sangre: </strong>
-                        <?php echo $choferEncontrado['tipoSangre']; ?>
-                    </p>
-                    <p><strong class="titulo">Numero celular: </strong>
-                        <?php echo $choferEncontrado['numTelefono']; ?>
-                    </p>
-                    <p><strong class="titulo">Correo: </strong>
-                        <?php echo $choferEncontrado['correo']; ?>
-                    </article>
-                        <article style=" text-align:center; ">
-                            <h1>Foto del Chofer</h1>
-                            <?php $fotoChofer = base64_encode($chofer['foto']);?>
-                            <?php echo "<img src='data:image/jpeg;base64,$fotoChofer' alt='fotoChofer' width='50%'>";?>
-                        </article>
-            </section>
-        <?php elseif (isset($_GET['busqueda'])): ?>
-            <section>
-
-                <?php
-                if ($choferEncontrado['vehiculo_asignado'] == '') { ?>
-                    <a href="vehiculos.php" class="botonAsignar">Asignar Vehículo</a>
-                <?php } else { ?>
-                    <form action="vehiculos.php" method="post" class="formVehiculo">
-                        <input type="hidden" class="titulo" name="vehiculos"
-                            value="<?php echo $choferEncontrado['vehiculo_asignado']; ?>">
-                        <span><strong class="titulo">Vehículo Asignado: </strong></span>
-                        <button type="submit" class="vehiculoAsignado">
-                            <?php echo $choferEncontrado['vehiculo_asignado']; ?>
-                        </button>
-                    </form>
-                    <?php
-                }
-                ?>
-
+                    <p><strong class="titulo">Tipo de licencia: </strong><?php echo $choferEncontrado['licencia']; ?></p>
+                    <p><strong class="titulo">Tipo de sangre: </strong><?php echo $choferEncontrado['tipoSangre']; ?></p>
+                    <p><strong class="titulo">Numero celular: </strong><?php echo $choferEncontrado['numTelefono']; ?></p>
+                    <p><strong class="titulo">Correo: </strong><?php echo $choferEncontrado['correo']; ?></p>
                 </article>
-                <article style=" text-align:center; ">
+                <article style="text-align:center;">
                     <h1>Foto del Chofer</h1>
-                    <img src="img/<?php echo $choferEncontrado['foto']; ?>" width="50%" alt="foto-chofer">
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($choferEncontrado['foto']); ?>" alt="foto-chofer" width="50%">
                 </article>
             </section>
-        <?php elseif (isset($_GET['busqueda'])): ?>
-            <section class="info-center">
-
-                <article>
-                    <p>No se encontró ningún chofer con la cédula
-                    </p>
-                </article>
-            </section>
+        </section>
+            
+                <?php elseif (isset($_GET['busqueda'])): ?>
+        <section class="info-center">
+            <article>
+                <p>No se encontró ningún chofer con la cédula <?php echo $CI; ?></p>
+            </article>
+        </section>
         <?php else: ?>
             <section>
 

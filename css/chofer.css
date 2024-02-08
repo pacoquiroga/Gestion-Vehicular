@@ -255,6 +255,7 @@ input[type="text"],
 input[type="date"],
 input[type="file"],
 input[type="number"],
+input[type="email"],
 select {
 
     border: none;
