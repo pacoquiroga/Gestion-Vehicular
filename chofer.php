@@ -1,19 +1,41 @@
 <?php
-if (isset($_GET['busqueda'])) {
-    $busqueda = $_GET['busqueda'];
-
-
-    $choferes = json_decode(file_get_contents('datos/choferes.json'), true);
-
-
-    $choferEncontrado = null;
-    foreach ($choferes as $chofer) {
-        if ($chofer['cedula'] == $busqueda) {
-            $choferEncontrado = $chofer;
-            break;
-        }
-    }
+$servidor = "localhost";
+$usuario = "root";
+$clave = "";
+$baseDeDatos = "gestion_vehicular";
+$enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
+if (!$enlace) {
+    echo "Error en la conexión con el servidor";
 }
+if(isset($_GET['busqueda'])){
+    $CI = $_GET['busqueda'];
+
+    $consulta = "SELECT * FROM chofer WHERE CI = '$CI' LIMIT 1";
+
+    $resultado = mysqli_query($enlace, $consulta);
+
+    $chofer = mysqli_fetch_assoc($resultado);
+    if ($chofer == NULL) {
+        echo "No se encontró el chofer";
+        return;
+    }
+
+
+$choferEncontrado = array(
+    'IDChofer' => $chofer['IDChofer'],
+    'nombreChofer' => $chofer['nombreChofer'],
+    'apellidoChofer' => $chofer['apellidoChofer'],
+    'edad' => $chofer['edad'],
+    'numTelefono' => $chofer['numTelefono'],
+    'CI' => $chofer['CI'],
+    'sexo' => $chofer['sexo'],
+    'tipoSangre' => $chofer['tipoSangre'],
+    'licencia' => $chofer['licencia'],
+    'correo' => $chofer['correo'],
+    'foto' => $chofer['foto']
+);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,15 +44,11 @@ if (isset($_GET['busqueda'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión Vehicular</title>
-<<<<<<< HEAD
-    <link rel="stylesheet" href="css/chofer.css">
-
-    <script src="js/script.js"></script>
-    <script src="js/validaciones.js"></script>
-=======
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/chofer.css">
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
+ 
+    <script src="js/añadirChofer.js"></script>
+
 </head>
 
 <body>
@@ -62,7 +80,6 @@ if (isset($_GET['busqueda'])) {
                             <input type="number" id="busqueda" placeholder="Ingresa Cedula" name="busqueda">
                             <input type="submit" value="Buscar">
                         </form>
-<<<<<<< HEAD
 
 
                         <section class="buton">
@@ -103,49 +120,11 @@ if (isset($_GET['busqueda'])) {
                                         </select><br><br>
 
 
-=======
-                        <section class="buton">
-                            <button id="openDialog">Agregar Chofer</button>
-                        </section>
-    
-
-                        <dialog id="dialog" class="dialog">
-                            <section class="ingreso">
-                                <article class="info-chof">
-                                    <form action="formularios/procesar-chofer.php" method="post"
-                                        enctype="multipart/form-data">
-                                        <h1>Información del Chofer</h1>
-                                        <label for="nombre">Nombre:</label>
-                                        <input type="text" id="nombre" name="nombre" required><br>
-                                        <br>
-
-                                        <label for="apellido">Apellido:</label>
-                                        <input type="text" id="apellido" name="apellido" required><br>
-                                        <br>
-
-                                        <label for="edad">Edad:</label>
-                                        <input type="number" id="edad" name="edad" required min="18"><br>
-                                        <br>
-
-                                        <label for="numCedula">Número de Cédula:</label>
-                                        <input type="number" id="numCedula" name="numCedula" min="1000000000"
-                                            max="9999999999" required><br>
-                                        <br>
-
-                                        <label for="sexo">Sexo:</label>
-                                        <select name="sexo" id="sexo">
-                                            <option value="masculino">Masculino</option>
-                                            <option value="femenino">Femenino</option>
-                                            <option value="otro">Otro</option>
-                                        </select><br>
-                                        <br>
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
                                 </article>
                                 <article class="info-chof-prof">
                                     <h1>Información Profesional</h1>
 
                                     <label for="licencia">Tipo de licencia:</label>
-<<<<<<< HEAD
                                     <input type="text" id="licencia" name="licencia" oninput="validarCampo('licencia')"
                                         required maxlength="2"><br><br>
 
@@ -160,53 +139,23 @@ if (isset($_GET['busqueda'])) {
                                         <option value="ab+">AB+</option>
                                         <option value="ab-">AB-</option>
                                     </select><br><br>
-
-                                    <label for="fentrada">Fecha de entrada:</label>
-                                    <input type="date" id="fecha_entrada" name="fecha_entrada"
-                                        oninput="validarCampo('fecha_entrada')" required min="2000-01-01"><br><br>
-=======
-                                    <input type="text" id="licencia" name="licencia" required maxlength="2"><br>
-                                    <br>
-
-                                    <label for="sangre">Tipo de sangre:</label>
-                                    <input type="text" id="sangre" name="sangre" required maxlength="3"><br>
-                                    <br>
-
-                                    <label for="fentrada">Fecha de entrada:</label>
-                                    <input type="date" id="fecha_entrada" name="fecha_entrada" required
-                                        min="2000-01-01"><br>
-                                    <br>
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
+                                    <label for="correo">Correo:</label>
+                                    <input type="email" id="correo" name="correo" oninput="validarCampo('correo')"
+                                        required><br><br>
 
                                     <label for="foto">Archivo de Foto:</label>
-                                    <input type="file" id="foto" name="foto">
+                                    <input type="file" id="foto" name="foto" accept="image/png,image/jpeg">
                                     <br>
-<<<<<<< HEAD
                                     <br>
                                     <input type="submit" value="Enviar">
                                 </article>
                                 </form>
-
-=======
-                                    <input type="submit" value="Enviar">
-                                </article>
-                                <section class="cerrar">
-                                    <button id="cancelBtn" value="cancel">Cerrar</button>
-                                    <button id="confirmBtn" value="default">Confirmar</button>
-                                </section>
-                                </form>
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
                             </section>
                         </dialog>
                     </section>
                 </td>
             </tr>
-<<<<<<< HEAD
-            <tr>
-                <td>
-=======
         </table>
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
     </section>
     <section class="contenedor-informacion">
         <?php if (isset($choferEncontrado)): ?>
@@ -214,16 +163,16 @@ if (isset($_GET['busqueda'])) {
                 <article>
                     <h1>Información del Chofer</h1>
                     <p><strong class="titulo">Nombre: </strong>
-                        <?php echo $choferEncontrado['nombre']; ?>
+                        <?php echo $choferEncontrado['nombreChofer']; ?>
                     </p>
                     <p><strong class="titulo">Apellido: </strong>
-                        <?php echo $choferEncontrado['apellido']; ?>
+                        <?php echo $choferEncontrado['nombreChofer']; ?>
                     </p>
                     <p><strong class="titulo">Edad: </strong>
                         <?php echo $choferEncontrado['edad']; ?>
                     </p>
-                    <p><strong class="titulo">Numero de Cedula: </strong>
-                        <?php echo $choferEncontrado['cedula']; ?>
+                    <p><strong class="titulo">Numero de cedula: </strong>
+                        <?php echo $choferEncontrado['CI']; ?>
                     </p>
                     <p><strong class="titulo">Sexo: </strong>
                         <?php echo $choferEncontrado['sexo']; ?>
@@ -235,37 +184,38 @@ if (isset($_GET['busqueda'])) {
                         <?php echo $choferEncontrado['licencia']; ?>
                     </p>
                     <p><strong class="titulo">Tipo de sangre: </strong>
-                        <?php echo $choferEncontrado['sangre']; ?>
+                        <?php echo $choferEncontrado['tipoSangre']; ?>
                     </p>
-                    <p><strong class="titulo">Fecha de entrada: </strong>
-                        <?php echo $choferEncontrado['fecha_entrada']; ?>
+                    <p><strong class="titulo">Numero celular: </strong>
+                        <?php echo $choferEncontrado['numTelefono']; ?>
                     </p>
-<<<<<<< HEAD
-                </article>
-                <article style=" text-align:center; ">
-                    <h1>Foto del Chofer</h1>
-                    <img src="../img/<?php echo $choferEncontrado['foto']; ?>" width="50%" alt="foto-chofer">
-
-                </article>
+                    <p><strong class="titulo">Correo: </strong>
+                        <?php echo $choferEncontrado['correo']; ?>
+                    </article>
+                        <article style=" text-align:center; ">
+                            <h1>Foto del Chofer</h1>
+                            <?php $fotoChofer = base64_encode($chofer['foto']);?>
+                            <?php echo "<img src='data:image/jpeg;base64,$fotoChofer' alt='fotoChofer' width='50%'>";?>
+                        </article>
             </section>
         <?php elseif (isset($_GET['busqueda'])): ?>
             <section>
-=======
+
+                <?php
+                if ($choferEncontrado['vehiculo_asignado'] == '') { ?>
+                    <a href="vehiculos.php" class="botonAsignar">Asignar Vehículo</a>
+                <?php } else { ?>
+                    <form action="vehiculos.php" method="post" class="formVehiculo">
+                        <input type="hidden" class="titulo" name="vehiculos"
+                            value="<?php echo $choferEncontrado['vehiculo_asignado']; ?>">
+                        <span><strong class="titulo">Vehículo Asignado: </strong></span>
+                        <button type="submit" class="vehiculoAsignado">
+                            <?php echo $choferEncontrado['vehiculo_asignado']; ?>
+                        </button>
+                    </form>
                     <?php
-                    if ($choferEncontrado['vehiculo_asignado'] == '') { ?>
-                        <a href="vehiculos.php" class="botonAsignar">Asignar Vehículo</a>
-                    <?php } else { ?>
-                        <form action="vehiculos.php" method="post" class="formVehiculo">
-                            <input type="hidden" class="titulo" name="vehiculos"
-                                value="<?php echo $choferEncontrado['vehiculo_asignado']; ?>">
-                            <span><strong class="titulo">Vehículo Asignado: </strong></span>
-                            <button type="submit" class="vehiculoAsignado">
-                                <?php echo $choferEncontrado['vehiculo_asignado']; ?>
-                            </button>
-                        </form>
-                        <?php
-                    }
-                    ?>
+                }
+                ?>
 
                 </article>
                 <article style=" text-align:center; ">
@@ -275,47 +225,41 @@ if (isset($_GET['busqueda'])) {
             </section>
         <?php elseif (isset($_GET['busqueda'])): ?>
             <section class="info-center">
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
+
                 <article>
                     <p>No se encontró ningún chofer con la cédula
                     </p>
                 </article>
             </section>
         <?php else: ?>
-<<<<<<< HEAD
             <section>
-=======
-            <section class="info-center">
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
-                <article>
-                    <p> </p>
-                    <p>Ingrese la cédula del chofer que desea buscar</p>
-                    <p> </p>
-                </article>
-            </section>
-        <?php endif; ?>
-    </section>
-<<<<<<< HEAD
-    </td>
-    </tr>
-    </table>
+
+                <section class="info-center">
+
+                    <article>
+                        <p> </p>
+                        <p>Ingrese la cédula del chofer que desea buscar</p>
+                        <p> </p>
+                    </article>
+                </section>
+            <?php endif; ?>
+        </section>
+        </td>
+        </tr>
+        </table>
     </section>
 
     <footer>
-=======
-    <footer class="footerChofer">
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
-        <p>&copy Sistema de Gestión Vehicular</p>
-        <a href="https://www.facebook.com/zuck?locale=es_LA"><img width="2%" src="img/LogoFacebook.png"
-                alt="LogoInsta"></a>
-        <a href="https://www.instagram.com/zuck/"><img width="2%" src="img/LogoInsta.png" alt="LogoInsta"></a>
-        <a href="https://twitter.com/MarkCrtlC"><img width="2%" src="img/LogoTwitter.png" alt="LogoInsta"> </a>
-    </footer>
-<<<<<<< HEAD
 
-=======
-    <script src="js/añadirChofer.js"></script>
->>>>>>> 062f7a71327757b8d7b6b2a9397391ee0122b3b2
+        <footer class="footerChofer">
+
+            <p>&copy Sistema de Gestión Vehicular</p>
+            <a href="https://www.facebook.com/zuck?locale=es_LA"><img width="2%" src="img/LogoFacebook.png"
+                    alt="LogoInsta"></a>
+            <a href="https://www.instagram.com/zuck/"><img width="2%" src="img/LogoInsta.png" alt="LogoInsta"></a>
+            <a href="https://twitter.com/MarkCrtlC"><img width="2%" src="img/LogoTwitter.png" alt="LogoInsta"> </a>
+        </footer>
+        <script src="js/añadirChofer.js"></script>
 </body>
 
 </html>

@@ -59,11 +59,11 @@ const WindowContainer = document.querySelector('.window-container');
 document.querySelector("#show-login").addEventListener("click", function () {
   document.querySelector(".popup").classList.add("active");
   document.body.style.overflow = 'hidden';
-  WindowContainer.style.filter="blur(5px)"
+  WindowContainer.style.filter="blur(5px)";
 })
 document.querySelector(".popup .close-btn").addEventListener("click", function () {
   document.querySelector(".popup").classList.remove("active");
   document.body.style.overflow = 'auto';
-  WindowContainer.style.filter="blur(0px)"
+  WindowContainer.style.filter="blur(0px)";
 })
 

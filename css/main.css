@@ -85,9 +85,7 @@ header.abajo .logoSalir {
   width: auto;
 }
 
-window-container {
-  filter: blur(0px);
-}
+
 
 .logoNav {
   display: flex;
