@@ -8,5 +8,10 @@
     "nombre" : "Erick Lasluisa",
     "correo": "usuario2@chfvh.com",
     "contrasena": "otraclave456"
+  },
+  {
+    "nombre" : "Francisco Quiroga",
+    "correo": "fquiroga@gmail.com",
+    "contrasena": "otraclave123"
   }
 ]

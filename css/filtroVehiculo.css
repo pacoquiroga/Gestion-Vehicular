@@ -13,7 +13,7 @@ footer {
     background-color: #da6517ce;
     color: white;
     border: none;
-    padding: 0%;
+    padding: 10px;
     margin: 0%;
 }
 
@@ -113,7 +113,7 @@ input::placeholder {
 
 .estadoActivo {
     background-color: rgb(3, 173, 3);
-    background-image: url("img/activo.png");
+    background-image: url("../img/activo.png");
 }
 
 .estadoMantenimiento {

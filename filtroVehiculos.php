@@ -41,7 +41,7 @@ if (!$resultado) {
             </section >
 
 
-            <form method="dialog" action="../vehiculoNuevo.php" method="get">
+            <form action="procesar_ingreso_vehiculo.php" method="post" enctype="multipart/form-data">
                 <section class="form-body">
                     <section class="info-container">
                         <h2>Información del Vehículo</h2>
@@ -54,7 +54,7 @@ if (!$resultado) {
                         <br>
 
                         <section class="grupo">
-                            <input type="text" id="marca" oninput="validarLetra(this)" name="marca"
+                            <input type="text" id="marca" oninput="validarLetra(this)" name="modelo"
                                 pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+"
                                 title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
                             <label for="marca">Marca/Modelo</label>
@@ -119,7 +119,7 @@ if (!$resultado) {
         </section>
         <nav>
             <ul>
-                <li><a href="vehiculos.php">Vehiculos</a></li>
+                <li><a href="filtroVehiculos.php">Vehiculos</a></li>
                 <li><a href="chofer.php">Choferes</a></li>
                 <li><a href="index.php"><img class="logoSalir" src="img/LogoCerrarSesion.png"
                             alt="Logo Cerrar Sesión"></a></li>

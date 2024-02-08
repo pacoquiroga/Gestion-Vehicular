@@ -57,18 +57,7 @@ header{
   background-color: #fd8637ce;
 }
 
-#abrirForm{
-  cursor: pointer;
-  background-color: #da6517ce;
-  color: white;
-  border: none;
-  padding: 0%;
-  margin: 0%;
-}
 
-#abrirForm:hover{
-  background-color: #fd8637ce;
-}
 
 .menu {
   display: flex;
@@ -325,8 +314,9 @@ header{
   width: 100%;
   height: auto;
   background-color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  
 }
 
 .viajes h1 {
@@ -380,7 +370,7 @@ header{
 
 .mant-container {
   width: 75%;
-  height: 60%;
+  height: auto;
   box-shadow: 3px 5px 10px black;
   border-radius: 5px;
   overflow: hidden;
@@ -388,8 +378,8 @@ header{
 }
 
 .options {
-  margin: 0;
-  padding: 0;
+  margin: 0%;
+  padding: 0%;
   display: flex;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
@@ -401,7 +391,8 @@ header{
   align-items: end;
   margin-left: auto;
   align-content: center;
-  padding: 20px 0px;
+  padding: 0;
+  
 }
 
 .options nav a {
@@ -410,6 +401,7 @@ header{
   padding: 25px 15px;
   color: black;
   background-color: rgb(218, 217, 217);
+  margin: 0%;
 }
 
 .options nav a:hover {
@@ -430,6 +422,7 @@ header{
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   transition: box-shadow 0.3s ease;
+  
 }
 
 .option-active {
@@ -449,12 +442,12 @@ header{
 
 .contents {
   width: 100%;
-  height: 85%;
+  height: auto;
 }
 
 .content {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: none;
 }
 
@@ -485,8 +478,11 @@ header{
 }
 
 .table-container {
-  margin: 2% auto;
+  margin: 2% 0;
   padding-bottom: 5%;
+  overflow-y: auto;
+  max-height: 400px;
+  position: relative; /* Añade una posición relativa */
 }
 
 .table-container table {
@@ -500,6 +496,9 @@ header{
 .table-container thead {
   background-color: black;
   color: white;
+  position: sticky; /* Hace que el encabezado se mantenga fijo */
+  top: 0; /* Fija el encabezado en la parte superior */
+  z-index: 1; /* Asegura que el encabezado esté por encima del contenido */
 }
 
 .table-container th {
@@ -517,5 +516,149 @@ header{
 }
 
 .table-container tbody tr:hover {
+  background-color: #b6bfcf;
+}
+
+
+
+.optionsV {
+  margin: 0%;
+  padding: 0%;
+  display: flex;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  list-style: none;
+  background-color: rgb(218, 217, 217);
+}
+
+.optionsV nav {
+  align-items: end;
+  margin-left: auto;
+  align-content: center;
+  padding: 0;
+  
+}
+
+.optionsV nav a {
+  font-weight: bold;
+  text-decoration: none;
+  padding: 25px 15px;
+  color: black;
+  background-color: rgb(218, 217, 217);
+  margin: 0%;
+}
+
+.optionsV nav a:hover {
+  background-color: rgb(155, 155, 155);
+  transition: background-color 0.3s;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  color: white;
+}
+
+.optionV {
+  font-weight: bold;
+  flex-grow: 0.1;
+  text-align: center;
+  line-height: 60px;
+  cursor: pointer;
+  background-color: rgb(218, 217, 217);
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  transition: box-shadow 0.3s ease;
+  
+}
+
+.option-activeV {
+  font-weight: bold;
+  border: solid 1px black;
+  background: var(--bg-active);
+  border-bottom: 1px solid rgba(7, 63 95, 0.4);
+  text-align: center;
+  line-height: 60px;
+  border: solid 1px black;
+  cursor: pointer;
+  color: white;
+  box-shadow: inset;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* Agrega una sombra al elemento seleccionado */
+}
+
+.contentsV {
+  width: 100%;
+  height: auto;
+}
+
+.contentV {
+  width: 100%;
+  height: auto;
+  display: none;
+}
+
+.content-activeV {
+  background: var(--bg-active);
+  display: block;
+}
+
+.contentsV h3 {
+  text-align: center;
+  font-size: large;
+  padding-top: 1.5%;
+  padding-bottom: 1%;
+  border-bottom: solid 1px;
+  margin: auto;
+  width: 30%;
+  color: white;
+}
+
+.contentsV p {
+  text-align: center;
+  font-size: large;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin: auto;
+  width: 30%;
+  color: white;
+}
+
+.table-containerV {
+  margin: 2% 0;
+  padding-bottom: 5%;
+  overflow-y: auto;
+  max-height: 400px;
+  position: relative; /* Añade una posición relativa */
+}
+
+.table-containerV table {
+  margin: 2% 10%;
+  border: none;
+  table-layout: fixed;
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.table-containerV thead {
+  background-color: black;
+  color: white;
+  position: sticky; /* Hace que el encabezado se mantenga fijo */
+  top: 0; /* Fija el encabezado en la parte superior */
+  z-index: 1; /* Asegura que el encabezado esté por encima del contenido */
+}
+
+.table-containerV th {
+  padding: 20px 30px;
+  border: none;
+  text-transform: uppercase;
+}
+
+.table-containerV td {
+  padding: 30px;
+  border: none;
+  border-bottom: solid 1px;
+  text-align: center;
+  color: white;
+}
+
+.table-containerV tbody tr:hover {
   background-color: #b6bfcf;
 }
