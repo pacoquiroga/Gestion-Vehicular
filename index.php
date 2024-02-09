@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gestión Vehicular</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="../img/LogoGestionVehicular.png" type="image/x-icon">
+  <link rel="icon" href="img/LogoGestionVehicular.png" type="image/x-icon">
 </head>
 
 <body>
