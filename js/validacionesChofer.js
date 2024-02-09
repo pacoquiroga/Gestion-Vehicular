@@ -56,7 +56,7 @@ function validarCampo(campo) {
             }
             break;
         case 'correo':
-            if (!/^[a-zA-Z0-9]+@[a-zA-Z]+\.(com|net|ec)$/.test(valor)) {
+            if (!/^[a-zA-Z0-9._-]+@[a-zA-Z]+\.(com|net|ec)$/.test(valor)) {
                 inputElement.classList.add('error');
                 botonEnviar.disabled = true; 
             } else {

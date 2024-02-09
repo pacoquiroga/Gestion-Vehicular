@@ -112,6 +112,10 @@ table {
     place-items: center;
 }
 
+#busqueda{
+    color: #fff;
+}
+
 input[type="text"],
 input[type="date"],
 input[type="file"],
