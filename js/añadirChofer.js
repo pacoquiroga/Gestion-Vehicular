@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
    openDialog.addEventListener('click', (e) => {
       e.preventDefault();
-      opacidad.style.filter = "blur(2px)";
+      opacidad.style.filter = "brightness(0.9)"
       dialog.showModal();   
    });
 

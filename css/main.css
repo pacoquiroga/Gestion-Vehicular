@@ -21,12 +21,6 @@ header {
   flex-wrap: wrap;
 }
 
-
-header.abajo {
-  background: #fff;
-  padding: 15px 20px;
-}
-
 header .principal {
   align-items: center;
 }
@@ -75,17 +69,14 @@ header ul li a {
   transition: 0.7s;
 }
 
-header.abajo .logo,
-header.abajo ul li a{
-  color: #000;
+header ul li a:hover,
+header button:hover {
+    color: #ff0000;
 }
 
-header.abajo .logoSalir {
-  filter: invert(1);
-  width: auto;
+header a:hover {
+  color: #686868;
 }
-
-
 
 .logoNav {
   display: flex;
@@ -93,18 +84,10 @@ header.abajo .logoSalir {
 }
 
 .logoEmpresa {
-  filter: opacity(0.7);
-  width: 50px;
-  transition: 0.7s;
-}
-
-
-
-header.abajo img{
-  transition: 0.7s;
-  width: 70px;
   filter: opacity(1);
+  width: 60px;
 }
+
 
 
 .logoSalir {

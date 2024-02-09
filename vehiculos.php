@@ -162,20 +162,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/vehiculos.css">
-
 
     <title>Gestión Vehicular</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/vehiculos.css">
+    <link rel="icon" href="../img/LogoGestionVehicular.png" type="image/x-icon">
 </head>
 
 <body>
     <header>
 
         <section class="logoNav">
-            <a href="#" class="logo" id="header">Gestión</a>
+            <a href="inicio.php" class="logo" id="header">Gestión</a>
             <img class="logoEmpresa" src="img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />
-            <a href="#" class="logo" id="header"> Vehicular</a>
+            <a href="inicio.php" class="logo" id="header"> Vehicular</a>
         </section>
         <nav>
             <ul>

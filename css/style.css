@@ -89,16 +89,22 @@ header ul li a {
     transition: 0.7s;
 }
 
+header ul li a:hover,
+header button:hover {
+    color: #ff0000;
+}
+
 header.abajo .logo,
 header.abajo ul li a,
 header.abajo button {
     color: #000;
 }
 
-window-container {
-    filter: blur(0px);
-}
 
+header.abajo ul li a:hover,
+header.abajo button:hover {
+    color: #ff0000;
+}
 .logoNav {
     
     display: flex;
@@ -451,7 +457,7 @@ footer {
     color: #fff;
     font-family: monospace;
     font-weight: bold;
-    transition: 2s;
+    transition: 1s;
 }
 
 .arrows button:hover {
@@ -509,7 +515,7 @@ footer {
     bottom: 50px;
     left: 50%;
     border-radius: 30px;
-    animation: showImage .2s linear 1 forwards;
+    animation: showImage .5s linear 1 forwards;
 }
 
 @keyframes showImage {
@@ -524,7 +530,7 @@ footer {
 
 .carousel.next .thumbnail .item:nth-last-child(1) {
     overflow: hidden;
-    animation: showThumbnail .2s linear 1 forwards;
+    animation: showThumbnail .4s linear 1 forwards;
 }
 
 .carousel.prev .list .item img {
@@ -539,7 +545,7 @@ footer {
 }
 
 .carousel.next .thumbnail {
-    animation: effectNext .2s linear 1 forwards;
+    animation: effectNext .3s linear 1 forwards;
 }
 
 @keyframes effectNext {
