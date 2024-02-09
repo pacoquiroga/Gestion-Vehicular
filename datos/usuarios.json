@@ -13,5 +13,10 @@
     "nombre" : "Francisco Quiroga",
     "correo": "fquiroga@gmail.com",
     "contrasena": "otraclave123"
+  },
+  {
+    "nombre" : "Augusto Salazar",
+    "correo": "casalazar22@espe.edu.ec",
+    "contrasena": "clave456"
   }
 ]

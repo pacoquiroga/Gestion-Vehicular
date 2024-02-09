@@ -59,7 +59,7 @@ if (isset($_GET['busqueda'])) {
         </section>
         <nav>
             <ul>
-                <li><a href="../filtroVehiculos.php">Vehiculos</a></li>
+                <li><a href="../vehiculo/filtroVehiculos.php">Vehiculos</a></li>
                 <li><a href="chofer.php">Choferes</a></li>
                 <li><a href="../index.php"><img class="logoSalir" src="../img/LogoCerrarSesion.png"
                             alt="Logo Cerrar Sesión"></a></li>
