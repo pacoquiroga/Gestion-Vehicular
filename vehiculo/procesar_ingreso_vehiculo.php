@@ -60,6 +60,7 @@ mysqli_close($enlace);
 
 echo "<script type='text/javascript'>
 window.location.href='filtroVehiculos.php';
+alert('Datos agregados correctamente.');
 </script>";
 ?>
 

@@ -113,7 +113,6 @@ if (isset($_GET['busqueda'])) {
                                             <option value=""></option>
                                             <option>Masculino</option>
                                             <option>Femenino</option>
-                                            <option>Otro</option>
                                         </select><br><br>
 
 

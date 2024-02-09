@@ -89,10 +89,15 @@ if (!$resultado) {
                             <br>
 
                             <section class="grupo">
-                                <input type="text" id="tipo_combustible" oninput="validarLetra(this)" name="tipo_combustible"
-                                    pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+"
-                                    title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
-                                <label for="tipo_combustible">Tipo de Combustible</label>
+                            <label for="tipo_combustible" class="tipoCombustible">Tipo de Combustible:</label>
+                            <br><br>
+                                        <select name="tipo_combustible" id="tipo_combustible" required>
+                                            <option value=""></option>
+                                            <option>Super</option>
+                                            <option>Extra</option>
+                                            <option>Diesel</option>
+                                            <option>Electrico</option>
+                                        </select><br><br>
                             </section>
                             <br>
 

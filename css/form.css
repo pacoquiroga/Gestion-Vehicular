@@ -1,6 +1,6 @@
-.form-container{
+.form-container {
     width: 50%;
-    max-height:fit-content;
+    max-height: fit-content;
     padding: 15px 25px;
     justify-content: center;
     border-radius: 2%;
@@ -8,19 +8,19 @@
 }
 
 #cerrarForm {
-    border: none; 
-    font-size: 16px; 
-    cursor: pointer; 
-    border-radius: 100%; 
-    transition:transform 0.1s, opacity 0.1s;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 100%;
+    transition: transform 0.1s, opacity 0.1s;
 }
 
 #cerrarForm:hover {
     transform: scale(1.2);
-    opacity: 11.8; 
+    opacity: 11.8;
 }
 
-.formHeader{
+.formHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,66 +28,73 @@
 }
 
 
-.form-container h2{
+.form-container h2 {
     margin-bottom: 20px;
     color: #1b3665;
     align-items: center;
- }
+}
 
-.form-body{
+.form-body {
     display: flex;
 }
 
-.info-container{
+.info-container {
     flex: 1;
     padding: 0px 15px;
     margin: 0px 10px;
 }
 
-.info-container h2{
+.info-container h2 {
     margin-bottom: 20px;
 }
 
-.form-container input{
+.form-container input {
     background-color: none;
     border: none;
     border-bottom: solid 1px black;
     padding: 10px 0px;
 }
 
-.form-container input:focus{
+.form-container input:focus {
     outline: none;
 }
 
-.formFooter{
-    flex:0;
+.formFooter {
+    flex: 0;
     width: 100%;
     align-items: center;
     justify-content: center;
 }
 
-.form-container label{
+.form-container label {
     color: rgb(188, 188, 188);
     position: absolute;
     font-size: medium;
-    top:10px;
+    top: 10px;
     transition: ease-in-out 0.5s;
     pointer-events: none;
 }
 
 
 
-.form-container form .grupo{
+.form-container form .grupo {
     position: relative;
     margin-bottom: 10px;
 }
 
-.form-container :focus ~ label,
-.form-container :valid ~ label{
+.form-container :focus~label,
+.form-container :valid~label {
     top: -10px;
     font-size: small;
     color: rgb(0, 145, 255);
 }
+
+select:focus ~ label{
+    font-size: small;
+    color: rgb(0, 145, 255);
+}
+
+
 
 .form-container [type="submit"] {
     background-color: #1b3665;
@@ -99,13 +106,7 @@
     font-size: 16px;
     justify-content: center;
 }
-  
+
 .form-container [type="submit"]:hover {
     background-color: #2980b9;
 }
-
-
-
-
-
-

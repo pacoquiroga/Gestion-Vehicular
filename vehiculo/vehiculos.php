@@ -245,9 +245,9 @@ if ($rutas_resultado) {
                         <ul class="options">
                             <li id="enProceso" class="option option-active">En Proceso</li>
                             <li id="historial" class="option">Historial</li>
-                            <nav>
+                            <!-- <nav>
                                 <a href="../formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
-                            </nav>
+                            </nav> -->
                         </ul>
                         <section class="contents">
                             <section id="enProceso-content" class="content content-active">
@@ -325,9 +325,9 @@ if ($rutas_resultado) {
                         <ul class="optionsV">
                             <li id="enProcesoViaje" class="optionV option-activeV">En Proceso</li>
                             <li id="historialViaje" class="optionV">Historial</li>
-                            <nav>
+                            <!-- <nav>
                                 <a href="../formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
-                            </nav>
+                            </nav> -->
                         </ul>
                         <section class="contentsV">
                             <section id="enProceso-contentV" class="contentV content-activeV">
