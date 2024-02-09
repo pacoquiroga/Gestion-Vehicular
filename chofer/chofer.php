@@ -72,7 +72,7 @@ if (isset($_GET['busqueda'])) {
                 <td>
                     <section class="barra-navegacion">
                         <form>
-                            <label for="busqueda">Buscar:</label>
+                            <label for="busqueda"><font color="white">Buscar:</font></label>
                             <input type="number" id="busqueda" placeholder="Ingresa Cedula" name="busqueda">
                             <input type="submit" value="Buscar">
                         </form>
