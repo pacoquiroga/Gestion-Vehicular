@@ -105,7 +105,7 @@ if (isset($_GET['busqueda'])) {
 
                                         <label for="numCedula">Número de Cédula:</label>
                                         <input type="number" id="numCedula" name="numCedula"
-                                            oninput="validarCampo('numCedula')" min="1000000000" max="9999999999"
+                                            oninput="validarCampo('numCedula')" min="0000000000" max="9999999999"
                                             required><br><br>
 
                                         <label for="sexo">Sexo:</label>
