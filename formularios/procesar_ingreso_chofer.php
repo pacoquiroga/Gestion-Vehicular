@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 mysqli_close($enlace);
 
 echo "<script type='text/javascript'>
-    window.location.href='../chofer.php';
+    window.location.href='../chofer/chofer.php';
     alert('Datos agregados correctamente.');
 </script>";
 ?>

@@ -118,14 +118,14 @@ if ($rutas_resultado) {
     <header>
 
         <section class="logoNav">
-            <a href="inicio.php" class="logo" id="header">Gestión</a>
+            <a href="../inicio.php" class="logo" id="header">Gestión</a>
             <img class="logoEmpresa" src="../img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />
-            <a href="inicio.php" class="logo" id="header"> Vehicular</a>
+            <a href="../inicio.php" class="logo" id="header"> Vehicular</a>
         </section>
         <nav>
             <ul>
                 <li><a href="filtroVehiculos.php">Vehiculos</a></li>
-                <li><a href="../chofer.php">Choferes</a></li>
+                <li><a href="../chofer/chofer.php">Choferes</a></li>
                 <li><a href="../index.php"><img class="logoSalir" src="../img/LogoCerrarSesion.png"
                             alt="Logo Cerrar Sesión"></a></li>
             </ul>
@@ -246,7 +246,7 @@ if ($rutas_resultado) {
                             <li id="enProceso" class="option option-active">En Proceso</li>
                             <li id="historial" class="option">Historial</li>
                             <nav>
-                                <a href="formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
+                                <a href="../formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
                             </nav>
                         </ul>
                         <section class="contents">
@@ -326,7 +326,7 @@ if ($rutas_resultado) {
                             <li id="enProcesoViaje" class="optionV option-activeV">En Proceso</li>
                             <li id="historialViaje" class="optionV">Historial</li>
                             <nav>
-                                <a href="formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
+                                <a href="../formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
                             </nav>
                         </ul>
                         <section class="contentsV">

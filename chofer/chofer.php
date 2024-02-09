@@ -87,7 +87,7 @@ if (isset($_GET['busqueda'])) {
                             <button id="cancelBtn" value="cancel">X</button>
                             <section class="ingreso">
                                 <article class="info-chof">
-                                    <form action="formularios/procesar_ingreso_chofer.php" method="post"
+                                    <form action="../formularios/procesar_ingreso_chofer.php" method="post"
                                         enctype="multipart/form-data">
                                         <h1>Información del Chofer</h1>
 
@@ -131,7 +131,7 @@ if (isset($_GET['busqueda'])) {
                                         <option>F</option>
                                     </select><br><br>
 
-                                    <label for="sangre">Tipo de licencia:</label>
+                                    <label for="sangre">Tipo de Sangre:</label>
                                     <select type="text" id="sangre" name="sangre" required>
                                         <option value=""></option>
                                         <option>A+</option>
@@ -149,7 +149,7 @@ if (isset($_GET['busqueda'])) {
                                     <input type="email" id="correo" name="correo" oninput="validarCampo('correo')"
                                         required><br><br>
 
-                                    <label for="telefono">Número de Cédula:</label>
+                                    <label for="telefono">Número de Teléfono:</label>
                                     <input type="number" id="telefono" name="telefono"
                                         oninput="validarCampo('telefono')" min="0000000000" max="9999999999"
                                         required><br><br>
@@ -209,7 +209,7 @@ if (isset($_GET['busqueda'])) {
                     <?php $foto = base64_encode($choferEncontrado['foto']);
 
 
-                    echo "<img src='data:image/*;base64," . $foto. "' alt='$foto'  width='50%'>"; ?>
+                    echo "<img src='data:image/*;base64," . $foto . "' alt='$foto'  width='50%'>"; ?>
                 </article>
             </section>
         </section>

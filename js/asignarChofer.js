@@ -32,7 +32,7 @@ function crearContenidoPopup(chofer) {
           <article style=" text-align:center; ">
               <h1>Foto del Chofer</h1>
               <img src="data:image/jpeg;base64,${chofer.foto}" class="fotoChofer" alt="foto-chofer">
-              <a href="chofer.php?busqueda=${chofer.CI}">Ver más información del chofer</a>
+              <a href="../chofer/chofer.php?busqueda=${chofer.CI}">Ver más información del chofer</a>
           </article>
         </section>
         <section class="botones">
