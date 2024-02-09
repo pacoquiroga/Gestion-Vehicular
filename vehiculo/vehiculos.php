@@ -132,10 +132,6 @@ if ($rutas_resultado) {
         </nav>
     </header>
 
-
-
-
-
     <section class="menu">
         <a href="#informacion">
             <img src="../img/BusMercedes.jpg" alt="Información">
@@ -164,8 +160,8 @@ if ($rutas_resultado) {
                 <section class="contenedor-imagen">
 
                     <?php
-                    echo "<img src='data:image/jpeg;base64,$foto' alt='$placa'>";
-                    $busquedaBitacora = ("SELECT * FROM bitacora_chofer WHERE IDVehiculo = '$IDVehiculo'");
+                    echo "<img src='data:image/jpeg;base64,$foto' class='fotoVehiculo' alt='$placa'>";
+                    $busquedaBitacora = ("SELECT * FROM bitacora_chofer WHERE IDVehiculo = '$IDVehiculo' AND fechaFinalizacion IS NULL");
                     $resultadoBusquedaBitacora = mysqli_query($enlace, $busquedaBitacora);
                     if ($resultadoBusquedaBitacora != null && mysqli_num_rows($resultadoBusquedaBitacora) > 0):
                         $bitacoraEncontrada = mysqli_fetch_assoc($resultadoBusquedaBitacora);
@@ -179,26 +175,38 @@ if ($rutas_resultado) {
                             <a href="../chofer/chofer.php?busqueda=<?php echo $choferEncontrado['CI']; ?>">
                                 <?php echo $choferEncontrado["nombreChofer"] . " " . $choferEncontrado["apellidoChofer"]; ?>
                             </a>
+                            <button type="button" class="btnEliminarChofer" onclick="abrirPopupEliminar()">Asignar Nuevo
+                                Chofer</button>
+
+                            <dialog id="popupEliminarAsignacion">
+                                <button class="btnCerrar" onclick="cerrarPopup()">Cerrar</button>
+                                <section id="infoPopupEliminar">
+                                    <h1>Eliminar Asignación</h1>
+                                    <h3>Ingrese una observación para eliminar la asignación:</h3>
+                                    <input type="text" id="observacion" name="observacion">
+                                    <button type="button" class="btnSiguiente" onClick="confirmarEliminacion()"></button>
+                                </section>
+                            </dialog>
+
                         </section>
 
                     <?php else: ?>
                         <section id="contenedorChofer">
-
-                            <button id="btnAsignarChofer" onclick="abrirPopup()">Asignar Chofer</button>
-                            <dialog id="popupAsignarChofer">
-                                <button class="btnCerrar" onclick="cerrarPopup()">Cerrar</button>
-                                <section id="infoPopup">
-                                    <h1>Asignar Chofer</h1>
-                                    <section class="buscarCedula">
-                                        <input type="hidden" id="IDVehiculoAsignar" value="<?php echo $IDVehiculo; ?>">
-                                        <input type="number" class="cedulaBuscada" placeholder="Ingresa Cedula" name="busqueda"
-                                            required>
-                                        <button id="btnBuscarChofer" onclick="AsignarChofer()"></button>
-                                    </section>
-                                </section>
-                            </dialog>
+                            <button class="btnAsignarChofer" onclick="abrirPopup()">Asignar Chofer</button>
                         </section>
                     <?php endif; ?>
+                    <dialog id="popupAsignarChofer">
+                        <button class="btnCerrar" onclick="cerrarPopup()">Cerrar</button>
+                        <section id="infoPopup">
+                            <h1>Asignar Chofer</h1>
+                            <section class="buscarCedula">
+                                <input type="hidden" id="IDVehiculoAsignar" value="<?php echo $IDVehiculo; ?>">
+                                <input type="number" class="cedulaBuscada" placeholder="Ingresa Cedula" name="busqueda"
+                                    required>
+                                <button id="btnBuscarChofer" onclick="AsignarChofer()"></button>
+                            </section>
+                        </section>
+                    </dialog>
                 </section>
                 <article>
                     <h1>Información General</h1>

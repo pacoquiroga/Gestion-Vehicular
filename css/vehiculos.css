@@ -3,9 +3,60 @@
   --bg-active: #1b3665;
 }
 
-header{
+header {
   background-color: #1b3665;
   position: fixed;
+}
+
+.busqueda {
+  margin-top: 4%;
+  width: 100%;
+  display: flex;
+  font-weight: bold;
+  background-color: #da6517ce;
+  padding: 0%;
+  margin-bottom: 0%;
+}
+
+.busqueda form {
+  flex: 1;
+  display: flex;
+}
+
+.busqueda select {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background-color: #da6517ce;
+  color: white;
+  font-weight: bold;
+}
+
+.busqueda input[type="submit"] {
+  width: 40px;
+  padding: 10px;
+  border: none;
+  background-color: #da6517ce;
+  background-image: url("../img/buscar.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.busqueda a {
+  padding: 10px;
+  border-left: solid 1px;
+  text-decoration: none;
+  background-color: #da6517ce;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.busqueda a:hover,
+.busqueda input[type="submit"]:hover,
+.busqueda select:hover {
+  cursor: pointer;
+  background-color: #fd8637ce;
 }
 
 .menu {
@@ -70,13 +121,6 @@ header{
   text-align: center;
 }
 
-.contenedor-imagen img {
-  width: 100%;
-  height: 90%;
-  object-fit: cover;
-  padding-bottom: 30px;
-}
-
 .contenedor-imagen a {
   color: #1b3665;
   text-decoration: none;
@@ -121,7 +165,13 @@ header{
   color: #fd8637ce;
 }
 
-#btnAsignarChofer {
+.fotoVehiculo {
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btnAsignarChofer {
   background-color: #fd8637ce;
   color: #1b3665;
   border-radius: 5px;
@@ -129,23 +179,30 @@ header{
   font-size: 16px;
   font-weight: bolder;
   border: 0;
-  margin-bottom: 3%;
+  margin: 10px 0;
 }
 
-#btnAsignarChofer:hover {
+.btnAsignarChofer:hover {
   background-color: #fd8637a7;
+  cursor: pointer;
 }
 
-#popupAsignarChofer {
+#popupAsignarChofer,
+#popupEliminarAsignacion {
   width: 60%;
+  border: 5px solid #1b3665;
+  border-radius: 20px;
 }
+
 #popupAsignarChofer::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 #popupAsignarChofer p {
   color: #1b3665;
-  margin: 0;
+  margin: 20px auto;
   padding: 0;
+  width: 75%;
 }
 
 .buscarCedula {
@@ -178,6 +235,7 @@ header{
 
 #btnBuscarChofer:hover {
   background-color: #1b3665;
+  cursor: pointer;
 }
 
 .btnCerrar {
@@ -238,6 +296,7 @@ header{
 
 #btnAsignar:hover {
   background-color: rgba(0, 255, 0, 0.6);
+  cursor: pointer;
 }
 
 #btnCancelar {
@@ -252,6 +311,7 @@ header{
 
 #btnCancelar:hover {
   background-color: rgba(255, 89, 0, 0.6);
+  cursor: pointer;
 }
 
 .viajes {
@@ -260,7 +320,6 @@ header{
   background-color: white;
   padding-top: 3%;
   padding-bottom: 3%;
-  
 }
 
 .viajes h1 {
@@ -337,7 +396,6 @@ header{
   margin-left: auto;
   align-content: center;
   padding: 0;
-  
 }
 
 .options nav a {
@@ -367,7 +425,6 @@ header{
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   transition: box-shadow 0.3s ease;
-  
 }
 
 .option-active {
@@ -464,8 +521,6 @@ header{
   background-color: #b6bfcf;
 }
 
-
-
 .optionsV {
   margin: 0%;
   padding: 0%;
@@ -481,7 +536,6 @@ header{
   margin-left: auto;
   align-content: center;
   padding: 0;
-  
 }
 
 .optionsV nav a {
@@ -511,7 +565,6 @@ header{
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   transition: box-shadow 0.3s ease;
-  
 }
 
 .option-activeV {
@@ -611,5 +664,54 @@ header{
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, auto); 
+  grid-template-rows: repeat(3, auto);
+}
+
+#observacion {
+  width: 70%;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid #1b3665;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.btnSiguiente {
+  display: block;
+  margin: 10px auto;
+  background-image: url(../img/siguiente.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: #1b3665;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.btnEliminarChofer {
+  background-color: #fd8637ce;
+  color: #1b3665;
+  border-radius: 5px;
+  padding: 5px 15px;
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: bolder;
+  border: 0;
+}
+
+.btnEliminarChofer:hover {
+  background-color: #fd8637a7;
+  cursor: pointer;
+}
+
+.btnSiguiente:hover {
+  background-color: #1b3665a7;
+  cursor: pointer;
+}
+
+.fotoChofer {
+  width: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
 }

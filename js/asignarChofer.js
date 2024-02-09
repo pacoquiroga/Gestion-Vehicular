@@ -1,12 +1,16 @@
 const infoPopup = document.getElementById("infoPopup");
 let IDVehiculo = document.getElementById("IDVehiculoAsignar").value;
+const infoPopupEliminar = document.getElementById("infoPopupEliminar");
 
 function abrirPopup() {
   document.getElementById("popupAsignarChofer").showModal();
 }
 
+function abrirPopupEliminar() {
+  document.getElementById("popupEliminarAsignacion").showModal();
+}
+
 function cerrarPopup() {
-  document.getElementById("popupAsignarChofer").close();
   window.location.reload();
 }
 
@@ -27,7 +31,7 @@ function crearContenidoPopup(chofer) {
           </article>
           <article style=" text-align:center; ">
               <h1>Foto del Chofer</h1>
-              <img src="data:image/jpeg;base64,${chofer.foto}" width="35%" alt="foto-chofer">
+              <img src="data:image/jpeg;base64,${chofer.foto}" class="fotoChofer" alt="foto-chofer">
               <a href="chofer.php?busqueda=${chofer.CI}">Ver más información del chofer</a>
           </article>
         </section>
@@ -51,7 +55,7 @@ function AsignarChofer() {
   conexion.onreadystatechange = buscarChofer;
 
   // Realizando la petición HTTP con método POST
-  conexion.open("POST", "formularios/buscarChofer.php");
+  conexion.open("POST", "../formularios/buscarChofer.php");
   conexion.setRequestHeader(
     "Content-Type",
     "application/x-www-form-urlencoded"
@@ -63,6 +67,13 @@ function AsignarChofer() {
 
 function buscarChofer() {
   if (conexion.readyState == 4) {
+    if (conexion.responseText === "No se encontró el chofer") {
+      infoPopup.innerHTML = `
+        <p class="mensajePopup" >${conexion.responseText}</p>
+        <button id="btnAsignar" onclick="Cancelar()">Aceptar</button>
+      `;
+      return;
+    }
     var chofer = JSON.parse(conexion.responseText);
     crearContenidoPopup(chofer);
   }
@@ -91,11 +102,10 @@ function asignarBitacora(IDChofer) {
     conexion = new ActiveXObject("Microsoft.XMLHTTP");
   }
 
-  console.log(IDVehiculo);
   let fecha = new Date().toISOString().split("T")[0];
 
   conexion.onreadystatechange = peticionBitacora;
-  conexion.open("POST", "formularios/insertarBitacora.php");
+  conexion.open("POST", "../formularios/insertarBitacora.php");
   conexion.setRequestHeader(
     "Content-Type",
     "application/x-www-form-urlencoded"
@@ -115,9 +125,70 @@ function asignarBitacora(IDChofer) {
 function peticionBitacora() {
   if (conexion.readyState == 4) {
     let infoPopup = document.getElementById("infoPopup");
+    if (
+      conexion.responseText ===
+      "Ya existe un registro de bitacora para este chofer y vehiculo, no se puede asignar nuevamente."
+    ) {
+      infoPopup.innerHTML = `
+      <p>${conexion.responseText}</p>
+      <button id="btnCancelar" onclick="Cancelar()">Regresar</button>
+      `;
+      return;
+    }
     infoPopup.innerHTML = `
       <p>${conexion.responseText}</p>
       <button id="btnAsignar" onclick="cerrarPopup()">Cerrar</button>
+      `;
+  }
+}
+
+function confirmarEliminacion() {
+  const observacion = document.getElementById("observacion").value;
+  infoPopupEliminar.innerHTML = `
+    <h1>Eliminar Asignación</h1>
+    <p>¿Estás seguro que deseas eliminar la asignación?</p>
+    <input type="hidden" id="observacionBitacora" value="${observacion}">
+    <button id="btnAsignar" onclick="eliminarAsignacion()">Si</button>
+    <button id="btnCancelar" onclick="cerrarPopup()">No</button>
+  `;
+}
+
+function eliminarAsignacion() {
+  if (window.XMLHttpRequest) {
+    conexion = new XMLHttpRequest();
+  } else if (window.ActiveXObject) {
+    conexion = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  let fechaFinalizacion = new Date().toISOString().split("T")[0];
+  let observacion = document.getElementById("observacionBitacora").value;
+  console.log(fechaFinalizacion);
+  console.log(IDVehiculo);
+  console.log(observacion);
+
+  conexion.onreadystatechange = peticionEliminarAsignacion;
+  conexion.open("POST", "../formularios/eliminarAsignacion.php");
+  conexion.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded"
+  );
+  conexion.send(
+    "IDVehiculo=" +
+      IDVehiculo +
+      "&observacion=" +
+      observacion +
+      "&fechaFinalizacion=" +
+      fechaFinalizacion +
+      "&nocache=" +
+      Math.random()
+  );
+}
+
+function peticionEliminarAsignacion() {
+  if (conexion.readyState == 4) {
+    infoPopupEliminar.innerHTML = `
+      <p>${conexion.responseText}</p>
+      <button id="btnAsignar" onclick="abrirPopup()">Aceptar</button>
       `;
   }
 }
