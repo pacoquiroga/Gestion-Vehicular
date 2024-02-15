@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['username']) && isset($
             <section class="title">GESTIÓN DE</section>
             <section class="topic">FLOTAS</section>
             <section class="des">
-              <!-- lorem 50 -->
+              
 
               <p class="first-p">La gestión de flotas es un componente esencial para las empresas que dependen del
                 transporte para llevar

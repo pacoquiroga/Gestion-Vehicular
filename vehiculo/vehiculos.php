@@ -23,8 +23,7 @@ if (!$enlace) {
 $consultaV = "SELECT * FROM vehiculo WHERE placa = '$placaEnviada'";
 $vehiculoEnviado = mysqli_query($enlace, $consultaV);
 $row = mysqli_fetch_assoc($vehiculoEnviado);
-// Ahora puedes acceder a los datos del vehículo usando $row
-// Ejemplo:
+
 $IDVehiculo = $row['IDVehiculo'];
 $placa = $row['placa'];
 $modelo = $row['modelo'];
@@ -74,7 +73,7 @@ if (!$resultado_en_proceso) {
 }
 
 
-
+// Consulta para obtener las rutas
 // Ejecutar la consulta
 $consultaV = "SELECT * FROM ruta";
 
@@ -112,9 +111,81 @@ if ($rutas_resultado) {
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/vehiculos.css">
     <link rel="icon" href="../img/LogoGestionVehicular.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/form.css">
 </head>
 
 <body>
+
+<dialog  id="popupformViajes" class="form-container">
+        <section class="formHeader">
+            <h2>Iniciar Nuevo Recorrido</h2>
+            <button class="cerrarForm">&times;</button>
+        </section >
+        <form action="procesar_nuevo_recorrido.php" method="post" enctype="multipart/form-data">
+            <section class="form-body">
+                <section class="info-container">
+                    <h2>RUTA</h2>
+                    <section class="grupo">
+                        <input type="text" id="placa" name="placa" pattern="[A-Z]{3}\d{3-4}"
+                            title="Ingresa una placa válida (3 letras y 4 números, todo en mayúsculas)" required><br>
+                        <label for="placa">Placa</label>
+                    </section>
+                    <br>
+                    <section class="grupo">
+                        <input type="text" id="marca" oninput="validarLetra(this)" name="modelo"
+                            pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+"
+                            title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
+                        <label for="marca">Marca/Modelo</label>
+                    </section>
+                    <br>
+                    <section class="grupo">
+                        <input type="number" id="anio" oninput="validarNumero(this)" name="anio" min="1900" max="2023"
+                            pattern="\d+" title="Ingresa un número positivo" required><br>
+                        <label for="anio">Año</label>
+                    </section>
+                    <br>
+                    <section class="labelFoto">
+                        
+                        <input type="file" id="foto" name="foto" accept="image/*" required>
+                    </section>
+                    <br>
+                    <br>
+                </section>
+                <section class="info-container">
+                    <h2>Datos Técnicos</h2>
+                    <section class="grupo">
+                        <input type="number" id="kilometraje" oninput="validarNumero(this)" name="kilometraje" min="0"
+                            required><br>
+                        <label for="kilometraje">Kilometraje</label>
+                    </section>
+                    <br>
+                    <section class="grupo">
+                    <label for="tipo_combustible" class="tipoCombustible">Tipo de Combustible:</label>
+                    <br><br>
+                                <select name="tipo_combustible" id="tipo_combustible" required>
+                                    <option value=""></option>
+                                    <option>Super</option>
+                                    <option>Extra</option>
+                                    <option>Diesel</option>
+                                    <option>Electrico</option>
+                                </select><br><br>
+                    </section>
+                    <br>
+                    <section class="grupo">
+                        <input type="number" id="peso" oninput="validarNumero(this)" name="peso" min="0" required><br>
+                        <label for="peso">Peso</label>
+                    </section>
+                    <br>
+                </section>
+            </section>
+            <section class="formFooter">
+                <input type="submit" value="Enviar">
+            </section>
+        </form>
+    </dialog>
+
+
+
     <header>
 
         <section class="logoNav">

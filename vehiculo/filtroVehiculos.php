@@ -35,86 +35,71 @@ if (!$resultado) {
 
 <body>
     <dialog  id="popupform-container" class="form-container">
-                <section class="formHeader">
-                    <h2>Ingreso Nuevo Vehiculo</h2>
-                    <button id="cerrarForm">&times;</button>
-                </section >
-
-
-                <form action="procesar_ingreso_vehiculo.php" method="post" enctype="multipart/form-data">
-                    <section class="form-body">
-                        <section class="info-container">
-                            <h2>Información del Vehículo</h2>
-
-                            <section class="grupo">
-                                <input type="text" id="placa" name="placa" pattern="[A-Z]{3}\d{3-4}"
-                                    title="Ingresa una placa válida (3 letras y 4 números, todo en mayúsculas)" required><br>
-                                <label for="placa">Placa</label>
-                            </section>
-                            <br>
-
-                            <section class="grupo">
-                                <input type="text" id="marca" oninput="validarLetra(this)" name="modelo"
-                                    pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+"
-                                    title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
-                                <label for="marca">Marca/Modelo</label>
-                            </section>
-                            <br>
-
-
-                            <section class="grupo">
-                                <input type="number" id="anio" oninput="validarNumero(this)" name="anio" min="1900" max="2023"
-                                    pattern="\d+" title="Ingresa un número positivo" required><br>
-                                <label for="anio">Año</label>
-                            </section>
-                            <br>
-
-                            <section class="labelFoto">
-                                
-                                <input type="file" id="foto" name="foto" accept="image/*" required>
-                            </section>
-                            <br>
-
-
-                            <br>
-                        </section>
-                        <section class="info-container">
-                            <h2>Datos Técnicos</h2>
-
-                            <section class="grupo">
-                                <input type="number" id="kilometraje" oninput="validarNumero(this)" name="kilometraje" min="0"
-                                    required><br>
-                                <label for="kilometraje">Kilometraje</label>
-                            </section>
-                            <br>
-
-                            <section class="grupo">
-                            <label for="tipo_combustible" class="tipoCombustible">Tipo de Combustible:</label>
-                            <br><br>
-                                        <select name="tipo_combustible" id="tipo_combustible" required>
-                                            <option value=""></option>
-                                            <option>Super</option>
-                                            <option>Extra</option>
-                                            <option>Diesel</option>
-                                            <option>Electrico</option>
-                                        </select><br><br>
-                            </section>
-                            <br>
-
-
-                            <section class="grupo">
-                                <input type="number" id="peso" oninput="validarNumero(this)" name="peso" min="0" required><br>
-                                <label for="peso">Peso</label>
-                            </section>
-                            <br>
-                        </section>
+        <section class="formHeader">
+            <h2>Ingreso Nuevo Vehiculo</h2>
+            <button class="cerrarForm">&times;</button>
+        </section >
+        <form action="procesar_ingreso_vehiculo.php" method="post" enctype="multipart/form-data">
+            <section class="form-body">
+                <section class="info-container">
+                    <h2>Información del Vehículo</h2>
+                    <section class="grupo">
+                        <input type="text" id="placa" name="placa" pattern="[A-Z]{3}\d{3-4}"
+                            title="Ingresa una placa válida (3 letras y 4 números, todo en mayúsculas)" required><br>
+                        <label for="placa">Placa</label>
                     </section>
-                    <section class="formFooter">
-                        <input type="submit" value="Enviar">
+                    <br>
+                    <section class="grupo">
+                        <input type="text" id="marca" oninput="validarLetra(this)" name="modelo"
+                            pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+"
+                            title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
+                        <label for="marca">Marca/Modelo</label>
                     </section>
-
-                </form>
-
+                    <br>
+                    <section class="grupo">
+                        <input type="number" id="anio" oninput="validarNumero(this)" name="anio" min="1900" max="2023"
+                            pattern="\d+" title="Ingresa un número positivo" required><br>
+                        <label for="anio">Año</label>
+                    </section>
+                    <br>
+                    <section class="labelFoto">
+                        
+                        <input type="file" id="foto" name="foto" accept="image/*" required>
+                    </section>
+                    <br>
+                    <br>
+                </section>
+                <section class="info-container">
+                    <h2>Datos Técnicos</h2>
+                    <section class="grupo">
+                        <input type="number" id="kilometraje" oninput="validarNumero(this)" name="kilometraje" min="0"
+                            required><br>
+                        <label for="kilometraje">Kilometraje</label>
+                    </section>
+                    <br>
+                    <section class="grupo">
+                    <label for="tipo_combustible" class="tipoCombustible">Tipo de Combustible:</label>
+                    <br><br>
+                                <select name="tipo_combustible" id="tipo_combustible" required>
+                                    <option value=""></option>
+                                    <option>Super</option>
+                                    <option>Extra</option>
+                                    <option>Diesel</option>
+                                    <option>Electrico</option>
+                                </select><br><br>
+                    </section>
+                    <br>
+                    <section class="grupo">
+                        <input type="number" id="peso" oninput="validarNumero(this)" name="peso" min="0" required><br>
+                        <label for="peso">Peso</label>
+                    </section>
+                    <br>
+                </section>
+            </section>
+            <section class="formFooter">
+                <input type="submit" value="Enviar">
+            </section>
+        </form>
     </dialog>
     <header>
         <section class="logoNav">

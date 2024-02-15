@@ -7,7 +7,7 @@
     background-color: rgb(255, 255, 255);
 }
 
-#cerrarForm {
+.cerrarForm {
     border: none;
     font-size: 16px;
     cursor: pointer;
@@ -15,7 +15,7 @@
     transition: transform 0.1s, opacity 0.1s;
 }
 
-#cerrarForm:hover {
+.cerrarForm:hover {
     transform: scale(1.2);
     opacity: 11.8;
 }
