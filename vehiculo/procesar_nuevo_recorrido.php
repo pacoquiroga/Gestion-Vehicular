@@ -57,7 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Se encontró al menos una fila con las mismas ubiInicio y ubiFin
         
         $ubiArray = mysqli_fetch_assoc($resultadoUbi);
+<<<<<<< HEAD
         $IDRuta = $ubiArray['IDRuta'];
+=======
+        $IDRecorrido = $ubiArray['IDRecorrido'];
+>>>>>>> 0c843adde211df1a96480057cb920403351eadad
     } else {
         // No se encontraron filas con las mismas ubiInicio y ubiFin
         // Por lo tanto, inserta una nueva fila
@@ -65,15 +69,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (mysqli_query($enlace, $insertar)) {
             // Obtener el ID de la última inserción
+<<<<<<< HEAD
             $IDRuta = mysqli_insert_id($enlace);
             echo "Se insertó una nueva línea en la tabla ruta con ID: " . $IDRuta;
+=======
+            $IDRecorrido = mysqli_insert_id($enlace);
+            echo "Se insertó una nueva línea en la tabla ruta con ID: " . $IDRecorrido;
+>>>>>>> 0c843adde211df1a96480057cb920403351eadad
         } else {
             echo "Error al insertar la nueva línea: " . mysqli_error($enlace);
         }
     }
 
+<<<<<<< HEAD
     $insertarRecorre = "INSERT INTO recorre (IDVehiculo, IDRuta, fechaInicio, horaInicio, kmInicio) 
              VALUES ('$IDVehiculo', '$IDRuta', '$fechaInicio', '$horaInicio', '$kmInicio')";
+=======
+    $insertarRecorre = "INSERT INTO recorre (IDVehiculo, IDRecorrido, fechaInicio, horaInicio, kmInicio) 
+             VALUES ('$IDVehiculo', '$IDRecorrido', '$fechaInicio', '$horaInicio', '$kmInicio')";
+>>>>>>> 0c843adde211df1a96480057cb920403351eadad
 
     $resultadoInsertarRecorre = mysqli_query($enlace, $insertarRecorre);
 
