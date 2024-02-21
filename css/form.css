@@ -66,21 +66,21 @@
     justify-content: center;
 }
 
-.form-container label {
-    color: rgb(188, 188, 188);
+.form-container .grupo label {
+    color: black;
     position: absolute;
-    font-size: medium;
+    font-size: small;
     top: 10px;
     transition: ease-in-out 0.5s;
     pointer-events: none;
 }
 
 
-
 .form-container form .grupo {
     position: relative;
     margin-bottom: 10px;
 }
+
 
 .form-container :focus~label,
 .form-container :valid~label {
@@ -94,6 +94,9 @@ select:focus ~ label{
     color: rgb(0, 145, 255);
 }
 
+.nuevaUbi{
+    display: none;
+}
 
 
 .form-container [type="submit"] {

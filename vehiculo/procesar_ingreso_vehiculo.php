@@ -1,7 +1,7 @@
 <?php
-$servidor = "localhost";
-$usuario = "root";
-$clave = "";
+$servidor = "srv4";
+$usuario = "gestion_vehicular";
+$clave = "gestion_vehicular";
 $baseDeDatos = "gestion_vehicular";
 
 $enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
@@ -25,11 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $peso = mysqli_real_escape_string($enlace, $_POST['peso']);
         $kilometraje = mysqli_real_escape_string($enlace, $_POST['kilometraje']);
         $observacionEstado = '';
-        $fechaBaja = '';
+        
 
         // Inserta los datos en la base de datos
         $sql = "INSERT INTO vehiculo (placa, modelo, anio, estado, tipoCombustible, peso, kilometraje, observacionEstado, fechaBaja, foto) 
-                VALUES ('$placa', '$modelo', '$anio', '$estado', '$tipoCombustible', '$peso', '$kilometraje', '$observacionEstado', '$fechaBaja', '$foto_contenido')";
+                VALUES ('$placa', '$modelo', '$anio', '$estado', '$tipoCombustible', '$peso', '$kilometraje', '$observacionEstado', NULL, '$foto_contenido')";
 
         $resultado = mysqli_query($enlace, $sql);
 

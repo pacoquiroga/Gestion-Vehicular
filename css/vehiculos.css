@@ -398,16 +398,17 @@ header {
   padding: 0;
 }
 
-.options nav a {
+.options nav button {
   font-weight: bold;
   text-decoration: none;
   padding: 25px 15px;
   color: black;
   background-color: rgb(218, 217, 217);
   margin: 0%;
+  border: none;
 }
 
-.options nav a:hover {
+.options nav button:hover {
   background-color: rgb(155, 155, 155);
   transition: background-color 0.3s;
   border-top-right-radius: 5px;

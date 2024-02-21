@@ -99,6 +99,30 @@ if ($rutas_resultado) {
     echo "Error en la consulta: " . mysqli_error($enlace);
 }
 
+
+//Consulta ubi Rutas
+$ubi = "SELECT * from ruta";
+$resultadoUbi = mysqli_query($enlace, $ubi);
+
+// Verificar si la consulta fue exitosa
+if (!$resultadoUbi) {
+    // Manejar el error de la consulta, si lo hay
+    echo "Error en la consulta de ubicacion de inicio: " . mysqli_error($enlace);
+} else {
+    // Arreglo para almacenar las ubicaciones de inicio
+    $ubicaciones= array();
+
+    // Recorrer los resultados y almacenarlos en el arreglo
+    while ($row = mysqli_fetch_assoc($resultadoUbi)) {
+        $ubicaciones[] = $row;
+    }
+
+   
+}
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -119,61 +143,102 @@ if ($rutas_resultado) {
 <dialog  id="popupformViajes" class="form-container">
         <section class="formHeader">
             <h2>Iniciar Nuevo Recorrido</h2>
-            <button class="cerrarForm">&times;</button>
+            <button id="cerrarFormV" class="cerrarForm">&times;</button>
         </section >
-        <form action="procesar_nuevo_recorrido.php" method="post" enctype="multipart/form-data">
+        <form action="procesar_nuevo_recorrido.php" method="post">
+            <input type="hidden" name="IDVehiculo" value="<?php echo $IDVehiculo; ?>">
+            <input type="hidden" name="placaVehiculo" value="<?php echo $placaEnviada; ?>">
             <section class="form-body">
                 <section class="info-container">
                     <h2>RUTA</h2>
-                    <section class="grupo">
-                        <input type="text" id="placa" name="placa" pattern="[A-Z]{3}\d{3-4}"
-                            title="Ingresa una placa válida (3 letras y 4 números, todo en mayúsculas)" required><br>
-                        <label for="placa">Placa</label>
-                    </section>
-                    <br>
-                    <section class="grupo">
-                        <input type="text" id="marca" oninput="validarLetra(this)" name="modelo"
-                            pattern="[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s]+"
-                            title="Ingresa únicamente texto (sin números ni caracteres especiales)" required><br>
-                        <label for="marca">Marca/Modelo</label>
-                    </section>
-                    <br>
-                    <section class="grupo">
-                        <input type="number" id="anio" oninput="validarNumero(this)" name="anio" min="1900" max="2023"
-                            pattern="\d+" title="Ingresa un número positivo" required><br>
-                        <label for="anio">Año</label>
-                    </section>
-                    <br>
-                    <section class="labelFoto">
+                    <section class="grupo2">
+                        <label for="ubiInicioS" class="seleccionarUbi">Ubicación de Inicio:</label>
+                        <br><br>
+                        <select name="ubiInicioS" id="ubiInicioS" required onchange=filtrarUbi()>
+                            <option value=""></option>
+                            <?php foreach ($ubicaciones as $ubicacion) { ?>
+                                <option value="<?php echo $ubicacion['ubiInicio']; ?>">
+                                    <?php echo $ubicacion['ubiInicio']; ?>
+                                </option>
+                            <?php } ?>
+
+                            <script>
+                                function filtrarUbi(){
+                                    var selectI = document.getElementById("ubiInicioS");
+                                    var selectF = document.getElementById("ubiFinS");
+                                    var bloquearSelectI = document.getElementById("nuevaUbiI");
+
+                                    var ubiISelecionada = selectI.value;
+                                    console.log(ubiISelecionada);
+                    
+
+                                    selectF.innerHTML = "<option value='' disabled>Seleccione una Ubicacion de Inicio</option>";
+
+                                    if(ubiISelecionada != "" ){
+                                        <?php foreach($ubicaciones as $ubicacionF){ ?>
+                                            if("<?php echo $ubicacionF['ubiInicio']; ?>" == ubiISelecionada){
+                                                var option = document.createElement("option");
+                                                option.value = "<?php echo $ubicacionF['ubiFin']; ?>";
+                                                option.textContent = "<?php echo $ubicacionF['ubiFin']; ?>";
+                                                selectF.appendChild(option);
+                                            }
+                                        <?php } ?>
+                                    }
+                                }
+
+                                
+                            </script>
+
+                        </select><br><br>
+                        <label for="nuevaUbiI" style="font-size:x-small;">Agregar ubicación</label>
+                        <input type="checkbox" id="nuevaUbiI" name="nuevaUbiI" onclick="bloquearSelectUbiI()"><br>
                         
-                        <input type="file" id="foto" name="foto" accept="image/*" required>
+                        <br>
+                        <section class="nuevaUbi" id="nuevaUbiI-container">
+                            <section class="grupo">    
+                                <input  type="text" id="nuevaUbiInicio" name="nuevaUbiInicio" ><br>
+                                <label for="nuevaUbiInicio">Ingrese nueva ubicación</label>
+                            </section>
+                        </section>
                     </section>
+                    
                     <br>
-                    <br>
+                    
+                    <section class="grupo2">
+                        <label for="ubiFin" class="seleccionarUbi">Ubicación Final:</label>
+                        <br><br>
+                        <select name="ubiFinS" id="ubiFinS" required>
+                            <option value='' disabled>Seleccione una Ubicacion de Inicio</option>
+
+                        </select><br><br>
+                        <label for="nuevaUbiF" style="font-size:x-small;">Agregar ubicación</label>
+                        <input type="checkbox" id="nuevaUbiF" name="nuevaUbiF" onclick="bloquearSelectUbiF()"><br>
+                        
+                        <br>
+                        <section class="nuevaUbi" id="nuevaUbiF-container">
+                            <section class="grupo">    
+                                <input  type="text" id="nuevaUbiFin" name="nuevaUbiFin" ><br>
+                                <label for="nuevaUbiFin">Ingrese nueva ubicación</label>
+                            </section>
+                        </section>
+                        <br><br>
+                    </section>
+                    
                 </section>
                 <section class="info-container">
-                    <h2>Datos Técnicos</h2>
-                    <section class="grupo">
-                        <input type="number" id="kilometraje" oninput="validarNumero(this)" name="kilometraje" min="0"
-                            required><br>
-                        <label for="kilometraje">Kilometraje</label>
+                    <h2>RECORRIDO</h2>
+                    <section class="grupo2">
+                        <h4>Fecha de Inicio:</h4>
+                        <input type="text" id="fechaInicio" name="fechaInicio" readonly>
+
+                        <h4>Hora de Inicio:</h4>
+                        <input type="text" id="horaInicio" name="horaInicio" readonly>
                     </section>
                     <br>
                     <section class="grupo">
-                    <label for="tipo_combustible" class="tipoCombustible">Tipo de Combustible:</label>
-                    <br><br>
-                                <select name="tipo_combustible" id="tipo_combustible" required>
-                                    <option value=""></option>
-                                    <option>Super</option>
-                                    <option>Extra</option>
-                                    <option>Diesel</option>
-                                    <option>Electrico</option>
-                                </select><br><br>
-                    </section>
-                    <br>
-                    <section class="grupo">
-                        <input type="number" id="peso" oninput="validarNumero(this)" name="peso" min="0" required><br>
-                        <label for="peso">Peso</label>
+                        <input type="number" id="kmInicio" oninput="validarNumero(this)" name="kmInicio" 
+                        min="<?php echo $kilometraje ?>" required><br>
+                        <label for="peso">Kilometraje Inicio</label>
                     </section>
                     <br>
                 </section>
@@ -316,9 +381,9 @@ if ($rutas_resultado) {
                         <ul class="options">
                             <li id="enProceso" class="option option-active">En Proceso</li>
                             <li id="historial" class="option">Historial</li>
-                            <!-- <nav>
-                                <a href="../formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
-                            </nav> -->
+                            <nav>
+                                <button id="abrirFromM">Poner en Mantenimiento</button>
+                            </nav>
                         </ul>
                         <section class="contents">
                             <section id="enProceso-content" class="content content-active">
@@ -393,12 +458,12 @@ if ($rutas_resultado) {
 
                 <section class="mant-container">
                     <section>
-                        <ul class="optionsV">
+                        <ul class="options">
                             <li id="enProcesoViaje" class="optionV option-activeV">En Proceso</li>
                             <li id="historialViaje" class="optionV">Historial</li>
-                            <!-- <nav>
-                                <a href="../formularios/form_ingreso_chofer.php">Agregar Mantenimiento</a>
-                            </nav> -->
+                            <nav>
+                                <button id="abrirFormV">Poner en Ruta</button>
+                            </nav>
                         </ul>
                         <section class="contentsV">
                             <section id="enProceso-contentV" class="contentV content-activeV">
@@ -458,6 +523,7 @@ if ($rutas_resultado) {
     <script src="../js/viajes.js"></script>
     <script src="../js/header.js"></script>
     <script src="../js/asignarChofer.js"></script>
+    <script src="../js/formViajesMantenimiento.js"></script>
 </body>
 
 </html>
