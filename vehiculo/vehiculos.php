@@ -8,9 +8,9 @@ if (isset($_GET['placa'])) {
 
 
 //Conexion a la base de datos
-$servidor = "localhost";
-$usuario = "root";
-$clave = "";
+$servidor = "srv4";
+$usuario = "gestion_vehicular";
+$clave = "gestion_vehicular";
 $baseDeDatos = "gestion_vehicular";
 
 $enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
@@ -236,12 +236,8 @@ if (!$resultadoUbi) {
                     </section>
                     <br>
                     <section class="grupo">
-<<<<<<< HEAD
                         <input type="number" id="kmInicio" oninput="validarNumero(this)" name="kmInicio" 
                         min="<?php echo $kilometraje ?>" required><br>
-=======
-                        <input type="number" id="kmInicio" oninput="validarNumero(this)" name="kmInicio" min="<?php echo $kilometraje ?>" required><br>
->>>>>>> 0c843adde211df1a96480057cb920403351eadad
                         <label for="peso">Kilometraje Inicio</label>
                     </section>
                     <br>

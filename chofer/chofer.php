@@ -1,7 +1,7 @@
 <?php
-$servidor = "localhost";
-$usuario = "root";
-$clave = "";
+$servidor = "srv4";
+$usuario = "gestion_vehicular";
+$clave = "gestion_vehicular";
 $baseDeDatos = "gestion_vehicular";
 $enlace = mysqli_connect($servidor, $usuario, $clave, $baseDeDatos);
 if (!$enlace) {
