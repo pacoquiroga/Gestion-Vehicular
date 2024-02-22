@@ -720,3 +720,7 @@ header {
   object-fit: cover;
   margin-bottom: 10px;
 }
+
+#placa .error {
+  border-bottom: 3px solid red !important;
+}

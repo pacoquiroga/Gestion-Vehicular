@@ -137,6 +137,7 @@ if (!$resultadoUbi) {
     <link rel="stylesheet" href="../css/vehiculos.css">
     <link rel="icon" href="../img/LogoGestionVehicular.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/form.css">
+    <script src="../js/validacionChofer.js"></script>
 </head>
 
 <body>
