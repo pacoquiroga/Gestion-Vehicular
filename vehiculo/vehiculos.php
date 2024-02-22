@@ -26,6 +26,7 @@ $row = mysqli_fetch_assoc($vehiculoEnviado);
 
 $IDVehiculo = $row['IDVehiculo'];
 $placa = $row['placa'];
+echo "<script>console.log($IDVehiculo)</script>";
 $modelo = $row['modelo'];
 $anio = $row['anio'];
 $estado = $row['estado'];
@@ -371,7 +372,7 @@ if (!$resultadoUbi) {
                 </article>
 
             </section>
-
+        </section>
 
 
             <section id="mantenimiento" class="mantenimiento">

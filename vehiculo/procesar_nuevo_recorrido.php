@@ -12,7 +12,9 @@ if (!$enlace) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $placa = mysqli_real_escape_string($enlace, $_POST['placaVehiculo']);
-    $IDVehiculo = mysqli_real_escape_string($enlace, $_POST['IDVehiculo']);
+    $IDVehiculo = $_POST['IDVehiculo'];
+    echo "<script>console.log($IDVehiculo)</script>";
+    
     $fechaInicio = mysqli_real_escape_string($enlace, $_POST['fechaInicio']);
     $horaInicio = mysqli_real_escape_string($enlace, $_POST['horaInicio']);
     $kmInicio = mysqli_real_escape_string($enlace, $_POST['kmInicio']);
