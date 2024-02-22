@@ -691,8 +691,8 @@ header {
 }
 
 .btnEliminarChofer {
-  background-color: #fd8637ce;
-  color: #1b3665;
+  background-color: red;
+  color: #fff;
   border-radius: 5px;
   padding: 5px 15px;
   margin: 10px 0;
@@ -702,7 +702,7 @@ header {
 }
 
 .btnEliminarChofer:hover {
-  background-color: #fd8637a7;
+  background-color: #fd3737a7;
   cursor: pointer;
 }
 

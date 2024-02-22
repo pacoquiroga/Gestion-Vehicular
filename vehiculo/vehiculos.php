@@ -110,14 +110,14 @@ if (!$resultadoUbi) {
     echo "Error en la consulta de ubicacion de inicio: " . mysqli_error($enlace);
 } else {
     // Arreglo para almacenar las ubicaciones de inicio
-    $ubicaciones= array();
+    $ubicaciones = array();
 
     // Recorrer los resultados y almacenarlos en el arreglo
     while ($row = mysqli_fetch_assoc($resultadoUbi)) {
         $ubicaciones[] = $row;
     }
 
-   
+
 }
 
 
@@ -140,11 +140,11 @@ if (!$resultadoUbi) {
 
 <body>
 
-<dialog  id="popupformViajes" class="form-container">
+    <dialog id="popupformViajes" class="form-container">
         <section class="formHeader">
             <h2>Iniciar Nuevo Recorrido</h2>
             <button id="cerrarFormV" class="cerrarForm">&times;</button>
-        </section >
+        </section>
         <form action="procesar_nuevo_recorrido.php" method="post">
             <input type="hidden" name="IDVehiculo" value="<?php echo $IDVehiculo; ?>">
             <input type="hidden" name="placaVehiculo" value="<?php echo $placaEnviada; ?>">
@@ -163,20 +163,20 @@ if (!$resultadoUbi) {
                             <?php } ?>
 
                             <script>
-                                function filtrarUbi(){
+                                function filtrarUbi() {
                                     var selectI = document.getElementById("ubiInicioS");
                                     var selectF = document.getElementById("ubiFinS");
                                     var bloquearSelectI = document.getElementById("nuevaUbiI");
 
                                     var ubiISelecionada = selectI.value;
                                     console.log(ubiISelecionada);
-                    
+
 
                                     selectF.innerHTML = "<option value='' disabled>Seleccione una Ubicacion de Inicio</option>";
 
-                                    if(ubiISelecionada != "" ){
-                                        <?php foreach($ubicaciones as $ubicacionF){ ?>
-                                            if("<?php echo $ubicacionF['ubiInicio']; ?>" == ubiISelecionada){
+                                    if (ubiISelecionada != "") {
+                                        <?php foreach ($ubicaciones as $ubicacionF) { ?>
+                                            if ("<?php echo $ubicacionF['ubiInicio']; ?>" == ubiISelecionada) {
                                                 var option = document.createElement("option");
                                                 option.value = "<?php echo $ubicacionF['ubiFin']; ?>";
                                                 option.textContent = "<?php echo $ubicacionF['ubiFin']; ?>";
@@ -186,24 +186,24 @@ if (!$resultadoUbi) {
                                     }
                                 }
 
-                                
+
                             </script>
 
                         </select><br><br>
                         <label for="nuevaUbiI" style="font-size:x-small;">Agregar ubicación</label>
                         <input type="checkbox" id="nuevaUbiI" name="nuevaUbiI" onclick="bloquearSelectUbiI()"><br>
-                        
+
                         <br>
                         <section class="nuevaUbi" id="nuevaUbiI-container">
-                            <section class="grupo">    
-                                <input  type="text" id="nuevaUbiInicio" name="nuevaUbiInicio" ><br>
+                            <section class="grupo">
+                                <input type="text" id="nuevaUbiInicio" name="nuevaUbiInicio"><br>
                                 <label for="nuevaUbiInicio">Ingrese nueva ubicación</label>
                             </section>
                         </section>
                     </section>
-                    
+
                     <br>
-                    
+
                     <section class="grupo2">
                         <label for="ubiFin" class="seleccionarUbi">Ubicación Final:</label>
                         <br><br>
@@ -213,17 +213,17 @@ if (!$resultadoUbi) {
                         </select><br><br>
                         <label for="nuevaUbiF" style="font-size:x-small;">Agregar ubicación</label>
                         <input type="checkbox" id="nuevaUbiF" name="nuevaUbiF" onclick="bloquearSelectUbiF()"><br>
-                        
+
                         <br>
                         <section class="nuevaUbi" id="nuevaUbiF-container">
-                            <section class="grupo">    
-                                <input  type="text" id="nuevaUbiFin" name="nuevaUbiFin" ><br>
+                            <section class="grupo">
+                                <input type="text" id="nuevaUbiFin" name="nuevaUbiFin"><br>
                                 <label for="nuevaUbiFin">Ingrese nueva ubicación</label>
                             </section>
                         </section>
                         <br><br>
                     </section>
-                    
+
                 </section>
                 <section class="info-container">
                     <h2>RECORRIDO</h2>
@@ -236,8 +236,8 @@ if (!$resultadoUbi) {
                     </section>
                     <br>
                     <section class="grupo">
-                        <input type="number" id="kmInicio" oninput="validarNumero(this)" name="kmInicio" 
-                        min="<?php echo $kilometraje ?>" required><br>
+                        <input type="number" id="kmInicio" oninput="validarNumero(this)" name="kmInicio"
+                            min="<?php echo $kilometraje ?>" required><br>
                         <label for="peso">Kilometraje Inicio</label>
                     </section>
                     <br>
@@ -311,8 +311,9 @@ if (!$resultadoUbi) {
                             <a href="../chofer/chofer.php?busqueda=<?php echo $choferEncontrado['CI']; ?>">
                                 <?php echo $choferEncontrado["nombreChofer"] . " " . $choferEncontrado["apellidoChofer"]; ?>
                             </a>
-                            <button type="button" class="btnEliminarChofer" onclick="abrirPopupEliminar()">Asignar Nuevo
-                                Chofer</button>
+                            <button type="button" class="btnEliminarChofer" onclick="abrirPopupEliminar()">
+                                Eliminar Asignación
+                            </button>
 
                             <dialog id="popupEliminarAsignacion">
                                 <button class="btnCerrar" onclick="cerrarPopup()">Cerrar</button>
