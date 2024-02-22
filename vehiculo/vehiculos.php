@@ -26,6 +26,7 @@ $row = mysqli_fetch_assoc($vehiculoEnviado);
 
 $IDVehiculo = $row['IDVehiculo'];
 $placa = $row['placa'];
+echo "<script>console.log($IDVehiculo)</script>";
 $modelo = $row['modelo'];
 $anio = $row['anio'];
 $estado = $row['estado'];
@@ -136,6 +137,7 @@ if (!$resultadoUbi) {
     <link rel="stylesheet" href="../css/vehiculos.css">
     <link rel="icon" href="../img/LogoGestionVehicular.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/form.css">
+    <script src="../js/validacionChofer.js"></script>
 </head>
 
 <body>
@@ -372,7 +374,7 @@ if (!$resultadoUbi) {
                 </article>
 
             </section>
-
+        </section>
 
 
             <section id="mantenimiento" class="mantenimiento">
