@@ -171,7 +171,7 @@ header {
   object-fit: cover;
 }
 
-#contenedorChofer{
+#contenedorChofer {
   margin: 0%;
 }
 
@@ -723,4 +723,91 @@ header {
 
 #placa .error {
   border-bottom: 3px solid red !important;
+}
+
+/* FORMULARIO MANTENIMIENTOS */
+#popupFormMantenimiento {
+  width: 50%;
+  max-height: fit-content;
+  padding: 15px 25px;
+  justify-content: center;
+  border-radius: 2%;
+  background-color: rgb(255, 255, 255);
+}
+
+#popupFormMantenimiento h2 {
+  margin-bottom: 20px;
+  color: #1b3665;
+  align-items: center;
+}
+
+#formularioMantenimiento {
+  width: 95%;
+  margin: 0 auto;
+}
+
+#formularioMantenimiento button {
+  margin: 10px;
+  padding: 10px;
+  background-color: #1b3665;
+  color: #fff;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+#formularioMantenimiento button:hover {
+  background-color: #1b3665a7;
+  cursor: pointer;
+}
+
+.contenedorFormularioMantenimiento {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.informacionMantenimiento {
+  margin: 0 20px;
+}
+
+.inputsFormMantenimiento {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.checkboxNuevoMantenimiento {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.inputsFormMantenimiento input {
+  border: 2px solid #1b3665;
+  border-radius: 5px;
+  display: block;
+  font-size: 12px;
+  padding: 10px;
+  width: 100%;
+}
+
+.inputsFormMantenimiento input:focus {
+  outline: 0;
+}
+
+.inputsFormMantenimiento.valido input {
+  border-color: #09c372;
+}
+
+.inputsFormMantenimiento.error input {
+  border-color: #ff3860;
+}
+
+.inputsFormMantenimiento.error {
+  color: #ff3860;
+  font-size: 12px;
 }
