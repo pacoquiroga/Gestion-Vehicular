@@ -248,12 +248,25 @@ function peticionNuevoMantenimiento(nombreMantenimiento, tipoMantenimiento) {
 function ingresarNuevoMantenimiento() {
   if (conexion.readyState == 4) {
     if (conexion.responseText === "repetido") {
-      alert(
-        "Ya existe un mantenimiento con ese nombre y tipo en la base de datos."
-      );
+      Swal.fire({
+        title: "MANTENIMIENTO REPETIDO!",
+        text: "Ya existe un mantenimiento con ese nombre y tipo en la base de datos.",
+        icon: "error",
+        confirmButtonText: "Ingresar otro Mantenimiento",
+        target: "#popupFormMantenimiento",
+      });
     } else if (conexion.responseText === "Error al insertar mantenimiento") {
-      alert(conexion.responseText);
-      window.location.reload();
+      Swal.fire({
+        title: "NO SE PUDO INSERTAR EL MANTENIMIENTO!",
+        text: `¡${conexion.responseText}!`,
+        icon: "error",
+        confirmButtonText: "Regresar",
+        target: "#popupFormMantenimiento",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     } else {
       peticionAsignarMantenimiento(
         conexion.responseText,
@@ -310,12 +323,246 @@ function peticionAsignarMantenimiento(
 function asignarMantenimiento() {
   if (conexion.readyState == 4) {
     if (conexion.responseText === "Mantenimiento asignado correctamente") {
-      formularioMantenimiento.innerHTML = "";
-      popupFormMantenimiento.innerHTML += `
-        <p class="mensaje-exito">Mantenimiento asignado correctamente</p>
-        `;
+      Swal.fire({
+        title: "Mantenimiento asignado!",
+        text: `${conexion.responseText}`,
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        target: "#popupFormMantenimiento",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     } else {
-      alert(conexion.responseText);
+      Swal.fire({
+        title: "Error!",
+        text: `${conexion.responseText}`,
+        icon: "error",
+        confirmButtonText: "Regresar",
+        target: "#popupFormMantenimiento",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
+    }
+  }
+}
+
+/* ELIMINAR ASIGNACION DE MANTENIMIENTO */
+
+/* ================================================
+DECLARACION DE VARIABLES DE INPUTS DEL FORMULARIO
+DE ELIMINAR ASIGNACION DE MANTENIMIENTO
+==================================================== */
+
+let IDVehiculoMANTENIMIENTOForm = document.getElementById(
+  "IDVehiculoMANTENIMIENTOForm"
+);
+
+let nombreEliminarMantenimiento = document.getElementById(
+  "nombreEliminarMantenimiento"
+);
+
+let tipoEliminarMantenimiento = document.getElementById(
+  "tipoEliminarMantenimiento"
+);
+
+let fechaInicioEliminarMantenimiento = document.getElementById(
+  "fechaInicioEliminarMantenimiento"
+);
+
+let nuevoCosto = document.getElementById("nuevoCosto");
+
+let fechaFinMantenimiento = document.getElementById("fechaFinMantenimiento");
+
+let enviarFormularioFinMantenimiento = document.getElementById(
+  "enviarFormularioFinMantenimiento"
+);
+
+let popupFormEliminarMantenimiento = document.getElementById(
+  "popupFormEliminarMantenimiento"
+);
+
+/* ================================================
+FIN DE DECLARACION DE VARIABLES DE FORMULARIO
+==================================================== */
+
+/* ================================================
+INICIO FUNCION CERRAR POPUP ELIMINAR MANTENIMIENTO
+==================================================== */
+
+function cerrarPopupEliminarMantenimiento() {
+  popupFormEliminarMantenimiento.close();
+  formularioTerminarMantenimiento.reset();
+
+  nuevoCosto.setAttribute("readonly", "");
+
+  const contenedorInput = nuevoCosto.parentElement;
+  const contenedorError = contenedorInput.querySelector(".error");
+
+  contenedorError.innerText = "";
+  contenedorInput.classList.remove("error");
+}
+
+/* ================================================
+FIN FUNCION CERRAR POPUP ELIMINAR MANTENIMIENTO
+==================================================== */
+
+/* ================================================
+INICIO FUNCION ABRIR POPUP ELIMINAR MANTENIMIENTO
+INCLUYENDO LOS DATOS DEL MANTENIMIENTO CORRESPONDIENTE
+==================================================== */
+
+function abrirPopupEliminarMantenimiento(
+  IDVehiculoMANTENIMIENTO,
+  nombreMantenimiento,
+  tipoMantenimiento,
+  fechaInicio,
+  costo
+) {
+  IDVehiculoMANTENIMIENTOForm.value = IDVehiculoMANTENIMIENTO;
+  nombreEliminarMantenimiento.value = nombreMantenimiento;
+  tipoEliminarMantenimiento.value = tipoMantenimiento;
+  fechaInicioEliminarMantenimiento.value = fechaInicio;
+  nuevoCosto.value = costo;
+  costoOriginal = costo;
+  popupFormEliminarMantenimiento.showModal();
+  fechaFinMantenimiento.value = new Date().toISOString().split("T")[0];
+}
+
+/* ================================================
+FIN FUNCION ABRIR POPUP ELIMINAR MANTENIMIENTO
+==================================================== */
+
+/* ================================================
+INICIO FUNCIONALIDAD PARA ALTERNAR CHECKBOX 
+PARA CAMBIAR EL COSTO
+==================================================== */
+
+let actualizarCosto = document.getElementById("actualizarCosto");
+
+actualizarCosto.addEventListener("change", () => {
+  if (actualizarCosto.checked) {
+    nuevoCosto.removeAttribute("readonly");
+  } else {
+    nuevoCosto.setAttribute("readonly", "");
+    nuevoCosto.value = costoOriginal;
+  }
+});
+
+/* ================================================
+FIN ALTERACION DE CHECKBOX PARA CAMBIAR EL COSTO
+==================================================== */
+
+/* ================================================
+VALIDACION DE CAMPOS DEL FORMULARIO DE ELIMINAR
+LLAMAR A LAS FUNCIONES AJAX CUANDO SE ENVIE EL FORMULARIO
+==================================================== */
+
+let formularioTerminarMantenimiento = document.getElementById(
+  "formularioTerminarMantenimiento"
+);
+
+formularioTerminarMantenimiento.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  validarCamposTerminarMantenimiento();
+});
+
+function validarCamposTerminarMantenimiento() {
+  let valorActualizarCosto = actualizarCosto.checked;
+  let valorNuevoCosto = nuevoCosto.value;
+  let camposValidos = true;
+
+  if (valorActualizarCosto) {
+    if (valorNuevoCosto == "") {
+      mostrarError(nuevoCosto, "Ingrese el nuevo costo del mantenimiento");
+      camposValidos = false;
+    } else if (
+      isNaN(valorNuevoCosto) ||
+      valorNuevoCosto < 0 ||
+      valorNuevoCosto > 3000
+    ) {
+      mostrarError(nuevoCosto, "El costo debe ser un número");
+      camposValidos = false;
+    } else {
+      mostrarCampoValido(nuevoCosto);
+    }
+  }
+
+  if (camposValidos) {
+    peticionTerminarMantenimiento();
+  }
+}
+
+/* ================================================
+FIN VALIDACION DE CAMPOS DEL FORMULARIO DE ELIMINAR
+==================================================== */
+
+/*===============================================
+INICIO FUNCIONES AJAX PARA TERMINAR MANTENIMIENTO
+=================================================*/
+
+function peticionTerminarMantenimiento() {
+  // ======== PETICION AJAX =========
+  if (window.XMLHttpRequest) {
+    conexion = new XMLHttpRequest();
+  } else if (window.ActiveXObject) {
+    conexion = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  // Preparando la función de respuesta
+  conexion.onreadystatechange = terminarMantenimiento;
+
+  // Realizando la petición HTTP con método POST
+  conexion.open("POST", "../formularios/terminarMantenimiento.php");
+  conexion.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded"
+  );
+  conexion.send(
+    "IDVehiculoMANTENIMIENTO=" +
+      IDVehiculoMANTENIMIENTOForm.value +
+      "&costo=" +
+      nuevoCosto.value +
+      "&fechaFin=" +
+      fechaFinMantenimiento.value +
+      "&nocache=" +
+      Math.random()
+  );
+
+  // ======== FIN PETICION AJAX =========
+}
+
+function terminarMantenimiento() {
+  if (conexion.readyState == 4) {
+    if (conexion.responseText === "Mantenimiento terminado con éxito") {
+      // cerrarPopupEliminarMantenimiento();
+      Swal.fire({
+        title: "Mantenimiento terminado",
+        text: `${conexion.responseText}`,
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        target: "#popupFormEliminarMantenimiento",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "Error!",
+        text: `${conexion.responseText}`,
+        icon: "error",
+        confirmButtonText: "Regresar",
+        target: "#popupFormEliminarMantenimiento",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     }
   }
 }

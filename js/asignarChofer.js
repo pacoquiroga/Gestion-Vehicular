@@ -129,31 +129,53 @@ function peticionBitacora() {
       conexion.responseText ===
       "Ya existe un registro de bitacora para este chofer y vehiculo, no se puede asignar nuevamente."
     ) {
-      infoPopup.innerHTML = `
-      <p>${conexion.responseText}</p>
-      <button id="btnCancelar" onclick="Cancelar()">Regresar</button>
-      `;
-      return;
+      Swal.fire({
+        title: "Error!",
+        text: `${conexion.responseText}`,
+        icon: "error",
+        confirmButtonText: "Regresar",
+        target: "#popupAsignarChofer",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Cancelar();
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "CHOFER ASIGNADO",
+        text: `${conexion.responseText}`,
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        target: "#popupAsignarChofer",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     }
-    infoPopup.innerHTML = `
-      <p>${conexion.responseText}</p>
-      <button id="btnAsignar" onclick="cerrarPopup()">Cerrar</button>
-      `;
   }
 }
 
 function confirmarEliminacion() {
   const observacion = document.getElementById("observacion").value;
-  infoPopupEliminar.innerHTML = `
-    <h1>Eliminar Asignación</h1>
-    <p>¿Estás seguro que deseas eliminar la asignación?</p>
-    <input type="hidden" id="observacionBitacora" value="${observacion}">
-    <button id="btnAsignar" onclick="eliminarAsignacion()">Si</button>
-    <button id="btnCancelar" onclick="cerrarPopup()">No</button>
-  `;
+
+  Swal.fire({
+    title: "¿Está Seguro de Eliminar la Asignación de este Chofer?",
+    text: "Esta acción no se va a poder revertir!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si, eliminar!",
+    target: "#popupEliminarAsignacion",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      eliminarAsignacion(observacion);
+    }
+  });
 }
 
-function eliminarAsignacion() {
+function eliminarAsignacion(observacion) {
   if (window.XMLHttpRequest) {
     conexion = new XMLHttpRequest();
   } else if (window.ActiveXObject) {
@@ -161,7 +183,6 @@ function eliminarAsignacion() {
   }
 
   let fechaFinalizacion = new Date().toISOString().split("T")[0];
-  let observacion = document.getElementById("observacionBitacora").value;
   console.log(fechaFinalizacion);
   console.log(IDVehiculo);
   console.log(observacion);
@@ -186,9 +207,16 @@ function eliminarAsignacion() {
 
 function peticionEliminarAsignacion() {
   if (conexion.readyState == 4) {
-    infoPopupEliminar.innerHTML = `
-      <p>${conexion.responseText}</p>
-      <button id="btnAsignar" onclick="abrirPopup()">Aceptar</button>
-      `;
+    Swal.fire({
+      title: "Asignación de Chofer Eliminada!",
+      text: `${conexion.responseText}`,
+      icon: "success",
+      confirmButtonText: "Aceptar",
+      target: "#popupEliminarAsignacion",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
+    });
   }
 }

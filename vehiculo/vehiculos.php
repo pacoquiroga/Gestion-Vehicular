@@ -56,7 +56,7 @@ if (!$resultado_terminados) {
 }
 
 // Consulta para obtener los mantenimientos en proceso
-$consultaM_en_proceso = "SELECT * FROM mantenimiento WHERE tipoMantenimiento = 'En Proceso'";
+$consultaM_en_proceso = "SELECT * FROM vehiculo_mantenimiento WHERE IDVehiculo = '$IDVehiculo' AND fechaFin IS NULL";
 $resultado_en_proceso = mysqli_query($enlace, $consultaM_en_proceso);
 
 // Verificar si la consulta fue exitosa
@@ -137,7 +137,7 @@ if (!$resultadoUbi) {
     <link rel="stylesheet" href="../css/vehiculos.css">
     <link rel="icon" href="../img/LogoGestionVehicular.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/form.css">
-    <script src="../js/validacionChofer.js"></script>
+    <!-- <script src="../js/validacionesChofer.js"></script> -->
 </head>
 
 <body>
@@ -267,8 +267,13 @@ if (!$resultadoUbi) {
                     <h2>MANTENIMIENTO</h2>
 
                     <section class="checkboxNuevoMantenimiento">
-                        <label for="nuevoMantenimiento">Agregar Mantenimiento:</label>
-                        <input type="checkbox" id="nuevoMantenimiento" name="nuevoMantenimiento" onchange>
+
+                        <label class="content-input">
+                            <input type="checkbox" name="nuevoMantenimiento" id="nuevoMantenimiento">Agregar
+                            Mantenimiento
+                            <i></i>
+                        </label>
+
                     </section>
 
                     <section id="contenedorTodosMantenimientos">
@@ -327,6 +332,89 @@ if (!$resultadoUbi) {
             </section>
         </form>
     </dialog>
+
+    <!-- ============================
+    VENTANA MODAL TERMINAR MANTENIMIENTOS
+    ================================= -->
+    <dialog id="popupFormEliminarMantenimiento">
+
+        <section class="formHeader">
+
+            <h2>Terminar Mantenimiento</h2>
+
+            <button id="cerrarFormEliminarMantenimiento" class="cerrarForm"
+                onclick="cerrarPopupEliminarMantenimiento()">&times;</button>
+
+        </section>
+
+        <form id="formularioTerminarMantenimiento">
+
+            <input type="hidden" name="IDVehiculoMANTENIMIENTOForm" id="IDVehiculoMANTENIMIENTOForm">
+
+            <section class="contenedorFormularioMantenimiento">
+
+                <section class="informacionMantenimiento">
+
+                    <h2>DATOS DEL MANTENIMIENTO</h2>
+
+                    <section class="inputsFormMantenimiento">
+                        <label for="nombreEliminarMantenimiento">Nombre del Mantenimiento</label>
+                        <input type="text" id="nombreEliminarMantenimiento" name="nombreEliminarMantenimiento" readonly>
+                    </section>
+
+                    <section class="inputsFormMantenimiento">
+                        <label for="tipoEliminarMantenimiento">Tipo de Mantenimiento</label>
+                        <input type="text" id="tipoEliminarMantenimiento" name="tipoEliminarMantenimiento" readonly>
+                    </section>
+
+                    <section class="inputsFormMantenimiento">
+                        <label for="fechaInicioEliminarMantenimiento">Fecha Inicio</label>
+                        <input type="text" id="fechaInicioEliminarMantenimiento" name="fechaInicioEliminarMantenimiento"
+                            readonly>
+                    </section>
+
+                </section>
+
+                <section class="informacionMantenimiento">
+
+                    <h2>DATOS PARA TERMINAR EL MANTENIMIENTO</h2>
+
+                    <section class="inputsFormMantenimiento">
+                        <label for="nuevoCosto">Costo</label>
+                        <input type="number" id="nuevoCosto" name="nuevoCosto" readonly>
+                        <section class="error"></section>
+                    </section>
+
+                    <section class="checkboxActualizarCosto">
+
+                        <label class="content-input">
+                            <input type="checkbox" name="actualizarCosto" id="actualizarCosto">Actualizar Costo
+                            <i></i>
+                        </label>
+
+                    </section>
+
+                    <section id="contenedorFechaFin">
+                        <section class="inputsFormMantenimiento">
+                            <label for="fechaFinMantenimiento">Fecha de finalización del mantenimiento:</label>
+                            <input type="text" id="fechaFinMantenimiento" name="fechaFinMantenimiento" readonly>
+                        </section>
+                    </section>
+
+                </section>
+
+            </section>
+
+            <section class="formFooter">
+
+                <button id="enviarFormularioFinMantenimiento">Enviar</button>
+
+            </section>
+
+        </form>
+
+    </dialog>
+
 
     <header>
 
@@ -470,21 +558,45 @@ if (!$resultadoUbi) {
                                 <table>
                                     <thead>
                                         <th>Vehículo</th>
-                                        <th>Fecha</th>
-                                        <th>Descripción</th>
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
+                                        <th>Fecha Inicio</th>
                                         <th>Costo</th>
+                                        <th>Terminar</th>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($mantenimientos_en_proceso as $mantenimiento) { ?>
-                                            <tr>
+                                        <?php foreach ($mantenimientos_en_proceso as $mantenimiento) {
+                                            $consultaMantenimiento = "SELECT * FROM mantenimiento WHERE IDMantenimiento = '" . $mantenimiento['IDMantenimiento'] . "' LIMIT 1";
+                                            $resultadoMantenimiento = mysqli_query($enlace, $consultaMantenimiento);
+                                            $infoMantenimiento = mysqli_fetch_assoc($resultadoMantenimiento);
+
+                                            ?>
+                                            <tr class="filaTablaMantenimiento">
                                                 <td>
                                                     <?php echo $placa; ?>
                                                 </td>
-                                                <td>12/02/2024</td>
-                                                <td>
-                                                    <?php echo $mantenimiento['nombreMantenimiento']; ?>
+                                                <td class="filaNombreMantenimiento">
+                                                    <?php echo $infoMantenimiento['nombreMantenimiento']; ?>
                                                 </td>
-                                                <td>$50</td>
+                                                <td>
+                                                    <?php echo $infoMantenimiento['tipoMantenimiento']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mantenimiento['fechaInicio']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mantenimiento['costo']; ?>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btnTerminarMantenimiento" onclick="abrirPopupEliminarMantenimiento(
+                                                            '<?php echo $mantenimiento['IDVehiculoMANTENIMIENTO']; ?>',
+                                                            '<?php echo $infoMantenimiento['nombreMantenimiento']; ?>',
+                                                            '<?php echo $infoMantenimiento['tipoMantenimiento']; ?>',
+                                                            '<?php echo $mantenimiento['fechaInicio']; ?>',
+                                                            <?php echo $mantenimiento['costo']; ?>
+                                                        )">
+                                                    </button>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -600,9 +712,10 @@ if (!$resultadoUbi) {
     <script src="../js/mantenimiento.js"></script>
     <script src="../js/viajes.js"></script>
     <script src="../js/header.js"></script>
-    <script src="../js/asignarChofer.js"></script>
+    <script defer src="../js/asignarChofer.js"></script>
     <script src="../js/formViajesMantenimiento.js"></script>
     <script defer src="../js/asignarMantenimiento.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
