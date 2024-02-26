@@ -12,9 +12,7 @@ if (!$enlace) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $placa = mysqli_real_escape_string($enlace, $_POST['placaVehiculo']);
-    $IDVehiculo = $_POST['IDVehiculo'];
-    echo "<script>console.log($IDVehiculo)</script>";
-    
+    $IDVehiculo = mysqli_real_escape_string($enlace, $_POST['IDVehiculo']);
     $fechaInicio = mysqli_real_escape_string($enlace, $_POST['fechaInicio']);
     $horaInicio = mysqli_real_escape_string($enlace, $_POST['horaInicio']);
     $kmInicio = mysqli_real_escape_string($enlace, $_POST['kmInicio']);
@@ -53,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $ubi = "SELECT * FROM ruta WHERE ubiInicio = '$ubiInicio' AND ubiFin = '$ubiFin'";
     $resultadoUbi = mysqli_query($enlace, $ubi);
-
+    
     // Comprobar si se encontró alguna fila
     if (mysqli_num_rows($resultadoUbi) > 0) {
         // Se encontró al menos una fila con las mismas ubiInicio y ubiFin
