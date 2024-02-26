@@ -38,7 +38,7 @@ if (!$resultado) {
     <dialog  id="popupform-container" class="form-container">
         <section class="formHeader">
             <h2>Ingreso Nuevo Vehiculo</h2>
-            <button class="cerrarForm">&times;</button>
+            <button id="cerrarForm" class="cerrarForm">&times;</button>
         </section >
         <form action="procesar_ingreso_vehiculo.php" method="post" enctype="multipart/form-data">
             <section class="form-body">

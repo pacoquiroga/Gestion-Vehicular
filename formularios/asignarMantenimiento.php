@@ -19,7 +19,10 @@ VALUES ('$IDMantenimiento', '$IDVehiculo', '$costo', '$fechaInicio', '$exitoso')
 
 $resultado = mysqli_query($enlace, $consulta);
 
-if ($resultado) {
+$updateEstadoVehiculo = "UPDATE vehiculo SET estado = 'Mantenimiento' WHERE IDVehiculo = '$IDVehiculo'";
+$resultadoUpdate = mysqli_query($enlace, $updateEstadoVehiculo);
+
+if ($resultado && $resultadoUpdate) {
     echo "Mantenimiento asignado correctamente";
 } else {
     echo "Error al asignar bitacora";

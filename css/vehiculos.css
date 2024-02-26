@@ -152,8 +152,14 @@ header {
 }
 
 .informacion article {
-  flex: 1;
-  padding: 0px 140px;
+  flex: 0.3;
+  padding: 0px 20px;
+}
+
+.informacion .contenedor-imagen{
+  flex: 0.4;
+  padding: 0px 20px;
+
 }
 
 .informacion h1 {
@@ -167,17 +173,10 @@ header {
 
 .fotoVehiculo {
   width: 80%;
-  height: 100%;
+  height: 80%;
   object-fit: cover;
 }
 
-<<<<<<< HEAD
-=======
-#contenedorChofer {
-  margin: 0%;
-}
-
->>>>>>> 4a311b6e6ca6a75d5688a4299f9629fbb333ebef
 .btnAsignarChofer {
   background-color: #fd8637ce;
   color: #1b3665;
@@ -698,8 +697,8 @@ header {
 }
 
 .btnEliminarChofer {
-  background-color: red;
-  color: #fff;
+  background-color: #fd8637ce;
+  color: #1b3665;
   border-radius: 5px;
   padding: 5px 15px;
   margin: 10px 0;
@@ -708,8 +707,22 @@ header {
   border: 0;
 }
 
+.btnTerminarAccion{
+  background-image: url("../img/activo.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: green;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 10px;
+  cursor: pointer;
+}
+
+
 .btnEliminarChofer:hover {
-  background-color: #fd3737a7;
+  background-color: #fd8637a7;
   cursor: pointer;
 }
 
@@ -724,10 +737,70 @@ header {
   margin-bottom: 10px;
 }
 
-#placa .error {
-  border-bottom: 3px solid red !important;
+
+.btnFinalizarViaje {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
+.logoTerminarViaje {
+  width: 100px; /* Cambia el valor según el tamaño adecuado para tu imagen */
+  height: auto; /* Esto garantiza que la altura se ajuste automáticamente según la relación de aspecto de la imagen */
+}
+
+.contenedorEstado{
+  margin: 0;
+  padding: 0;
+  width: fit-content;
+}
+
+.contenedorEstado h3{
+  text-align: center;
+  font-size: large;
+  padding: 10px;
+  flex: 0.1;
+}
+
+.estado {
+  width: 15%;
+  padding: 15%;
+  height: 15%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  font-size: x-large;
+  margin-top: 0;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+  transition: 0.5s ease;
+}
+
+
+
+.estadoActivo {
+  background-color: rgb(3, 173, 3);
+  background-image: url("../img/activo.png");
+  margin: 0 auto;
+}
+
+.estadoMantenimiento {
+  background-color: gray;
+  margin: 0 auto;
+  background-image: url("../img/mantenimiento.png");
+}
+
+.estadoRuta {
+  background-color: #da6517ce;
+  margin: 0 auto;
+  background-image: url("../img/ruta.png");
+}
+
+.estadoBaja {
+  background-color: red;
+  margin: 0 auto;
+  background-image: url("../img/baja.png");
+}
 /* FORMULARIO MANTENIMIENTOS */
 #popupFormMantenimiento {
   width: 50%;
@@ -819,7 +892,7 @@ header {
 }
 
 /* TERMINAR MANTENIMIENTO */
-.btnTerminarMantenimiento {
+.btnTerminarAccion{
   background-image: url("../img/activo.png");
   background-size: 100%;
   background-repeat: no-repeat;

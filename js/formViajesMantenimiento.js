@@ -57,7 +57,7 @@ function bloquearSelectUbiF() {
     }
 }
 
-document.getElementById("abrirFormV").addEventListener("click", function() {
+abrirFormV.addEventListener("click", function() {
     
     // Formatear la fecha en formato dd/mm/yyyy
     var fechaInicio = new Date().toISOString().split("T")[0];
@@ -80,7 +80,7 @@ document.getElementById("abrirFormV").addEventListener("click", function() {
 
 
 
-document.getElementById("cerrarFormV").addEventListener("click", function() {
+cerrarFormV.addEventListener("click", function() {
     // Seleccionar todos los inputs dentro del formulario
     var inputs = document.querySelectorAll("#popupformViajes input");
     
@@ -97,4 +97,6 @@ document.getElementById("cerrarFormV").addEventListener("click", function() {
         select.selectedIndex = 0; // Reiniciar la selección del select
     });
 });
+
+
 

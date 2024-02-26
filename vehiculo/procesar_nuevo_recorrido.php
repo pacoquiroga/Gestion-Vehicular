@@ -10,6 +10,8 @@ if (!$enlace) {
     die("No Se Pudo Conectar Con El Servidor: " . mysqli_connect_error());
 }
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $placa = mysqli_real_escape_string($enlace, $_POST['placaVehiculo']);
     $IDVehiculo = mysqli_real_escape_string($enlace, $_POST['IDVehiculo']);
@@ -22,11 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $ubiFinS = $_POST['ubiFinS'];
     $nuevaUbiF = $_POST['nuevaUbiFin'];
-
-    echo $ubiInicioS;
-    echo $nuevaUbiI;
-    echo $ubiFinS;
-    echo $nuevaUbiF;
 
     $ubiInicio = "";
     $ubiFin = "";
@@ -44,8 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ubiFin = mysqli_real_escape_string($enlace,$ubiFinS);
     }
 
-    echo $ubiInicio;
-    echo $ubiFin;
+    
    
 
 
@@ -71,6 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Error al insertar la nueva línea: " . mysqli_error($enlace);
         }
     }
+
+
 
     $insertarRecorre = "INSERT INTO recorre (IDVehiculo, IDRuta, fechaInicio, horaInicio, kmInicio) 
              VALUES ('$IDVehiculo', '$IDRuta', '$fechaInicio', '$horaInicio', '$kmInicio')";
