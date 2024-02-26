@@ -171,6 +171,13 @@ header {
   object-fit: cover;
 }
 
+<<<<<<< HEAD
+=======
+#contenedorChofer {
+  margin: 0%;
+}
+
+>>>>>>> 4a311b6e6ca6a75d5688a4299f9629fbb333ebef
 .btnAsignarChofer {
   background-color: #fd8637ce;
   color: #1b3665;
@@ -691,8 +698,8 @@ header {
 }
 
 .btnEliminarChofer {
-  background-color: #fd8637ce;
-  color: #1b3665;
+  background-color: red;
+  color: #fff;
   border-radius: 5px;
   padding: 5px 15px;
   margin: 10px 0;
@@ -702,7 +709,7 @@ header {
 }
 
 .btnEliminarChofer:hover {
-  background-color: #fd8637a7;
+  background-color: #fd3737a7;
   cursor: pointer;
 }
 
@@ -715,4 +722,211 @@ header {
   width: 50%;
   object-fit: cover;
   margin-bottom: 10px;
+}
+
+#placa .error {
+  border-bottom: 3px solid red !important;
+}
+
+/* FORMULARIO MANTENIMIENTOS */
+#popupFormMantenimiento {
+  width: 50%;
+  max-height: fit-content;
+  padding: 15px 25px;
+  justify-content: center;
+  border-radius: 2%;
+  background-color: rgb(255, 255, 255);
+}
+
+#popupFormMantenimiento h2 {
+  margin-bottom: 20px;
+  color: #1b3665;
+  align-items: center;
+}
+
+#formularioMantenimiento,
+#formularioTerminarMantenimiento {
+  width: 95%;
+  margin: 0 auto;
+}
+
+#formularioMantenimiento button,
+#formularioTerminarMantenimiento button {
+  margin: 10px;
+  padding: 10px;
+  background-color: #1b3665;
+  color: #fff;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+#formularioMantenimiento button:hover,
+#formularioTerminarMantenimiento button:hover {
+  background-color: #1b3665a7;
+  cursor: pointer;
+}
+
+.contenedorFormularioMantenimiento {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.informacionMantenimiento {
+  margin: 0 20px;
+}
+
+.inputsFormMantenimiento {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.checkboxNuevoMantenimiento {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.inputsFormMantenimiento input {
+  border: 2px solid #1b3665;
+  border-radius: 5px;
+  display: block;
+  font-size: 12px;
+  padding: 10px;
+  width: 100%;
+}
+
+.inputsFormMantenimiento input:focus {
+  outline: 0;
+}
+
+.inputsFormMantenimiento.valido input {
+  border-color: #09c372;
+}
+
+.inputsFormMantenimiento.error input {
+  border-color: #ff3860;
+}
+
+.inputsFormMantenimiento.error {
+  color: #ff3860;
+  font-size: 12px;
+}
+
+/* TERMINAR MANTENIMIENTO */
+.btnTerminarMantenimiento {
+  background-image: url("../img/activo.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: green;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 10px;
+  cursor: pointer;
+}
+
+/* ===============================
+ESTILO PARA CHECKBOX PERSONALIZADO
+================================== */
+.content-input input,
+.content-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.content-input input {
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+}
+
+.content-input {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 5px 0 5px 60px; /* Damos un padding de 60px para posicionar 
+        el elemento <i> en este espacio*/
+  display: block;
+}
+
+/* Estas reglas se aplicarán a todos las elementos i 
+después de cualquier input*/
+.content-input input + i {
+  background: #f0f0f0;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Estas reglas se aplicarán a todos los i despues 
+de un input de tipo checkbox*/
+.content-input input[type="checkbox"] + i {
+  width: 50px;
+  height: 25px;
+  border-radius: 15px;
+}
+
+/*
+Creamos el círculo que aparece encima de los checkbox
+con la etqieta before. Importante aunque no haya contenido
+debemos poner definir este valor.
+*/
+.content-input input[type="checkbox"] + i:before {
+  content: ""; /* No hay contenido */
+  width: 50%;
+  height: 99%;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  left: 0px;
+  top: 0px;
+  -webkit-box-shadow: 3px 0 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.content-input input[type="checkbox"]:checked + i:before {
+  left: 47%;
+  -webkit-box-shadow: -3px 0 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 0 -3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.content-input input[type="checkbox"]:checked + i {
+  background: #2ac176;
+}
+
+.content-input input[type="checkbox"] + i:after {
+  content: "SI";
+  position: absolute;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  top: 6px;
+  left: 7px;
+  opacity: 0 /* Ocultamos este elemento */;
+  transition: all 0.25s ease 0.25s;
+}
+
+/* Cuando esté checkeado cambiamos la opacidad a 1 y lo mostramos */
+.content-input input[type="checkbox"]:checked + i:after {
+  opacity: 1;
+}
+
+/* SELECT */
+
+.inputsFormMantenimiento select {
+  cursor: pointer;
+  padding: 7px 10px;
+  height: 42px;
+  outline: 0;
+  background: #f0f0f0;
+  border: 2px solid #1b3665;
+  border-radius: 12px;
 }

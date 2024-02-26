@@ -31,6 +31,7 @@ if (!$resultado) {
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/filtroVehiculo.css">
     <link rel="stylesheet" href="../css/form.css">
+
 </head>
 
 <body>
@@ -44,7 +45,7 @@ if (!$resultado) {
                 <section class="info-container">
                     <h2>Información del Vehículo</h2>
                     <section class="grupo">
-                        <input type="text" id="placa" name="placa" pattern="[A-Z]{3}\d{3-4}"
+                        <input type="text" id="placa" name="placa" pattern="[A-Z]{3}-\d{3,4}"
                             title="Ingresa una placa válida (3 letras y 4 números, todo en mayúsculas)" required><br>
                         <label for="placa">Placa</label>
                     </section>
@@ -57,7 +58,7 @@ if (!$resultado) {
                     </section>
                     <br>
                     <section class="grupo">
-                        <input type="number" id="anio" oninput="validarNumero(this)" name="anio" min="1900" max="2023"
+                        <input type="number" id="anio" oninput="validarNumero(this)" name="anio" min="1900" max="2024"
                             pattern="\d+" title="Ingresa un número positivo" required><br>
                         <label for="anio">Año</label>
                     </section>
@@ -97,7 +98,7 @@ if (!$resultado) {
                 </section>
             </section>
             <section class="formFooter">
-                <input type="submit" value="Enviar">
+                <button type="submit" id="botonEnviar" value="Enviar">Enviar</button>
             </section>
         </form>
     </dialog>

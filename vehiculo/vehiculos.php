@@ -55,7 +55,7 @@ if (!$resultado_terminados) {
 }
 
 // Consulta para obtener los mantenimientos en proceso
-$consultaM_en_proceso = "SELECT * FROM mantenimiento WHERE tipoMantenimiento = 'En Proceso'";
+$consultaM_en_proceso = "SELECT * FROM vehiculo_mantenimiento WHERE IDVehiculo = '$IDVehiculo' AND fechaFin IS NULL";
 $resultado_en_proceso = mysqli_query($enlace, $consultaM_en_proceso);
 
 // Verificar si la consulta fue exitosa
@@ -110,14 +110,14 @@ if (!$resultadoUbi) {
     echo "Error en la consulta de ubicacion de inicio: " . mysqli_error($enlace);
 } else {
     // Arreglo para almacenar las ubicaciones de inicio
-    $ubicaciones= array();
+    $ubicaciones = array();
 
     // Recorrer los resultados y almacenarlos en el arreglo
     while ($row = mysqli_fetch_assoc($resultadoUbi)) {
         $ubicaciones[] = $row;
     }
 
-   
+
 }
 
 
@@ -136,15 +136,16 @@ if (!$resultadoUbi) {
     <link rel="stylesheet" href="../css/vehiculos.css">
     <link rel="icon" href="../img/LogoGestionVehicular.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/form.css">
+    <!-- <script src="../js/validacionesChofer.js"></script> -->
 </head>
 
 <body>
 
-<dialog  id="popupformViajes" class="form-container">
+    <dialog id="popupformViajes" class="form-container">
         <section class="formHeader">
             <h2>Iniciar Nuevo Recorrido</h2>
             <button id="cerrarFormV" class="cerrarForm">&times;</button>
-        </section >
+        </section>
         <form action="procesar_nuevo_recorrido.php" method="post">
             <input type="hidden" name="IDVehiculo" value="<?php echo $IDVehiculo; ?>">
             <input type="hidden" name="placaVehiculo" value="<?php echo $placaEnviada; ?>">
@@ -163,20 +164,20 @@ if (!$resultadoUbi) {
                             <?php } ?>
 
                             <script>
-                                function filtrarUbi(){
+                                function filtrarUbi() {
                                     var selectI = document.getElementById("ubiInicioS");
                                     var selectF = document.getElementById("ubiFinS");
                                     var bloquearSelectI = document.getElementById("nuevaUbiI");
 
                                     var ubiISelecionada = selectI.value;
                                     console.log(ubiISelecionada);
-                    
+
 
                                     selectF.innerHTML = "<option value='' disabled>Seleccione una Ubicacion de Inicio</option>";
 
-                                    if(ubiISelecionada != "" ){
-                                        <?php foreach($ubicaciones as $ubicacionF){ ?>
-                                            if("<?php echo $ubicacionF['ubiInicio']; ?>" == ubiISelecionada){
+                                    if (ubiISelecionada != "") {
+                                        <?php foreach ($ubicaciones as $ubicacionF) { ?>
+                                            if ("<?php echo $ubicacionF['ubiInicio']; ?>" == ubiISelecionada) {
                                                 var option = document.createElement("option");
                                                 option.value = "<?php echo $ubicacionF['ubiFin']; ?>";
                                                 option.textContent = "<?php echo $ubicacionF['ubiFin']; ?>";
@@ -186,24 +187,24 @@ if (!$resultadoUbi) {
                                     }
                                 }
 
-                                
+
                             </script>
 
                         </select><br><br>
                         <label for="nuevaUbiI" style="font-size:x-small;">Agregar ubicación</label>
                         <input type="checkbox" id="nuevaUbiI" name="nuevaUbiI" onclick="bloquearSelectUbiI()"><br>
-                        
+
                         <br>
                         <section class="nuevaUbi" id="nuevaUbiI-container">
-                            <section class="grupo">    
-                                <input  type="text" id="nuevaUbiInicio" name="nuevaUbiInicio" ><br>
+                            <section class="grupo">
+                                <input type="text" id="nuevaUbiInicio" name="nuevaUbiInicio"><br>
                                 <label for="nuevaUbiInicio">Ingrese nueva ubicación</label>
                             </section>
                         </section>
                     </section>
-                    
+
                     <br>
-                    
+
                     <section class="grupo2">
                         <label for="ubiFin" class="seleccionarUbi">Ubicación Final:</label>
                         <br><br>
@@ -213,17 +214,17 @@ if (!$resultadoUbi) {
                         </select><br><br>
                         <label for="nuevaUbiF" style="font-size:x-small;">Agregar ubicación</label>
                         <input type="checkbox" id="nuevaUbiF" name="nuevaUbiF" onclick="bloquearSelectUbiF()"><br>
-                        
+
                         <br>
                         <section class="nuevaUbi" id="nuevaUbiF-container">
-                            <section class="grupo">    
-                                <input  type="text" id="nuevaUbiFin" name="nuevaUbiFin" ><br>
+                            <section class="grupo">
+                                <input type="text" id="nuevaUbiFin" name="nuevaUbiFin"><br>
                                 <label for="nuevaUbiFin">Ingrese nueva ubicación</label>
                             </section>
                         </section>
                         <br><br>
                     </section>
-                    
+
                 </section>
                 <section class="info-container">
                     <h2>RECORRIDO</h2>
@@ -236,8 +237,8 @@ if (!$resultadoUbi) {
                     </section>
                     <br>
                     <section class="grupo">
-                        <input type="number" id="kmInicio" oninput="validarNumero(this)" name="kmInicio" 
-                        min="<?php echo $kilometraje ?>" required><br>
+                        <input type="number" id="kmInicio" oninput="validarNumero(this)" name="kmInicio"
+                            min="<?php echo $kilometraje ?>" required><br>
                         <label for="peso">Kilometraje Inicio</label>
                     </section>
                     <br>
@@ -249,6 +250,169 @@ if (!$resultadoUbi) {
         </form>
     </dialog>
 
+    <!-- ============================
+    VENTANA MODAL MANTENIMIENTOS
+    ================================= -->
+    <dialog id="popupFormMantenimiento">
+        <section class="formHeader">
+            <h2>Iniciar Nuevo Mantenimiento</h2>
+            <button id="cerrarFormMantenimiento" class="cerrarForm"
+                onclick="cerrarPopupMantenimiento()">&times;</button>
+        </section>
+        <form id="formularioMantenimiento">
+            <input type="hidden" name="IDVehiculo" id="IDVehiculoFormMantenimiento" value="<?php echo $IDVehiculo; ?>">
+            <section class="contenedorFormularioMantenimiento">
+                <section class="informacionMantenimiento">
+                    <h2>MANTENIMIENTO</h2>
+
+                    <section class="checkboxNuevoMantenimiento">
+
+                        <label class="content-input">
+                            <input type="checkbox" name="nuevoMantenimiento" id="nuevoMantenimiento">Agregar
+                            Mantenimiento
+                            <i></i>
+                        </label>
+
+                    </section>
+
+                    <section id="contenedorTodosMantenimientos">
+                        <section class="inputsFormMantenimiento">
+                            <label for="nombreMantenimiento" class="seleccionarMantenimiento">Nombre del
+                                Mantenimiento:</label>
+                            <select name="nombreMantenimiento" id="nombreMantenimiento">
+                                <option value="" selected disabled>Seleccione el nombre del mantenimiento</option>
+                            </select>
+
+                            <section class="error"></section>
+                        </section>
+                    </section>
+
+                    <section class="nuevoMantenimiento" id="contenedorNuevoMantenimiento" hidden>
+
+                        <section class="inputsFormMantenimiento">
+                            <label for="nombreNuevoMantenimiento">
+                                Ingrese el nombre del nuevo mantenimiento
+                            </label>
+                            <input type="text" id="nombreNuevoMantenimiento" name="nombreNuevoMantenimiento">
+                            <section class="error"></section>
+                        </section>
+
+                        <section class="inputsFormMantenimiento">
+                            <label for="tipoNuevoMantenimiento">
+                                Ingrese el tipo de mantenimiento
+                            </label>
+                            <select id="tipoNuevoMantenimiento" name="tipoNuevoMantenimiento">
+                                <option value="" selected disabled>Seleccione el tipo de mantenimiento</option>
+                                <option value="preventivo">Preventivo</option>
+                                <option value="correctivo">Correctivo</option>
+                            </select>
+                            <section class="error"></section>
+                        </section>
+
+                    </section>
+
+                </section>
+                <section class="informacionMantenimiento">
+                    <h2>DATOS DEL MANTENIMIENTO</h2>
+                    <section class="inputsFormMantenimiento">
+                        <label for="costoMantenimiento">Costo</label>
+                        <input type="number" id="costoMantenimiento" name="costoMantenimiento">
+                        <section class="error"></section>
+                    </section>
+
+                    <section class="inputsFormMantenimiento">
+                        <label for="fechaInicioMantenimiento">Fecha de Inicio</label>
+                        <input type="text" id="fechaInicioMantenimiento" name="fechaInicioMantenimiento" readonly>
+                    </section>
+                </section>
+            </section>
+            <section class="formFooter">
+                <button id="enviarFormularioMantenimiento">Enviar</button>
+            </section>
+        </form>
+    </dialog>
+
+    <!-- ============================
+    VENTANA MODAL TERMINAR MANTENIMIENTOS
+    ================================= -->
+    <dialog id="popupFormEliminarMantenimiento">
+
+        <section class="formHeader">
+
+            <h2>Terminar Mantenimiento</h2>
+
+            <button id="cerrarFormEliminarMantenimiento" class="cerrarForm"
+                onclick="cerrarPopupEliminarMantenimiento()">&times;</button>
+
+        </section>
+
+        <form id="formularioTerminarMantenimiento">
+
+            <input type="hidden" name="IDVehiculoMANTENIMIENTOForm" id="IDVehiculoMANTENIMIENTOForm">
+
+            <section class="contenedorFormularioMantenimiento">
+
+                <section class="informacionMantenimiento">
+
+                    <h2>DATOS DEL MANTENIMIENTO</h2>
+
+                    <section class="inputsFormMantenimiento">
+                        <label for="nombreEliminarMantenimiento">Nombre del Mantenimiento</label>
+                        <input type="text" id="nombreEliminarMantenimiento" name="nombreEliminarMantenimiento" readonly>
+                    </section>
+
+                    <section class="inputsFormMantenimiento">
+                        <label for="tipoEliminarMantenimiento">Tipo de Mantenimiento</label>
+                        <input type="text" id="tipoEliminarMantenimiento" name="tipoEliminarMantenimiento" readonly>
+                    </section>
+
+                    <section class="inputsFormMantenimiento">
+                        <label for="fechaInicioEliminarMantenimiento">Fecha Inicio</label>
+                        <input type="text" id="fechaInicioEliminarMantenimiento" name="fechaInicioEliminarMantenimiento"
+                            readonly>
+                    </section>
+
+                </section>
+
+                <section class="informacionMantenimiento">
+
+                    <h2>DATOS PARA TERMINAR EL MANTENIMIENTO</h2>
+
+                    <section class="inputsFormMantenimiento">
+                        <label for="nuevoCosto">Costo</label>
+                        <input type="number" id="nuevoCosto" name="nuevoCosto" readonly>
+                        <section class="error"></section>
+                    </section>
+
+                    <section class="checkboxActualizarCosto">
+
+                        <label class="content-input">
+                            <input type="checkbox" name="actualizarCosto" id="actualizarCosto">Actualizar Costo
+                            <i></i>
+                        </label>
+
+                    </section>
+
+                    <section id="contenedorFechaFin">
+                        <section class="inputsFormMantenimiento">
+                            <label for="fechaFinMantenimiento">Fecha de finalización del mantenimiento:</label>
+                            <input type="text" id="fechaFinMantenimiento" name="fechaFinMantenimiento" readonly>
+                        </section>
+                    </section>
+
+                </section>
+
+            </section>
+
+            <section class="formFooter">
+
+                <button id="enviarFormularioFinMantenimiento">Enviar</button>
+
+            </section>
+
+        </form>
+
+    </dialog>
 
 
     <header>
@@ -311,8 +475,9 @@ if (!$resultadoUbi) {
                             <a href="../chofer/chofer.php?busqueda=<?php echo $choferEncontrado['CI']; ?>">
                                 <?php echo $choferEncontrado["nombreChofer"] . " " . $choferEncontrado["apellidoChofer"]; ?>
                             </a>
-                            <button type="button" class="btnEliminarChofer" onclick="abrirPopupEliminar()">Asignar Nuevo
-                                Chofer</button>
+                            <button type="button" class="btnEliminarChofer" onclick="abrirPopupEliminar()">
+                                Eliminar Asignación
+                            </button>
 
                             <dialog id="popupEliminarAsignacion">
                                 <button class="btnCerrar" onclick="cerrarPopup()">Cerrar</button>
@@ -374,138 +539,162 @@ if (!$resultadoUbi) {
 
 
 
-            <section id="mantenimiento" class="mantenimiento">
-                <h1>MANTENIMIENTOS</h1>
-                <section class="mant-container">
-                    <section>
-                        <ul class="options">
-                            <li id="enProceso" class="option option-active">En Proceso</li>
-                            <li id="historial" class="option">Historial</li>
-                            <nav>
-                                <button id="abrirFromM">Poner en Mantenimiento</button>
-                            </nav>
-                        </ul>
-                        <section class="contents">
-                            <section id="enProceso-content" class="content content-active">
-                                <h3>En Proceso</h3>
-                                <section class='table-container'>
-                                    <table>
-                                        <thead>
-                                            <th>Vehículo</th>
-                                            <th>Fecha</th>
-                                            <th>Descripción</th>
-                                            <th>Costo</th>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($mantenimientos_en_proceso as $mantenimiento) { ?>
-                                                <tr>
-                                                    <td>
-                                                        <?php echo $placa; ?>
-                                                    </td>
-                                                    <td>12/02/2024</td>
-                                                    <td>
-                                                        <?php echo $mantenimiento['nombreMantenimiento']; ?>
-                                                    </td>
-                                                    <td>$50</td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </section>
-                            </section>
-                            <section id="historial-content" class="content">
-                                <h3>Historial</h3>
-                                <section class='table-container'>
-                                    <table>
-                                        <thead>
-                                            <th>Vehículo</th>
-                                            <th>Fecha</th>
-                                            <th>Descripción</th>
-                                            <th>Costo</th>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($mantenimientos_terminados as $mantenimiento) { ?>
-                                                <tr>
-                                                    <td>
-                                                        <?php echo $placaEnviada; ?>
-                                                    </td>
-                                                    <td>15/08/2023</td>
-                                                    <td>
-                                                        <?php echo $mantenimiento['nombreMantenimiento']; ?>
-                                                    </td>
-                                                    <td>$500</td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </section>
+        <section id="mantenimiento" class="mantenimiento">
+            <h1>MANTENIMIENTOS</h1>
+            <section class="mant-container">
+                <section>
+                    <ul class="options">
+                        <li id="enProceso" class="option option-active">En Proceso</li>
+                        <li id="historial" class="option">Historial</li>
+                        <nav>
+                            <button id="abrirFormMantenimiento">Poner en Mantenimiento</button>
+                        </nav>
+                    </ul>
+                    <section class="contents">
+                        <section id="enProceso-content" class="content content-active">
+                            <h3>En Proceso</h3>
+                            <section class='table-container'>
+                                <table>
+                                    <thead>
+                                        <th>Vehículo</th>
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
+                                        <th>Fecha Inicio</th>
+                                        <th>Costo</th>
+                                        <th>Terminar</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($mantenimientos_en_proceso as $mantenimiento) {
+                                            $consultaMantenimiento = "SELECT * FROM mantenimiento WHERE IDMantenimiento = '" . $mantenimiento['IDMantenimiento'] . "' LIMIT 1";
+                                            $resultadoMantenimiento = mysqli_query($enlace, $consultaMantenimiento);
+                                            $infoMantenimiento = mysqli_fetch_assoc($resultadoMantenimiento);
+
+                                            ?>
+                                            <tr class="filaTablaMantenimiento">
+                                                <td>
+                                                    <?php echo $placa; ?>
+                                                </td>
+                                                <td class="filaNombreMantenimiento">
+                                                    <?php echo $infoMantenimiento['nombreMantenimiento']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $infoMantenimiento['tipoMantenimiento']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mantenimiento['fechaInicio']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $mantenimiento['costo']; ?>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btnTerminarMantenimiento" onclick="abrirPopupEliminarMantenimiento(
+                                                            '<?php echo $mantenimiento['IDVehiculoMANTENIMIENTO']; ?>',
+                                                            '<?php echo $infoMantenimiento['nombreMantenimiento']; ?>',
+                                                            '<?php echo $infoMantenimiento['tipoMantenimiento']; ?>',
+                                                            '<?php echo $mantenimiento['fechaInicio']; ?>',
+                                                            <?php echo $mantenimiento['costo']; ?>
+                                                        )">
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
                             </section>
                         </section>
-
-                    </section>
-
-
-                </section>
-            </section>
-
-
-
-
-
-
-            <section id="viajes" class="viajes">
-                <h1>Viajes Realizados</h1>
-
-                <section class="mant-container">
-                    <section>
-                        <ul class="options">
-                            <li id="enProcesoViaje" class="optionV option-activeV">En Proceso</li>
-                            <li id="historialViaje" class="optionV">Historial</li>
-                            <nav>
-                                <button id="abrirFormV">Poner en Ruta</button>
-                            </nav>
-                        </ul>
-                        <section class="contentsV">
-                            <section id="enProceso-contentV" class="contentV content-activeV">
-                                <h3>En Proceso</h3>
-                                <p>No existen viajes en proceso</p>
-                            </section>
-                            <section id="historial-contentV" class="contentV">
-                                <h3>Historial</h3>
-                                <section class='table-containerV'>
-                                    <table>
-                                        <thead>
-                                            <th>Vehiculo</th>
-                                            <th>Chofer</th>
-                                            <th>Ubicacion de Salida</th>
-                                            <th>Ubicacion de Llegada</th>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($rutas as $ruta) { ?>
-                                                <tr>
-                                                    <td>
-                                                        <?php echo $placaEnviada; ?>
-                                                    </td>
-                                                    <td>Pedro Vicente Maldonado</td>
-                                                    <td>
-                                                        <?php echo $ruta['ubiInicio']; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $ruta['ubiFin']; ?>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </section>
+                        <section id="historial-content" class="content">
+                            <h3>Historial</h3>
+                            <section class='table-container'>
+                                <table>
+                                    <thead>
+                                        <th>Vehículo</th>
+                                        <th>Fecha</th>
+                                        <th>Descripción</th>
+                                        <th>Costo</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($mantenimientos_terminados as $mantenimiento) { ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $placaEnviada; ?>
+                                                </td>
+                                                <td>15/08/2023</td>
+                                                <td>
+                                                    <?php echo $mantenimiento['nombreMantenimiento']; ?>
+                                                </td>
+                                                <td>$500</td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
                             </section>
                         </section>
-
                     </section>
 
+                </section>
+
+
+            </section>
+        </section>
+
+
+
+
+
+
+        <section id="viajes" class="viajes">
+            <h1>Viajes Realizados</h1>
+
+            <section class="mant-container">
+                <section>
+                    <ul class="options">
+                        <li id="enProcesoViaje" class="optionV option-activeV">En Proceso</li>
+                        <li id="historialViaje" class="optionV">Historial</li>
+                        <nav>
+                            <button id="abrirFormV">Poner en Ruta</button>
+                        </nav>
+                    </ul>
+                    <section class="contentsV">
+                        <section id="enProceso-contentV" class="contentV content-activeV">
+                            <h3>En Proceso</h3>
+                            <p>No existen viajes en proceso</p>
+                        </section>
+                        <section id="historial-contentV" class="contentV">
+                            <h3>Historial</h3>
+                            <section class='table-containerV'>
+                                <table>
+                                    <thead>
+                                        <th>Vehiculo</th>
+                                        <th>Chofer</th>
+                                        <th>Ubicacion de Salida</th>
+                                        <th>Ubicacion de Llegada</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($rutas as $ruta) { ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $placaEnviada; ?>
+                                                </td>
+                                                <td>Pedro Vicente Maldonado</td>
+                                                <td>
+                                                    <?php echo $ruta['ubiInicio']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $ruta['ubiFin']; ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </section>
+                    </section>
 
                 </section>
+
+
             </section>
+        </section>
         </section>
 
     <?php endif; ?>
@@ -522,8 +711,10 @@ if (!$resultadoUbi) {
     <script src="../js/mantenimiento.js"></script>
     <script src="../js/viajes.js"></script>
     <script src="../js/header.js"></script>
-    <script src="../js/asignarChofer.js"></script>
+    <script defer src="../js/asignarChofer.js"></script>
     <script src="../js/formViajesMantenimiento.js"></script>
+    <script defer src="../js/asignarMantenimiento.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
