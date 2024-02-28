@@ -14,7 +14,7 @@ if (!$enlace) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $placa = mysqli_real_escape_string($enlace, $_POST['placaVehiculo']);
-    $IDVehiculo = mysqli_real_escape_string($enlace, $_POST['IDVehiculo']);
+    $IDVehiculo = $_POST['IDVehiculo'];
     $fechaInicio = mysqli_real_escape_string($enlace, $_POST['fechaInicio']);
     $horaInicio = mysqli_real_escape_string($enlace, $_POST['horaInicio']);
     $kmInicio = mysqli_real_escape_string($enlace, $_POST['kmInicio']);
@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
    
+
 
 
     $ubi = "SELECT * FROM ruta WHERE ubiInicio = '$ubiInicio' AND ubiFin = '$ubiFin'";
