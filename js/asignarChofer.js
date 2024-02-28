@@ -149,6 +149,7 @@ function peticionBitacora() {
         target: "#popupAsignarChofer",
       }).then((result) => {
         if (result.isConfirmed) {
+          loader("#popupAsignarChofer");
           window.location.reload();
         }
       });
@@ -215,8 +216,18 @@ function peticionEliminarAsignacion() {
       target: "#popupEliminarAsignacion",
     }).then((result) => {
       if (result.isConfirmed) {
+        loader("#popupEliminarAsignacion");
         window.location.reload();
       }
     });
   }
+}
+
+function loader(target) {
+  Swal.fire({
+    target: target,
+    didOpen: () => {
+      Swal.showLoading();
+    },
+  });
 }

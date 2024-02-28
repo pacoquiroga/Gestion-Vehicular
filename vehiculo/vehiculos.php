@@ -21,8 +21,8 @@ if (!$enlace) {
 
 
 //CONSULTA CHOFER
-$consultaChofer = 
-"SELECT nombreChofer, apellidoChofer FROM chofer AS c
+$consultaChofer =
+    "SELECT nombreChofer, apellidoChofer FROM chofer AS c
 JOIN bitacora_chofer AS bc
 ON c.IDChofer = bc.IDChofer
 JOIN vehiculo AS v
@@ -32,8 +32,7 @@ WHERE v.placa = '$placaEnviada' AND bc.fechaFinalizacion IS NULL";
 $resultadoChofer = mysqli_query($enlace, $consultaChofer);
 if ($resultadoChofer) {
     $chofer = mysqli_fetch_assoc($resultadoChofer);
-    $nombreChofer = $chofer['nombreChofer']. " " . $chofer['apellidoChofer'];
-    
+    $nombreChofer = $chofer['nombreChofer'] . " " . $chofer['apellidoChofer'];
 } else {
     echo "Error en la consulta: " . mysqli_error($enlace);
 }
@@ -56,7 +55,7 @@ $kilometraje = $row['kilometraje'];
 
 
 // Consulta para obtener los mantenimientos terminados
-$consultaM_terminados = "SELECT * FROM mantenimiento WHERE tipoMantenimiento = 'terminado'";
+$consultaM_terminados = "SELECT * FROM vehiculo_mantenimiento WHERE IDVehiculo = '$IDVehiculo' AND exitoso = '1'";
 $resultado_terminados = mysqli_query($enlace, $consultaM_terminados);
 
 // Verificar si la consulta fue exitosa
@@ -178,6 +177,26 @@ if ($resultadosRT) {
     echo "Error en la consulta: " . mysqli_error($enlace);
 }
 
+
+/* =======================
+OBTENER TODOS LOS CHOFERES
+========================== */
+$choferesDB = "SELECT * FROM chofer";
+$resultadoChoferesDB = mysqli_query($enlace, $choferesDB);
+// Verificar si la consulta fue exitosa
+if (!$resultadoChoferesDB) {
+    // Manejar el error de la consulta, si lo hay
+    echo "Error en la consulta de todos los choferes: " . mysqli_error($enlace);
+} else {
+    // Arreglo para almacenar las ubicaciones de inicio
+    $choferes = array();
+
+    // Recorrer los resultados y almacenarlos en el arreglo
+    while ($row = mysqli_fetch_assoc($resultadoChoferesDB)) {
+        $choferes[] = $row;
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -196,11 +215,11 @@ if ($resultadosRT) {
 
 <body>
 
-<dialog  id="popupformViajes" class="form-container">
+    <dialog id="popupformViajes" class="form-container">
         <section class="formHeader">
             <h2>Iniciar Nuevo Recorrido</h2>
             <button id="cerrarFormV" class="cerrarForm">&times;</button>
-        </section >
+        </section>
         <form action="procesar_nuevo_recorrido.php" method="post">
             <input type="hidden" name="IDVehiculo" value="<?php echo $IDVehiculo; ?>">
             <input type="hidden" name="placaVehiculo" value="<?php echo $placaEnviada; ?>">
@@ -219,20 +238,20 @@ if ($resultadosRT) {
                             <?php } ?>
 
                             <script>
-                                function filtrarUbi(){
+                                function filtrarUbi() {
                                     var selectI = document.getElementById("ubiInicioS");
                                     var selectF = document.getElementById("ubiFinS");
                                     var bloquearSelectI = document.getElementById("nuevaUbiI");
 
                                     var ubiISelecionada = selectI.value;
                                     console.log(ubiISelecionada);
-                    
+
 
                                     selectF.innerHTML = "<option value='' disabled>Seleccione una Ubicacion de Inicio</option>";
 
-                                    if(ubiISelecionada != "" ){
-                                        <?php foreach($rutas as $ubicacionF){ ?>
-                                            if("<?php echo $ubicacionF['ubiInicio']; ?>" == ubiISelecionada){
+                                    if (ubiISelecionada != "") {
+                                        <?php foreach ($rutas as $ubicacionF) { ?>
+                                            if ("<?php echo $ubicacionF['ubiInicio']; ?>" == ubiISelecionada) {
                                                 var option = document.createElement("option");
                                                 option.value = "<?php echo $ubicacionF['ubiFin']; ?>";
                                                 option.textContent = "<?php echo $ubicacionF['ubiFin']; ?>";
@@ -241,25 +260,23 @@ if ($resultadosRT) {
                                         <?php } ?>
                                     }
                                 }
-
-                                
                             </script>
 
                         </select><br><br>
                         <label for="nuevaUbiI" style="font-size:x-small;">Agregar ubicación</label>
                         <input type="checkbox" id="nuevaUbiI" name="nuevaUbiI" onclick="bloquearSelectUbiI()"><br>
-                        
+
                         <br>
                         <section class="nuevaUbi" id="nuevaUbiI-container">
-                            <section class="grupo">    
-                                <input  type="text" id="nuevaUbiInicio" name="nuevaUbiInicio" ><br>
+                            <section class="grupo">
+                                <input type="text" id="nuevaUbiInicio" name="nuevaUbiInicio"><br>
                                 <label for="nuevaUbiInicio">Ingrese nueva ubicación</label>
                             </section>
                         </section>
                     </section>
-                    
+
                     <br>
-                    
+
                     <section class="grupo2">
                         <label for="ubiFin" class="seleccionarUbi">Ubicación Final:</label>
                         <br><br>
@@ -269,17 +286,17 @@ if ($resultadosRT) {
                         </select><br><br>
                         <label for="nuevaUbiF" style="font-size:x-small;">Agregar ubicación</label>
                         <input type="checkbox" id="nuevaUbiF" name="nuevaUbiF" onclick="bloquearSelectUbiF()"><br>
-                        
+
                         <br>
                         <section class="nuevaUbi" id="nuevaUbiF-container">
-                            <section class="grupo">    
-                                <input  type="text" id="nuevaUbiFin" name="nuevaUbiFin" ><br>
+                            <section class="grupo">
+                                <input type="text" id="nuevaUbiFin" name="nuevaUbiFin"><br>
                                 <label for="nuevaUbiFin">Ingrese nueva ubicación</label>
                             </section>
                         </section>
                         <br><br>
                     </section>
-                    
+
                 </section>
                 <section class="info-container">
                     <h2>RECORRIDO</h2>
@@ -292,8 +309,7 @@ if ($resultadosRT) {
                     </section>
                     <br>
                     <section class="grupo">
-                        <input type="number" id="kmInicio" oninput="validarNumero(this)" name="kmInicio" 
-                        min="<?php echo $kilometraje ?>" required><br>
+                        <input type="number" id="kmInicio" oninput="validarNumero(this)" name="kmInicio" min="<?php echo $kilometraje ?>" required><br>
                         <label for="peso">Kilometraje Inicio</label>
                     </section>
                     <br>
@@ -306,11 +322,11 @@ if ($resultadosRT) {
     </dialog>
 
 
-    <dialog  id="popupTerminarViaje" class="form-container">
+    <dialog id="popupTerminarViaje" class="form-container">
         <section class="formHeader">
             <h2>Terminar Recorrido</h2>
             <button id="cerrarFormTV" class="cerrarForm">&times;</button>
-        </section >
+        </section>
         <form action="procesar_fin_recorrido.php" method="post">
             <input type="hidden" name="IDVehiculo" value="<?php echo $IDVehiculo; ?>">
             <input type="hidden" name="placaVehiculo" value="<?php echo $placaEnviada; ?>">
@@ -325,12 +341,12 @@ if ($resultadosRT) {
                     </section>
                     <br>
                     <section class="grupo2">
-                    <label for="ubiInicioProceso" class="seleccionarUbi">Ubicación Final:</label>
+                        <label for="ubiInicioProceso" class="seleccionarUbi">Ubicación Final:</label>
                         <br><br>
                         <input type="text" id="ubiFinProceso" name="ubiFinProceso" readonly value="<?php echo $rutasProceso[0]['ubiFin'] ?>">
                         <br>
                     </section>
-                    
+
                 </section>
                 <section class="info-container">
                     <h2>RECORRIDO</h2>
@@ -339,15 +355,15 @@ if ($resultadosRT) {
                         <input type="text" id="fechaInicioP" name="fechaInicioP" readonly value="<?php echo $rutasProceso[0]['fechaInicio'] ?>">
 
                         <h4>Hora de Inicio:</h4>
-                        <input type="text" id="horaInicioP" name="horaInicioP" readonly value="<?php echo $rutasProceso[0]['horaInicio'] ?>" >
-                    
+                        <input type="text" id="horaInicioP" name="horaInicioP" readonly value="<?php echo $rutasProceso[0]['horaInicio'] ?>">
+
                         <h4>Kilometraje Inicio:</h4>
-                        <input type="text" id="kilometrajeInicioP" name="kilometrajeInicioP" readonly value="<?php echo $kilometraje ?>" >
+                        <input type="text" id="kilometrajeInicioP" name="kilometrajeInicioP" readonly value="<?php echo $kilometraje ?>">
                     </section>
                     <br>
                 </section>
                 <section class="iRECORRIDOnfo-container">
-                    <br><br><br>    
+                    <br><br><br>
                     <section class="grupo">
                         <h4>Fecha de Fin:</h4>
                         <input type="text" id="fechaFinP" name="fechaFinP" readonly>
@@ -355,11 +371,10 @@ if ($resultadosRT) {
                         <h4>Hora de Fin:</h4>
                         <input type="text" id="horaFinP" name="horaFinP" readonly>
                     </section>
-                    <br><br> 
+                    <br><br>
                     <section class="grupo">
-                        
-                        <input type="number" id="kmFinP" oninput="validarNumero(this)" name="kmFin" 
-                        min="<?php echo $kilometraje ?>" required><br>
+
+                        <input type="number" id="kmFinP" oninput="validarNumero(this)" name="kmFin" min="<?php echo $kilometraje ?>" required><br>
                         <label for="peso">Kilometraje Fin</label>
                     </section>
 
@@ -378,8 +393,7 @@ if ($resultadosRT) {
     <dialog id="popupFormMantenimiento">
         <section class="formHeader">
             <h2>Iniciar Nuevo Mantenimiento</h2>
-            <button id="cerrarFormMantenimiento" class="cerrarForm"
-                onclick="cerrarPopupMantenimiento()">&times;</button>
+            <button id="cerrarFormMantenimiento" class="cerrarForm" onclick="cerrarPopupMantenimiento()">&times;</button>
         </section>
         <form id="formularioMantenimiento">
             <input type="hidden" name="IDVehiculo" id="IDVehiculoFormMantenimiento" value="<?php echo $IDVehiculo; ?>">
@@ -463,8 +477,7 @@ if ($resultadosRT) {
 
             <h2>Terminar Mantenimiento</h2>
 
-            <button id="cerrarFormEliminarMantenimiento" class="cerrarForm"
-                onclick="cerrarPopupEliminarMantenimiento()">&times;</button>
+            <button id="cerrarFormEliminarMantenimiento" class="cerrarForm" onclick="cerrarPopupEliminarMantenimiento()">&times;</button>
 
         </section>
 
@@ -491,8 +504,7 @@ if ($resultadosRT) {
 
                     <section class="inputsFormMantenimiento">
                         <label for="fechaInicioEliminarMantenimiento">Fecha Inicio</label>
-                        <input type="text" id="fechaInicioEliminarMantenimiento" name="fechaInicioEliminarMantenimiento"
-                            readonly>
+                        <input type="text" id="fechaInicioEliminarMantenimiento" name="fechaInicioEliminarMantenimiento" readonly>
                     </section>
 
                 </section>
@@ -549,8 +561,7 @@ if ($resultadosRT) {
             <ul>
                 <li><a href="filtroVehiculos.php">Vehiculos</a></li>
                 <li><a href="../chofer/chofer.php">Choferes</a></li>
-                <li><a href="../index.php"><img class="logoSalir" src="../img/LogoCerrarSesion.png"
-                            alt="Logo Cerrar Sesión"></a></li>
+                <li><a href="../index.php"><img class="logoSalir" src="../img/LogoCerrarSesion.png" alt="Logo Cerrar Sesión"></a></li>
             </ul>
         </nav>
     </header>
@@ -570,7 +581,7 @@ if ($resultadosRT) {
         </a>
     </section>
 
-    <?php if (isset($vehiculoEnviado)): ?>
+    <?php if (isset($vehiculoEnviado)) : ?>
         <section class="seleccionado">
             <h2>Vehículo seleccionado:
                 <?php echo $placa; ?>
@@ -586,13 +597,13 @@ if ($resultadosRT) {
                     echo "<img src='data:image/jpeg;base64,$foto' class='fotoVehiculo' alt='$placa'>";
                     $busquedaBitacora = ("SELECT * FROM bitacora_chofer WHERE IDVehiculo = '$IDVehiculo' AND fechaFinalizacion IS NULL");
                     $resultadoBusquedaBitacora = mysqli_query($enlace, $busquedaBitacora);
-                    if ($resultadoBusquedaBitacora != null && mysqli_num_rows($resultadoBusquedaBitacora) > 0):
+                    if ($resultadoBusquedaBitacora != null && mysqli_num_rows($resultadoBusquedaBitacora) > 0) :
                         $bitacoraEncontrada = mysqli_fetch_assoc($resultadoBusquedaBitacora);
                         $IDChofer = $bitacoraEncontrada['IDChofer'];
                         $busquedaChofer = ("SELECT * FROM chofer WHERE IDChofer = " . $IDChofer);
                         $resultadoBusquedaChofer = mysqli_query($enlace, $busquedaChofer);
                         $choferEncontrado = mysqli_fetch_assoc($resultadoBusquedaChofer);
-                        ?>
+                    ?>
                         <section id="contenedorChofer">
                             <p>Chofer Asignado:</p>
                             <a href="../chofer/chofer.php?busqueda=<?php echo $choferEncontrado['CI']; ?>">
@@ -616,7 +627,7 @@ if ($resultadosRT) {
 
                         </section>
 
-                    <?php else: ?>
+                    <?php else : ?>
                         <section id="contenedorChofer">
                             <button class="btnAsignarChofer" onclick="abrirPopup()">Asignar Chofer</button>
                         </section>
@@ -627,8 +638,27 @@ if ($resultadosRT) {
                             <h1>Asignar Chofer</h1>
                             <section class="buscarCedula">
                                 <input type="hidden" id="IDVehiculoAsignar" value="<?php echo $IDVehiculo; ?>">
-                                <input type="number" class="cedulaBuscada" placeholder="Ingresa Cedula" name="busqueda"
-                                    required>
+                                <select name="cedulaBuscada" class="cedulaBuscada">
+                                    <option value="" selected disabled>ingresa la cedula del chofer</option>
+                                    <?php foreach ($choferes as $choferBD) {
+                                        $consultaBitacora = "SELECT * FROM bitacora_chofer
+                                        WHERE IDChofer = '" . $choferBD['IDChofer'] . "'
+                                        AND fechaFinalizacion IS NULL";
+                                        $resultado = mysqli_query($enlace, $consultaBitacora);
+                                        $bitacoraChofer = mysqli_fetch_assoc($resultado);
+
+                                        if ($bitacoraChofer == NULL) { ?>
+                                            <option value="<?php echo $choferBD['CI']; ?>">
+                                                <?php echo $choferBD['CI'] . " - " . $choferBD['nombreChofer'] . " " . $choferBD['apellidoChofer']; ?>
+                                            </option>
+                                        <?php } else { ?>
+                                            <option value="<?php echo $choferBD['IDChofer']; ?>" disabled>
+                                                <?php echo $choferBD['CI'] . " - " . $choferBD['nombreChofer'] . " " . $choferBD['apellidoChofer']; ?>
+                                            </option>
+                                    <?php
+                                        }
+                                    } ?>
+                                </select>
                                 <button id="btnBuscarChofer" onclick="AsignarChofer()"></button>
                             </section>
                         </section>
@@ -666,7 +696,9 @@ if ($resultadosRT) {
                 </article>
             </section>
 
+        </section>
 
+        <!-- MANTENIMEINTOS -->
 
         <section id="mantenimiento" class="mantenimiento">
             <h1>MANTENIMIENTOS</h1>
@@ -683,79 +715,105 @@ if ($resultadosRT) {
                         <section id="enProceso-content" class="content content-active">
                             <h3>En Proceso</h3>
                             <section class='table-container'>
-                                <table>
-                                    <thead>
-                                        <th>Vehículo</th>
-                                        <th>Nombre</th>
-                                        <th>Tipo</th>
-                                        <th>Fecha Inicio</th>
-                                        <th>Costo</th>
-                                        <th>Terminar</th>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($mantenimientos_en_proceso as $mantenimiento) {
-                                            $consultaMantenimiento = "SELECT * FROM mantenimiento WHERE IDMantenimiento = '" . $mantenimiento['IDMantenimiento'] . "' LIMIT 1";
-                                            $resultadoMantenimiento = mysqli_query($enlace, $consultaMantenimiento);
-                                            $infoMantenimiento = mysqli_fetch_assoc($resultadoMantenimiento);
+                                <?php if (count($mantenimientos_en_proceso) == 0) { ?>
+                                    <p>No existen mantenimientos en proceso</p>
+                                <?php } else { ?>
+
+                                    <table>
+                                        <thead>
+                                            <th>Vehículo</th>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Costo</th>
+                                            <th>Terminar</th>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($mantenimientos_en_proceso as $mantenimiento) {
+                                                $consultaMantenimiento = "SELECT * FROM mantenimiento WHERE IDMantenimiento = '" . $mantenimiento['IDMantenimiento'] . "' LIMIT 1";
+                                                $resultadoMantenimiento = mysqli_query($enlace, $consultaMantenimiento);
+                                                $infoMantenimiento = mysqli_fetch_assoc($resultadoMantenimiento);
 
                                             ?>
-                                            <tr class="filaTablaMantenimiento">
-                                                <td>
-                                                    <?php echo $placa; ?>
-                                                </td>
-                                                <td class="filaNombreMantenimiento">
-                                                    <?php echo $infoMantenimiento['nombreMantenimiento']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $infoMantenimiento['tipoMantenimiento']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $mantenimiento['fechaInicio']; ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $mantenimiento['costo']; ?>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btnTerminarAccion" onclick="abrirPopupEliminarMantenimiento(
+                                                <tr class="filaTablaMantenimiento">
+                                                    <td>
+                                                        <?php echo $placa; ?>
+                                                    </td>
+                                                    <td class="filaNombreMantenimiento">
+                                                        <?php echo $infoMantenimiento['nombreMantenimiento']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $infoMantenimiento['tipoMantenimiento']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $mantenimiento['fechaInicio']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $mantenimiento['costo']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btnTerminarMantenimiento" onclick="abrirPopupEliminarMantenimiento(
                                                             '<?php echo $mantenimiento['IDVehiculoMANTENIMIENTO']; ?>',
                                                             '<?php echo $infoMantenimiento['nombreMantenimiento']; ?>',
                                                             '<?php echo $infoMantenimiento['tipoMantenimiento']; ?>',
                                                             '<?php echo $mantenimiento['fechaInicio']; ?>',
                                                             <?php echo $mantenimiento['costo']; ?>
                                                         )">
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                <?php } ?>
                             </section>
                         </section>
                         <section id="historial-content" class="content">
                             <h3>Historial</h3>
                             <section class='table-container'>
-                                <table>
-                                    <thead>
-                                        <th>Vehículo</th>
-                                        <th>Fecha</th>
-                                        <th>Descripción</th>
-                                        <th>Costo</th>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($mantenimientos_terminados as $mantenimiento) { ?>
-                                            <tr>
-                                                <td>
-                                                    <?php echo $placaEnviada; ?>
-                                                </td>
-                                                <td>15/08/2023</td>
-                                                <td>
-                                                    <?php echo $mantenimiento['nombreMantenimiento']; ?>
-                                                </td>
-                                                <td>$500</td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+                                <?php if (count($mantenimientos_terminados) == 0) { ?>
+                                    <p>No existen mantenimientos terminados</p>
+                                <?php } else { ?>
+                                    <table>
+                                        <thead>
+                                            <th>Vehículo</th>
+                                            <th>Nombre</th>
+                                            <th>Tipo</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Costo</th>
+                                            <th>Fecha Fin</th>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($mantenimientos_terminados as $mantenimiento) {
+                                                $consultaMantenimiento = "SELECT * FROM mantenimiento WHERE IDMantenimiento = '" . $mantenimiento['IDMantenimiento'] . "' LIMIT 1";
+                                                $resultadoMantenimiento = mysqli_query($enlace, $consultaMantenimiento);
+                                                $infoMantenimiento = mysqli_fetch_assoc($resultadoMantenimiento);
+
+                                            ?>
+                                                <tr class="filaTablaMantenimiento">
+                                                    <td>
+                                                        <?php echo $placa; ?>
+                                                    </td>
+                                                    <td class="filaNombreMantenimiento">
+                                                        <?php echo $infoMantenimiento['nombreMantenimiento']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $infoMantenimiento['tipoMantenimiento']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $mantenimiento['fechaInicio']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $mantenimiento['costo']; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $mantenimiento['fechaFin']; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                <?php } ?>
                             </section>
                         </section>
                     </section>
@@ -766,37 +824,34 @@ if ($resultadosRT) {
             </section>
         </section>
 
-
-
-
-
+        <!-- VIAJES -->
 
         <section id="viajes" class="viajes">
-                <h1>Viajes Realizados</h1>
+            <h1>Viajes Realizados</h1>
 
-                <section class="mant-container">
-                    <section>
-                        <ul class="options">
-                            <li id="enProcesoViaje" class="optionV option-activeV">En Proceso</li>
-                            <li id="historialViaje" class="optionV">Historial</li>
-                            <nav>
-                                <?php if ($nombreChofer == " "): ?>
-                                    <button id="abrirAlertaChofer">Poner en Ruta</button>
-                                <?php elseif ($estado == "Ruta" ): ?>
-                                    <button id="abrirAlertaViaje">Poner en Ruta</button>
-                                <?php elseif ($estado == "Mantenimiento" ): ?>
-                                    <button id="abrirAlertaViajeMant">Poner en Ruta</button>
-                                <?php else: ?>
-                                    <button id="abrirFormV">Poner en Ruta</button>
-                                <?php endif; ?>
-                            </nav>
-                        </ul>
-                        <section class="contentsV">
-                            <section id="enProceso-contentV" class="contentV content-activeV">
-                                <h3>En Proceso</h3>
-                                <?php if ($estado == "Ruta"): ?>
-                                    <section class='table-containerV'>
-                                <table>
+            <section class="mant-container">
+                <section>
+                    <ul class="options">
+                        <li id="enProcesoViaje" class="optionV option-activeV">En Proceso</li>
+                        <li id="historialViaje" class="optionV">Historial</li>
+                        <nav>
+                            <?php if ($nombreChofer == " ") : ?>
+                                <button id="abrirAlertaChofer">Poner en Ruta</button>
+                            <?php elseif ($estado == "Ruta") : ?>
+                                <button id="abrirAlertaViaje">Poner en Ruta</button>
+                            <?php elseif ($estado == "Mantenimiento") : ?>
+                                <button id="abrirAlertaViajeMant">Poner en Ruta</button>
+                            <?php else : ?>
+                                <button id="abrirFormV">Poner en Ruta</button>
+                            <?php endif; ?>
+                        </nav>
+                    </ul>
+                    <section class="contentsV">
+                        <section id="enProceso-contentV" class="contentV content-activeV">
+                            <h3>En Proceso</h3>
+                            <?php if ($estado == "Ruta") : ?>
+                                <section class='table-containerV'>
+                                    <table>
                                         <thead>
                                             <th>Vehiculo</th>
                                             <th>Chofer</th>
@@ -812,7 +867,7 @@ if ($resultadosRT) {
                                                         <?php echo $placaEnviada; ?>
                                                     </td>
                                                     <td><?php echo $nombreChofer; ?></td>
-                                                    <td><?php echo $ruta['horaInicio'];?></td>
+                                                    <td><?php echo $ruta['horaInicio']; ?></td>
                                                     <td>
                                                         <?php echo $ruta['ubiInicio']; ?>
                                                     </td>
@@ -820,64 +875,64 @@ if ($resultadosRT) {
                                                         <?php echo $ruta['ubiFin']; ?>
                                                     </td>
                                                     <td>
-                                                    <button id="btnTerminarViaje" type="button" class="btnTerminarAccion">
-                                                    </button>
+                                                        <button id="btnTerminarViaje" type="button" class="btnTerminarAccion">
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </section>
+                            <?php else : ?>
+                                <p>No hay recorridos en proceso</p>
+                            <?php endif; ?>
+
+                        </section>
+                        <section id="historial-contentV" class="contentV">
+                            <h3>Historial</h3>
+                            <section class='table-containerV'>
+                                <table>
+                                    <thead>
+
+                                        <th>Ubicacion de Salida</th>
+                                        <th>Ubicacion de Llegada</th>
+                                        <th>Fecha y Hora de Salida</th>
+                                        <th>Fecha y Hora de Llegada</th>
+                                        <th>KM Recorridos</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($rutasTerminadas as $rutaT) {
+                                            $kmRecorridos = $rutaT['kmFin'] - $rutaT['kmInicio'] ?>
+                                            <tr>
+
+                                                <td>
+                                                    <?php echo $rutaT['ubiInicio']; ?>
                                                 </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </section>
-                                <?php else: ?>
-                                    <p>No hay recorridos en proceso</p>
-                                <?php endif; ?>
-                                
-                            </section>
-                            <section id="historial-contentV" class="contentV">
-                                <h3>Historial</h3>
-                                <section class='table-containerV'>
-                                    <table>
-                                        <thead>
-                                            
-                                            <th>Ubicacion de Salida</th>
-                                            <th>Ubicacion de Llegada</th>
-                                            <th>Fecha y Hora de Salida</th>
-                                            <th>Fecha y Hora de Llegada</th>
-                                            <th>KM Recorridos</th>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($rutasTerminadas as $rutaT) { 
-                                                $kmRecorridos = $rutaT['kmFin'] - $rutaT['kmInicio']?>
-                                                <tr>
-                                                   
-                                                    <td>
-                                                        <?php echo $rutaT['ubiInicio']; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $rutaT['ubiFin']; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $rutaT['fechaInicio'] . "<br>" . $rutaT['horaInicio']; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $rutaT['fechaFin'] . "<br>" . $rutaT['horaFin']; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $kmRecorridos; ?>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </section>
+                                                <td>
+                                                    <?php echo $rutaT['ubiFin']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $rutaT['fechaInicio'] . "<br>" . $rutaT['horaInicio']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $rutaT['fechaFin'] . "<br>" . $rutaT['horaFin']; ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $kmRecorridos; ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
                             </section>
                         </section>
-
                     </section>
 
-
                 </section>
+
+
             </section>
+        </section>
         </section>
 
     <?php endif; ?>
@@ -885,8 +940,7 @@ if ($resultadosRT) {
 
     <footer>
         <p>&copy Sistema de Gestión Vehicular</p>
-        <a href="https://www.facebook.com/zuck?locale=es_LA"><img width="2%" src="../img/LogoFacebook.png"
-                alt="LogoInsta"></a>
+        <a href="https://www.facebook.com/zuck?locale=es_LA"><img width="2%" src="../img/LogoFacebook.png" alt="LogoInsta"></a>
         <a href="https://www.instagram.com/zuck/"><img width="2%" src="../img/LogoInsta.png" alt="LogoInsta"></a>
         <a href="https://twitter.com/MarkCrtlC"><img width="2%" src="../img/LogoTwitter.png" alt="LogoInsta"> </a>
     </footer>

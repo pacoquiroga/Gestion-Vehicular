@@ -264,6 +264,7 @@ function ingresarNuevoMantenimiento() {
         target: "#popupFormMantenimiento",
       }).then((result) => {
         if (result.isConfirmed) {
+          loader("#popupFormMantenimiento");
           window.location.reload();
         }
       });
@@ -331,6 +332,7 @@ function asignarMantenimiento() {
         target: "#popupFormMantenimiento",
       }).then((result) => {
         if (result.isConfirmed) {
+          loader("#popupFormMantenimiento");
           window.location.reload();
         }
       });
@@ -343,6 +345,7 @@ function asignarMantenimiento() {
         target: "#popupFormMantenimiento",
       }).then((result) => {
         if (result.isConfirmed) {
+          loader("#popupFormMantenimiento");
           window.location.reload();
         }
       });
@@ -548,6 +551,7 @@ function terminarMantenimiento() {
         target: "#popupFormEliminarMantenimiento",
       }).then((result) => {
         if (result.isConfirmed) {
+          loader("#popupFormEliminarMantenimiento");
           window.location.reload();
         }
       });
@@ -560,9 +564,19 @@ function terminarMantenimiento() {
         target: "#popupFormEliminarMantenimiento",
       }).then((result) => {
         if (result.isConfirmed) {
+          loader("#popupFormEliminarMantenimiento");
           window.location.reload();
         }
       });
     }
   }
+}
+
+function loader(target) {
+  Swal.fire({
+    target: target,
+    didOpen: () => {
+      Swal.showLoading();
+    },
+  });
 }
