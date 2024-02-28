@@ -471,6 +471,7 @@ if ($resultadosRT) {
         <form id="formularioTerminarMantenimiento">
 
             <input type="hidden" name="IDVehiculoMANTENIMIENTOForm" id="IDVehiculoMANTENIMIENTOForm">
+            <input type="hidden" name="IDVehiculo" id="IDVehiculo" value="<?php $IDVehiculo ?>">
 
             <section class="contenedorFormularioMantenimiento">
 
