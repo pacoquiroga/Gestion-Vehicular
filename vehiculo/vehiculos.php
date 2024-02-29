@@ -752,7 +752,7 @@ if (!$resultadoChoferesDB) {
                                                         <?php echo $mantenimiento['costo']; ?>
                                                     </td>
                                                     <td>
-                                                        <button type="button" class="btnTerminarMantenimiento" onclick="abrirPopupEliminarMantenimiento(
+                                                        <button type="button" class="btnTerminarAccion" onclick="abrirPopupEliminarMantenimiento(
                                                             '<?php echo $mantenimiento['IDVehiculoMANTENIMIENTO']; ?>',
                                                             '<?php echo $infoMantenimiento['nombreMantenimiento']; ?>',
                                                             '<?php echo $infoMantenimiento['tipoMantenimiento']; ?>',
