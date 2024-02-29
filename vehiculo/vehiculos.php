@@ -30,7 +30,7 @@ ON v.IDVehiculo = bc.IDVehiculo
 WHERE v.placa = '$placaEnviada' AND bc.fechaFinalizacion IS NULL";
 
 $resultadoChofer = mysqli_query($enlace, $consultaChofer);
-if ($resultadoChofer) {
+if (mysqli_num_rows($resultadoChofer) > 0){
     $chofer = mysqli_fetch_assoc($resultadoChofer);
     $nombreChofer = $chofer['nombreChofer'] . " " . $chofer['apellidoChofer'];
 } else {
