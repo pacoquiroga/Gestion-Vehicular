@@ -551,7 +551,6 @@ if (!$resultadoChoferesDB) {
 
 
     <header>
-
         <section class="logoNav">
             <a href="../inicio.php" class="logo" id="header">Gestión</a>
             <img class="logoEmpresa" src="../img/LogoGestionVehicular.png" alt="Logo Gestion Vehicular" />

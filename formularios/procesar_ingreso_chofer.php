@@ -40,12 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $resultado = mysqli_stmt_execute($stmt);
 
         if ($resultado) {
-            echo "Datos y archivo de imagen guardados correctamente.<br><a href='modal.php'>Volver</a>";
         } else {
-            echo "Error al guardar los datos: " . mysqli_error($enlace);
         }
     } else {
-        echo "No se ha seleccionado ningún archivo o hubo un error en la carga.";
     }
 }
 
