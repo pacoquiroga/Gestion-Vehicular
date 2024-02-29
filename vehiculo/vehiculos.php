@@ -19,6 +19,7 @@ if (!$enlace) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
+$nombreChofer = "";
 
 //CONSULTA CHOFER
 $consultaChofer =
@@ -834,7 +835,7 @@ if (!$resultadoChoferesDB) {
                         <li id="enProcesoViaje" class="optionV option-activeV">En Proceso</li>
                         <li id="historialViaje" class="optionV">Historial</li>
                         <nav>
-                            <?php if ($nombreChofer == " ") : ?>
+                            <?php if ($nombreChofer == "") : ?>
                                 <button id="abrirAlertaChofer">Poner en Ruta</button>
                             <?php elseif ($estado == "Ruta") : ?>
                                 <button id="abrirAlertaViaje">Poner en Ruta</button>
